@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StudentScheduleActivity">
+
+    <TextView
+        android:id="@+id/sixth_class_teacher"
+        android:layout_width="270dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="68dp"
+        android:text="Иванов И.И."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fifth_class_teacher"
+        app:layout_constraintVertical_bias="0.016" />
+
+    <TextView
+        android:id="@+id/name_discipline_sixth_class"
+        android:layout_width="200dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="64dp"
+        android:fontFamily="@font/roboto"
+        android:text="Hello world hello world"
+        android:textAlignment="textStart"
+        android:textColor="@color/blue_4"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_discipline_fifth_class"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <TextView
+        android:id="@+id/sixth_class_cabinet"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="84dp"
+        android:text="а.000"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toEndOf="@+id/sixth_class_teacher"
+        app:layout_constraintTop_toBottomOf="@+id/fifth_class_cabinet"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/time_sixth_class_1"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginBottom="136dp"
+        android:text="17:40-18:25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/time_sixth_class_2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/time_sixth_class_2"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="136dp"
+        android:text="18:30-19:15"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/fifth_class_teacher"
+        android:layout_width="270dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="68dp"
+        android:text="Иванов И.И."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fouth_class_teacher" />
+
+    <TextView
+        android:id="@+id/name_discipline_fifth_class"
+        android:layout_width="200dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="64dp"
+        android:fontFamily="@font/roboto"
+        android:text="Hello world hello world"
+        android:textAlignment="textStart"
+        android:textColor="@color/blue_4"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_discipline_fouth_class" />
+
+    <TextView
+        android:id="@+id/fifth_class_cabinet"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="80dp"
+        android:text="а.000"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.392"
+        app:layout_constraintStart_toEndOf="@+id/fifth_class_teacher"
+        app:layout_constraintTop_toBottomOf="@+id/fouth_class_cabinet" />
+
+    <TextView
+        android:id="@+id/time_fifth_class_1"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginBottom="84dp"
+        android:text="15:50-16:35"
+        app:layout_constraintBottom_toTopOf="@+id/time_sixth_class_1"
+        app:layout_constraintEnd_toStartOf="@+id/time_fifth_class_2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/time_fifth_class_2"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="88dp"
+        android:text="16:40-17:25"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/time_sixth_class_2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/fouth_class_teacher"
+        android:layout_width="270dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="68dp"
+        android:text="Иванов И.И."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/third_class_teacher" />
+
+    <TextView
+        android:id="@+id/fouth_class_cabinet"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="84dp"
+        android:text="а.000"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/fouth_class_teacher"
+        app:layout_constraintTop_toBottomOf="@+id/third_class_cabinet" />
+
+    <TextView
+        android:id="@+id/time_fouth_class_1"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="80dp"
+        android:text="13:45-14:30"
+        app:layout_constraintBottom_toTopOf="@+id/time_fifth_class_1"
+        app:layout_constraintEnd_toStartOf="@+id/time_fouth_class_2"
+        app:layout_constraintHorizontal_bias="0.968"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/time_fouth_class_2"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
+        android:text="14:35-15:20"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/time_fifth_class_2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/name_discipline_fouth_class"
+        android:layout_width="200dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="64dp"
+        android:fontFamily="@font/roboto"
+        android:text="Hello world hello world"
+        android:textAlignment="textStart"
+        android:textColor="@color/blue_4"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_discipline_third_class" />
+
+    <TextView
+        android:id="@+id/name_discipline_third_class"
+        android:layout_width="200dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/roboto"
+        android:text="Hello world hello world"
+        android:textAlignment="textStart"
+        android:textColor="@color/blue_4"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_discipline_second_class" />
+
+    <TextView
+        android:id="@+id/third_class_cabinet"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="4dp"
+        android:text="а.000"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/third_class_teacher"
+        app:layout_constraintTop_toBottomOf="@+id/second_class_cabinet" />
+
+    <TextView
+        android:id="@+id/time_third_class_1"
+        android:layout_width="94dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginBottom="84dp"
+        android:text="11:55-12:40"
+        app:layout_constraintBottom_toTopOf="@+id/time_fouth_class_1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/time_third_class_2"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="80dp"
+        android:text="12:45-13:30"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/time_fouth_class_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toEndOf="@+id/time_third_class_1" />
+
+    <TextView
+        android:id="@+id/third_class_teacher"
+        android:layout_width="270dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="64dp"
+        android:text="Иванов И.И."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_class_teacher" />
+
+    <TextView
+        android:id="@+id/second_class_teacher"
+        android:layout_width="270dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="60dp"
+        android:text="Иванов И.И."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_class_teacher" />
+
+    <TextView
+        android:id="@+id/second_class_cabinet"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="76dp"
+        android:text="а.000"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toEndOf="@+id/second_class_teacher"
+        app:layout_constraintTop_toBottomOf="@+id/first_class_cabinet" />
+
+    <TextView
+        android:id="@+id/time_second_class_2"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="76dp"
+        android:text="10:40-11:25"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/time_third_class_2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/name_discipline_second_class"
+        android:layout_width="200dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/roboto"
+        android:text="Hello world hello world"
+        android:textAlignment="textStart"
+        android:textColor="@color/blue_4"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_discipline_first_class" />
+
+    <TextView
+        android:id="@+id/time_second_class_1"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginBottom="76dp"
+        android:text="09:50-10:35"
+        app:layout_constraintBottom_toTopOf="@+id/time_third_class_1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/week_type"
+        android:layout_width="171dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="24dp"
+        android:text="Верхняя неделя"
+        android:textColor="@color/blue_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/first_class_cabinet"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="16dp"
+        android:text="а.000"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/first_class_teacher"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/time_first_class_1"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="68dp"
+        android:text="08:00-08:45"
+        app:layout_constraintBottom_toTopOf="@+id/time_second_class_1"
+        app:layout_constraintEnd_toStartOf="@+id/time_first_class_2"
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/time_first_class_2"
+        android:layout_width="96dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="16dp"
+        android:text="08:50-09:35"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/time_second_class_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/name_discipline_first_class"
+        android:layout_width="200dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/roboto"
+        android:text="Hello world hello world"
+        android:textAlignment="textStart"
+        android:textColor="@color/blue_4"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/week_type" />
+
+    <TextView
+        android:id="@+id/first_class_teacher"
+        android:layout_width="270dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="132dp"
+        android:text="Иванов И.И."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
