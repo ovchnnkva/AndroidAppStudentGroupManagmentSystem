@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivityStudent">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_to_materials"
+        android:layout_width="370dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_style_blue_5"
+        android:gravity="bottom|left"
+        android:text="Материалы"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/go_to_perfomance" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_to_perfomance"
+        android:layout_width="370dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_style_blue_4"
+        android:gravity="bottom|left"
+        android:text="Успеваемость"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/go_to_sessia_shedule" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_to_sessia_shedule"
+        android:layout_width="370dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_style_blue_3"
+        android:gravity="bottom|left"
+        android:text="Расписание сессии"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/go_to_event_schedule" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/to_class_schedule_button"
+        android:layout_width="370dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_style"
+        android:gravity="bottom|left"
+        android:text="Расписание занятий"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_to_event_schedule"
+        android:layout_width="370dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_style_blue_3"
+        android:gravity="bottom|left"
+        android:text="Мероприятия"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/to_class_schedule_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>
