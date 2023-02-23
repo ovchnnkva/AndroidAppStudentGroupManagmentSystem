@@ -1,6 +1,5 @@
 package com.hfad.studentsystemapp;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +15,7 @@ public class EventScheduleActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_schedule);
         initData();
-        RecyclerView recyclerView = findViewById(R.id.container);
+        RecyclerView recyclerView = findViewById(R.id.container_event);
         EventAdapter adapter = new EventAdapter(this, events);
         recyclerView.setAdapter(adapter);
     }
