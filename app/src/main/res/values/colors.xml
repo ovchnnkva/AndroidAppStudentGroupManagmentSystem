@@ -13,4 +13,5 @@
     <color name="blue_4">#3b9abf</color>
     <color name="blue_5">#167891</color>
     <color name="blue_6">#035970</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

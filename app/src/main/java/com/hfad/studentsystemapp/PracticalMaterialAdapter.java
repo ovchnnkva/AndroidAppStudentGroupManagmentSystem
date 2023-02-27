@@ -1,9 +1,11 @@
 package com.hfad.studentsystemapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,20 @@ public class PracticalMaterialAdapter extends RecyclerView.Adapter<PracticalMate
       holder.disciplineView.setText(practicalMaterial.getDiscipline());
       holder.maxScoreView.setText(practicalMaterial.getStudentScore()+"/"+practicalMaterial.getMaxScore());
       holder.deadlineView.setText(practicalMaterial.getDeadline());
+      holder.goToMaterialButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              Intent intent = new Intent(v.getContext(), EducationMaterialActivity.class);
+              intent.putExtra("name",practicalMaterial.getName());
+              intent.putExtra("discipline",practicalMaterial.getDiscipline());
+              intent.putExtra("deadline", practicalMaterial.getDeadline());
+              intent.putExtra("score",practicalMaterial.getStudentScore()+"/"+practicalMaterial.getMaxScore());
+              intent.putExtra("studentScore", practicalMaterial.getStudentScore());
+              intent.putExtra("description",practicalMaterial.getFile());
+
+              v.getContext().startActivity(intent);
+          }
+      });
    }
 
    @Override
@@ -48,6 +64,7 @@ public class PracticalMaterialAdapter extends RecyclerView.Adapter<PracticalMate
        final TextView deadlineView;
        final TextView disciplineView;
        final TextView maxScoreView;
+       final Button goToMaterialButton;
 
        public ViewHolder(@NonNull View itemView) {
           super(itemView);
@@ -56,6 +73,7 @@ public class PracticalMaterialAdapter extends RecyclerView.Adapter<PracticalMate
           deadlineView = itemView.findViewById(R.id.pract_material_deadline);
           disciplineView = itemView.findViewById(R.id.pract_material_discipline);
           maxScoreView = itemView.findViewById(R.id.pract_material_max_score);
+          goToMaterialButton=itemView.findViewById(R.id.go_to_material_activity);
        }
     }
 }

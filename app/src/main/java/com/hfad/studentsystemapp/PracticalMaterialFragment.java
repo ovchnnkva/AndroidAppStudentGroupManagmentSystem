@@ -1,12 +1,12 @@
 package com.hfad.studentsystemapp;
 
 public class PracticalMaterialFragment {
-    private String file;
-    private String name;
-    private String teacher;
-    private String discipline;
-    private String deadline;
-    private int maxScore;
+    private String file="";
+    private String name="";
+    private String teacher="";
+    private String discipline="";
+    private String deadline="";
+    private int maxScore=0;
     private int studentScore=0;
     private boolean isMade = false;
 
