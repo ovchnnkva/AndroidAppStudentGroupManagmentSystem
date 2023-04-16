@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="2d38a3d6-e600-449b-adab-cad3a458cde2" name="StudentSystemApp" url="jdbc:mysql://f0785057.xsph.ru:3306/f0785057_studentSystemDB?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.jdbc.Driver" />
+    </data-sources>
+  </component>
+</project>
