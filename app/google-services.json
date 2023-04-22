@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "363239095642",
+    "project_id": "studentsystem",
+    "storage_bucket": "studentsystemapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363239095642:android:b1957dd248e7220ee90763",
+        "android_client_info": {
+          "package_name": "ru.sfedu.studentsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363239095642-795nj1lrfr3tq4jp2ssovd533n3p1163.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.sfedu.studentsystem",
+            "certificate_hash": "863e8aa93d9f5d0c634fd20826d594cba2fe3e26"
+          }
+        },
+        {
+          "client_id": "363239095642-cta5rtm3v8gdhr97ptt0t7jpi5n24e7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuldJXJKSdw4z0hSiPXVJJfzLFdp81Dpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363239095642-cta5rtm3v8gdhr97ptt0t7jpi5n24e7t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
