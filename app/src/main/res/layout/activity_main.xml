@@ -67,9 +67,9 @@
         android:layout_width="143dp"
         android:layout_height="55dp"
         android:layout_marginTop="52dp"
+        android:background="@drawable/button_style"
         android:text="ВОЙТИ"
         android:textSize="16sp"
-        android:background="@drawable/button_style"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pass_auth" />

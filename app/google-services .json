@@ -28,7 +28,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDTQ0PHbTgmLayGOR0VLsGz8pQWNY4AhU4"
+          "current_key": "AIzaSyA_6qcADU9BfDPyFw4OYg3IRnilx4ci-wU"
         }
       ],
       "services": {
@@ -46,7 +46,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:363239095642:android:b1957dd248e7220ee90763",
         "android_client_info": {
-          "package_name": "ru.sfedu.studentsystemapp"
+          "package_name": "ru.sfedu.studentsystem"
         }
       },
       "oauth_client": [
@@ -54,7 +54,7 @@
           "client_id": "363239095642-795nj1lrfr3tq4jp2ssovd533n3p1163.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "ru.sfedu.studentsystemapp",
+            "package_name": "ru.sfedu.studentsystem",
             "certificate_hash": "863e8aa93d9f5d0c634fd20826d594cba2fe3e26"
           }
         },
@@ -65,7 +65,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDTQ0PHbTgmLayGOR0VLsGz8pQWNY4AhU4"
+          "current_key": "AIzaSyA_6qcADU9BfDPyFw4OYg3IRnilx4ci-wU"
         }
       ],
       "services": {

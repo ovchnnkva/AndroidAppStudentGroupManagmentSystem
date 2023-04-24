@@ -11,16 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import ru.sfedu.studentsystem.R;
 import ru.sfedu.studentsystem.model.PracticalMaterial;
 import ru.sfedu.studentsystem.services.PracticalMaterialService;
+import ru.sfedu.studentsystem.services.RetrofitService;
 
 public class MaterialsSelectionActivity extends AppCompatActivity {
     private List<PracticalMaterialFragment> fragments = new ArrayList<>();
@@ -81,16 +79,8 @@ public class MaterialsSelectionActivity extends AppCompatActivity {
 
     }
     private void onCall(){
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.31.188:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client.build())
-                .build();
-        PracticalMaterialService service = retrofit.create(PracticalMaterialService.class);
+        RetrofitService retrofit = new RetrofitService();
+        PracticalMaterialService service = retrofit.createService(PracticalMaterialService.class);
         Call<List<PracticalMaterial>> call = service.getPracticalMaterialByGroupId(1L);
         call.enqueue(new Callback<List<PracticalMaterial>>() {
             @Override
