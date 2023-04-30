@@ -1,6 +1,8 @@
-package ru.sfedu.studentsystem.studentActivities;
+package ru.sfedu.studentsystem.studentActivities.recycle.fragments;
 
 import androidx.fragment.app.Fragment;
+
+import ru.sfedu.studentsystem.model.Event;
 
 public class SessiaFragment extends Fragment {
     private String name;
@@ -13,6 +15,13 @@ public class SessiaFragment extends Fragment {
         this.date=date;
         this.location = location;
         this.teacher = teacher;
+    }
+
+    public SessiaFragment(Event event){
+        this.name = event.getName();
+        this.date = formmatingDate(event.getDate(), event.getTime());
+        this.location = event.getLocation();
+        this.teacher = event.getTeacher();
     }
 
     public String getName() {
@@ -45,5 +54,11 @@ public class SessiaFragment extends Fragment {
 
     public void setTeacher(String teacher) {
         this.teacher = teacher;
+    }
+
+    private String formmatingDate(String date, String time){
+        StringBuilder builderTime = new StringBuilder(time);
+
+        return date + " " + builderTime.substring(0, 5);
     }
 }

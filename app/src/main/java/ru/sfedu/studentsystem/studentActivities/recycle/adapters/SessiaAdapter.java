@@ -1,4 +1,4 @@
-package ru.sfedu.studentsystem.studentActivities;
+package ru.sfedu.studentsystem.studentActivities.recycle.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,13 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ru.sfedu.studentsystem.R;
+import ru.sfedu.studentsystem.studentActivities.recycle.fragments.SessiaFragment;
 
 public class SessiaAdapter extends RecyclerView.Adapter<SessiaAdapter.ViewHolder> {
     private final LayoutInflater inflater;
     private final List<SessiaFragment> fragments;
 
 
-    SessiaAdapter(Context context, List<SessiaFragment> fragments){
+    public SessiaAdapter(Context context, List<SessiaFragment> fragments){
         this.fragments = fragments;
         inflater =  LayoutInflater.from(context);
     }

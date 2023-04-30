@@ -1,4 +1,4 @@
-package ru.sfedu.studentsystem.studentActivities;
+package ru.sfedu.studentsystem.studentActivities.recycle.fragments;
 
 import ru.sfedu.studentsystem.model.PracticalMaterial;
 
@@ -21,7 +21,7 @@ public class PracticalMaterialFragment {
         this.maxScore = maxScore;
         this.deadline = deadline;
     }
-    PracticalMaterialFragment(PracticalMaterial material){
+    public PracticalMaterialFragment(PracticalMaterial material){
         id = material.getId();
         name = material.getName();
         teacher = material.getDiscipline().getTeacher().getName();

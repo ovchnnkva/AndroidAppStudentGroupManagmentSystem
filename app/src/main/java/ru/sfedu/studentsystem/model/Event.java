@@ -13,12 +13,9 @@ public class Event extends Fragment {
 	private String time;
 	private String date;
 	private String location;
-	private Pattern pattern = Pattern.compile("([0-1]?[0-9]|2[0-3]):[0-5][0-9]");
-	//Примеры: 2:20, 02:20, 12:00
+	private String teacher;
+	private static final Pattern pattern = Pattern.compile("([0-1]?[0-9]|2[0-3]):[0-5][0-9]");
 
-	//
-	// Constructors
-	//
 	public Event(long id, long scheduleId, String name, String date, String time,String location) throws IllegalArgumentException{
 		if ((name != "") && (pattern.matcher(time).find()) && (date != "")) {
 			this.id = id;
@@ -33,18 +30,7 @@ public class Event extends Fragment {
 			throw new IllegalArgumentException("Invalid name or time or date");
 		}
 	}
-	public Event(){Log.e("EVENT","Create event");}
-
-
-  
-		//
-		// Methods
-		//
-
-
-		//
-		// Accessor methods
-		//
+	public Event(){Log.d("EVENT","Create event");}
 
 	public String getLocation() {
 		return location;
@@ -63,7 +49,8 @@ public class Event extends Fragment {
   }
 
   	public void setTime(String time) {
-  		this.time = time;
+		StringBuilder timeBuilder = new StringBuilder(time);
+  		this.time = timeBuilder.substring(0,5);
   }
 
   	public String getTime() {
@@ -94,13 +81,24 @@ public class Event extends Fragment {
 		this.scheduleId = scheduleId;
 	}
 
-		//
-		// Other methods
-		//
+	public String getTeacher() {
+		return teacher;
+	}
 
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
+	}
 
-
-	public String toString(){
-	  return ""+ name +" "+date+" "+time+"\n";
+	@Override
+	public String toString() {
+		return "Event{" +
+				"id=" + id +
+				", scheduleId=" + scheduleId +
+				", name='" + name + '\'' +
+				", time='" + time + '\'' +
+				", date='" + date + '\'' +
+				", location='" + location + '\'' +
+				", teacher='" + teacher + '\'' +
+				'}';
 	}
 }

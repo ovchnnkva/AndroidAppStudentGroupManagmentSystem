@@ -1,7 +1,5 @@
 package ru.sfedu.studentsystem.services;
 
-import ru.sfedu.studentsystem.model.Student;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -10,6 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import ru.sfedu.studentsystem.model.Student;
 
 public interface StudentService {
     @POST("student/create/{name}/{birthday}/{studygroupid}")
@@ -17,6 +16,8 @@ public interface StudentService {
                                   @Path("studygroupid") Long studygroupid);
     @GET("student/get/id/{id}")
     Call<Student> getStudentById(@Path("id")Long id);
+    @GET("student/get/uid/{uid}")
+    Call<Student> getSTudentByUid(@Path("uid") String uid);
     @GET("student/get/name/{name}")
     Call<List<Student>> getStudentByGroupId(@Path("name") String name);
     @GET("student/get/groupid/{groupid}")

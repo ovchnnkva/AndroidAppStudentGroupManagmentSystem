@@ -1,4 +1,4 @@
-package ru.sfedu.studentsystem.studentActivities;
+package ru.sfedu.studentsystem.studentActivities.recycle.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ru.sfedu.studentsystem.R;
-import ru.sfedu.studentsystem.model.Event;
+import ru.sfedu.studentsystem.studentActivities.recycle.fragments.EventFragment;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
     private final LayoutInflater inflater;
-    private final List<Event> events;
+    private final List<EventFragment> events;
 
-    EventAdapter(Context context, List<Event> events){
+    public EventAdapter(Context context, List<EventFragment> events){
         this.events=events;
         this.inflater = LayoutInflater.from(context);
     }
@@ -31,7 +31,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull EventAdapter.ViewHolder holder, int position) {
-        Event event = events.get(position);
+        EventFragment event = events.get(position);
         holder.nameView.setText(event.getName());
         holder.dateView.setText(event.getDate());
         holder.locationView.setText(event.getLocation());

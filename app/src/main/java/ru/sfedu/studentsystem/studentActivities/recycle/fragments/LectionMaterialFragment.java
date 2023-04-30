@@ -1,4 +1,4 @@
-package ru.sfedu.studentsystem.studentActivities;
+package ru.sfedu.studentsystem.studentActivities.recycle.fragments;
 
 import androidx.fragment.app.Fragment;
 
@@ -7,7 +7,7 @@ public class LectionMaterialFragment extends Fragment {
     private String discipline;
     private String teacher;
 
-    LectionMaterialFragment(String name, String discipline, String teacher){
+    public LectionMaterialFragment(String name, String discipline, String teacher){
         this.name = name;
         this.discipline = discipline;
         this.teacher = teacher;

@@ -13,8 +13,9 @@ import java.util.stream.Collectors;
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class Schedule{
 	protected long id;
+	protected long groupId;
 	protected Constants.TypeSchedule typeSchedule;
-	private final List<String> dayOfWeek = List.of("Понедельник","Вторник","Среда","Четверг","Пятница","Суббота");
+	private static final List<String> dayOfWeek = List.of("Понедельник","Вторник","Среда","Четверг","Пятница","Суббота");
 	protected List<Event> schedule = new ArrayList<>();
 	public Schedule(long id,Constants.TypeSchedule type){
 		this.id = id;
@@ -47,9 +48,13 @@ public class Schedule{
 		this.typeSchedule = typeSchedule;
 	}
 
-	//
-	// Other methods
-	//
+	public long getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
+	}
 
 	/**
 	 *Create and append new event to schedule

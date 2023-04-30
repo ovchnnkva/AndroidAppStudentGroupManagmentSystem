@@ -15,4 +15,6 @@ public interface ScheduleService {
     Call<Schedule> getScheduleById(@Path("id") Long id);
     @DELETE("schedule/delete/{id}")
     Call<Schedule> deleteSchedule(@Path("id")Long id);
+    @GET("schedule/get/groupid/{groupid}/{type}")
+    Call<Schedule> getScheduleByGroupIdAndType(@Path("groupid")Long groupid, @Path("type") String type);
 }

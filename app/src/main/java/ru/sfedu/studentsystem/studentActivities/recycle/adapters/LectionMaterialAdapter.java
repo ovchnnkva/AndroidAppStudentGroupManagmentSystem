@@ -1,4 +1,4 @@
-package ru.sfedu.studentsystem.studentActivities;
+package ru.sfedu.studentsystem.studentActivities.recycle.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,12 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ru.sfedu.studentsystem.R;
+import ru.sfedu.studentsystem.studentActivities.recycle.fragments.LectionMaterialFragment;
 
 public class LectionMaterialAdapter extends RecyclerView.Adapter<LectionMaterialAdapter.ViewHolder>{
     private final List<LectionMaterialFragment> fragments;
     private final LayoutInflater inflater;
 
-    LectionMaterialAdapter(Context context,List<LectionMaterialFragment> fragments) {
+    public LectionMaterialAdapter(Context context, List<LectionMaterialFragment> fragments) {
         this.fragments = fragments;
         inflater = LayoutInflater.from(context);
     }

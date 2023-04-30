@@ -19,6 +19,10 @@ import ru.sfedu.studentsystem.R;
 import ru.sfedu.studentsystem.model.PracticalMaterial;
 import ru.sfedu.studentsystem.services.PracticalMaterialService;
 import ru.sfedu.studentsystem.services.RetrofitService;
+import ru.sfedu.studentsystem.studentActivities.recycle.adapters.LectionMaterialAdapter;
+import ru.sfedu.studentsystem.studentActivities.recycle.adapters.PracticalMaterialAdapter;
+import ru.sfedu.studentsystem.studentActivities.recycle.fragments.LectionMaterialFragment;
+import ru.sfedu.studentsystem.studentActivities.recycle.fragments.PracticalMaterialFragment;
 
 public class MaterialsSelectionActivity extends AppCompatActivity {
     private List<PracticalMaterialFragment> fragments = new ArrayList<>();

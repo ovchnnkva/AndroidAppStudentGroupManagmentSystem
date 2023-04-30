@@ -1,20 +1,28 @@
-package ru.sfedu.studentsystem.studentActivities;
+package ru.sfedu.studentsystem.studentActivities.recycle.fragments;
 
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import ru.sfedu.studentsystem.model.Event;
+
 public class EventFragment extends Fragment  implements View.OnClickListener {
     private String name;
     private String date;
     private String location;
+
     EventFragment(String name, String date, String location){
         this.name = name;
         this.date = date;
         this.location = location;
     }
 
+    public EventFragment(Event event){
+        this.name = event.getName();
+        this.date = formattingDate(event.getDate(), event.getTime());
+        this.location = event.getLocation();
+    }
 
     public String getName() {
         return name;
@@ -38,6 +46,11 @@ public class EventFragment extends Fragment  implements View.OnClickListener {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    private String formattingDate(String date, String time){
+        StringBuilder timeBuilder = new StringBuilder(time);
+        return date + " "+timeBuilder.substring(0,5);
     }
 
     @Override
