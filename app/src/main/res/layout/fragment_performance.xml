@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/name_discipline_fragment"
+        android:layout_width="303dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:text="Архитектура информационных систем"
+        android:textColor="@color/blue_3"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/teachers_fragment"
+        android:layout_width="304dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="2dp"
+        android:text="Жмайлов Б.Б., Бурбелов М.О."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_discipline_fragment" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="60dp"
+        android:layout_height="58dp"
+        android:background="@drawable/serqle_blue_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toEndOf="@+id/name_discipline_fragment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.085" />
+
+    <TextView
+        android:id="@+id/performance_percent"
+        android:layout_width="49dp"
+        android:layout_height="29dp"
+        android:text="80%"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view6"
+        app:layout_constraintEnd_toEndOf="@+id/view6"
+        app:layout_constraintStart_toStartOf="@+id/view6"
+        app:layout_constraintTop_toTopOf="@+id/view6" />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="411dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teachers_fragment"
+        android:background="@color/blue_1"/>
+
+    <TextView
+        android:id="@+id/actual_performance"
+        android:layout_width="60dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="8dp"
+        android:text="80/60/100"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.354"
+        app:layout_constraintStart_toEndOf="@+id/teachers_fragment"
+        app:layout_constraintTop_toBottomOf="@+id/view6"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/type_attestation"
+        android:layout_width="127dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="18dp"
+        android:text="Экзамен"
+        app:layout_constraintBottom_toTopOf="@+id/name_discipline_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

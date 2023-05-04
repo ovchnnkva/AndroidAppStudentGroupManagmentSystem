@@ -17,16 +17,17 @@ public class PracticalMaterial extends EducationMaterials {
   	private int studentScore = 0;
   	private String studentComment = "";
   	private Date deadline;
-	  private boolean isMade = false;
-	  private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+	private boolean isMade = false;
+	private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
 
-	public PracticalMaterial (long id,String name, Discipline discipline, String deadline, int maximumScore) throws Exception {
-		super(id,name,discipline);
+	public PracticalMaterial (long id,Teacher teacher, String name, Discipline discipline, String deadline, int maximumScore) throws Exception {
+		super(id,teacher,name,discipline);
 		this.deadline = dateFormatting(deadline);
 		checkExceedingMaximumScore(maximumScore);
 		this.maximumScore = maximumScore;
 		Log.i("PRACTICAL","create practical material");
 	}
+
 	public PracticalMaterial(){Log.i("PRACTICAL","create practical material");}
 
   	public void setMaximumScore (int maximumScore) {

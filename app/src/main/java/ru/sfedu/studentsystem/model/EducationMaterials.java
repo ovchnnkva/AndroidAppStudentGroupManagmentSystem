@@ -9,25 +9,41 @@ import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
 public class EducationMaterials {
-  	protected String teachersFile="";
-  	protected String teacherComment = "";
-  	protected String name;
-  	protected Discipline discipline;
-	  protected Long studyGroupId;
-  	protected long id;
-  	protected long disciplineID;
 
-		public EducationMaterials (long id,String name, Discipline discipline) {
+	protected String teachersFile="";
+	protected String teacherComment = "";
+	protected Teacher teacher;
+	protected Long teacherId;
+
+  	protected String name;
+	protected Long studyGroupId;
+  	protected long id;
+
+  	protected long disciplineID;
+	protected Discipline discipline;
+
+		public EducationMaterials (long id, Teacher teacher, String name, Discipline discipline) {
 			this.id = id;
+			this.teacher = teacher;
+			teacherId = teacher.getId();
 			this.name = name;
 			this.discipline = discipline;
+			this.teacher = teacher;
 			disciplineID = discipline.getId();
 			Log.i("EDUCATION MATERIAL","create education material");
 		}
 		public EducationMaterials(){Log.i("EDUCATION MATERIAL","create education material");}
 
+	public Teacher getTeacher() {
+		return teacher;
+	}
 
-  	public void setTeachersFile (String path) {
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+		teacherId = teacher.getId();
+	}
+
+	public void setTeachersFile (String path) {
   		teachersFile= path;
   }
 

@@ -24,7 +24,7 @@ public class PracticalMaterialFragment {
     public PracticalMaterialFragment(PracticalMaterial material){
         id = material.getId();
         name = material.getName();
-        teacher = material.getDiscipline().getTeacher().getName();
+        teacher =material.getTeacher().getName();
         discipline = material.getDiscipline().getName();
         deadline = material.getDeadline().toString();
         maxScore = material.getMaximumScore();

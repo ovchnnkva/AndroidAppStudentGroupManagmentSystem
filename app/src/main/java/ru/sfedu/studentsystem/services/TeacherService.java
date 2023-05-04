@@ -17,6 +17,8 @@ public interface TeacherService {
     Call<Teacher> getTeacherById(@Path("id")Long id);
     @GET("teacher/get/name/{name}")
     Call<List<Teacher>> getTeacherByName(@Path("name") String name);
+    @GET("teacher/get/disciplineid/{disciplineid}")
+    Call<List<Teacher>> getTeacherForDiscipline(@Path("disciplineid") Long disciplineId);
     @GET("teacher/get/all")
     Call<List<Teacher>> getAll();
     @PUT("teacher/update/{id}/{name}")

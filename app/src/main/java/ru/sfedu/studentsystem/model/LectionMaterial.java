@@ -9,8 +9,9 @@ import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
 public class LectionMaterial extends EducationMaterials{
-	public LectionMaterial(long id,String name, Discipline discipline) {
-		super(id,name,discipline);
+
+	public LectionMaterial(long id, Teacher teacher, String name, Discipline discipline) {
+		super(id, teacher, name,discipline);
 		Log.i("LECTION","create lection material");
 	}
 	public LectionMaterial(){Log.i("LECTION","create lection material");}

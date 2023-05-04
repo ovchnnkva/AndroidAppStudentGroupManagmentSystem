@@ -5,13 +5,15 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import java.util.List;
 import java.util.Objects;
 @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
 public class Discipline{
 	private String name;
-	private long teacherId;
 	private long id;
-	private Teacher teacher;
+	private List<Teacher> teachers;
+	private String typeAttestation;
+	private int maxScoreForSemester;
 
 	public Discipline (long id, String name) throws IllegalArgumentException{
 		this.id = id;
@@ -23,16 +25,27 @@ public class Discipline{
 		}
 		Log.i("DISCIPLINE","discipline create "+this);
 	};
+
 	public Discipline(){Log.i("DISCIPLINE","discipline create");}
 
-	//
-	// Methods
-	//
+	public void appendTeacher(Teacher teacher){
+		teachers.add(teacher);
+	}
+	public String getTypeAttestation() {
+		return typeAttestation;
+	}
 
+	public void setTypeAttestation(String typeAttestation) {
+		this.typeAttestation = typeAttestation;
+	}
 
-	//
-	// Accessor methods
-	//
+	public int getMaxScoreForSemester() {
+		return maxScoreForSemester;
+	}
+
+	public void setMaxScoreForSemester(int maxScoreForSemester) {
+		this.maxScoreForSemester = maxScoreForSemester;
+	}
 
 	public void setName(String name) {
   		this.name = name;
@@ -42,13 +55,7 @@ public class Discipline{
   		return name;
   }
 
-	public long getTeacherId() {
-		return teacherId;
-	}
 
-	public void setTeacherId(long teacherId) {
-		this.teacherId = teacherId;
-	}
 
 	public long getId() {
 		return id;
@@ -58,12 +65,12 @@ public class Discipline{
 		this.id = id;
 	}
 
-	public Teacher getTeacher() {
-		return teacher;
+	public List<Teacher> getTeachers() {
+		return teachers;
 	}
 
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
 	}
 
 	@Override
@@ -71,19 +78,18 @@ public class Discipline{
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Discipline that = (Discipline) o;
-		return teacherId == that.teacherId && id == that.id && name.equals(that.name);
+		return id == that.id && name.equals(that.name);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, teacherId, id);
+		return Objects.hash(name, id);
 	}
 
 	@Override
 	public String toString() {
 		return "Discipline{" +
 				"name='" + name + '\'' +
-				", teacherId=" + teacherId +
 				", id=" + id +
 				'}';
 	}
