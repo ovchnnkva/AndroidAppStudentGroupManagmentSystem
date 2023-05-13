@@ -8,7 +8,6 @@ import static ru.sfedu.studentsystem.model.Constants.UID_USER_AUTH_FILE;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -16,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,7 +30,7 @@ import ru.sfedu.studentsystem.services.RetrofitService;
 import ru.sfedu.studentsystem.services.RoleService;
 import ru.sfedu.studentsystem.studentActivities.HomeActivityStudent;
 
-@RequiresApi(api = Build.VERSION_CODES.N)
+
 public class MainActivity extends AppCompatActivity {
     private Button signInButton;
     private FirebaseAuth auth;

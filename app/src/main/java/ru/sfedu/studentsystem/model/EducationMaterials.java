@@ -16,11 +16,13 @@ public class EducationMaterials {
 	protected Long teacherId;
 
   	protected String name;
-	protected Long studyGroupId;
+	protected Long studentId;
   	protected long id;
 
   	protected long disciplineID;
 	protected Discipline discipline;
+
+	protected String typeSemester;
 
 		public EducationMaterials (long id, Teacher teacher, String name, Discipline discipline) {
 			this.id = id;
@@ -41,6 +43,14 @@ public class EducationMaterials {
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 		teacherId = teacher.getId();
+	}
+
+	public String getTypeSemester() {
+		return typeSemester;
+	}
+
+	public void setTypeSemester(String typeSemester) {
+		this.typeSemester = typeSemester;
 	}
 
 	public void setTeachersFile (String path) {
@@ -96,11 +106,11 @@ public class EducationMaterials {
   	}
 
 	public Long getStudyGroupId() {
-		return studyGroupId;
+		return studentId;
 	}
 
 	public void setStudyGroupId(Long studyGroupId) {
-		this.studyGroupId = studyGroupId;
+		this.studentId = studyGroupId;
 	}
 
 	@Override

@@ -1,8 +1,10 @@
 package ru.sfedu.studentsystem.studentActivities.recycle.fragments;
 
+import androidx.fragment.app.Fragment;
+
 import ru.sfedu.studentsystem.model.PracticalMaterial;
 
-public class PracticalMaterialFragment {
+public class PracticalMaterialFragment extends Fragment {
     private Long id;
     private String file="";
     private String name="";
@@ -30,10 +32,6 @@ public class PracticalMaterialFragment {
         maxScore = material.getMaximumScore();
         studentScore = material.getStudentScore();
         isMade = material.isMade();
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public void setId(Long id) {

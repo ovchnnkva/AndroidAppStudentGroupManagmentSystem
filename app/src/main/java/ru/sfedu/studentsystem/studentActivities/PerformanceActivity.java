@@ -18,20 +18,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ru.sfedu.studentsystem.R;
 import ru.sfedu.studentsystem.model.Discipline;
+import ru.sfedu.studentsystem.model.PracticalMaterial;
 import ru.sfedu.studentsystem.model.Student;
 import ru.sfedu.studentsystem.model.Teacher;
 import ru.sfedu.studentsystem.services.DisciplineService;
+import ru.sfedu.studentsystem.services.PracticalMaterialService;
 import ru.sfedu.studentsystem.services.RetrofitService;
-import ru.sfedu.studentsystem.services.StudentRecordsBookService;
 import ru.sfedu.studentsystem.services.StudentService;
 import ru.sfedu.studentsystem.services.TeacherService;
 import ru.sfedu.studentsystem.studentActivities.recycle.adapters.PerformanceAdapter;
@@ -154,8 +153,8 @@ public class PerformanceActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Discipline> call, Response<Discipline> response) {
                 if(response.isSuccessful()){
-                    disciplines.add(response.body());
                     initTeachers(response.body());
+
                 }
             }
 
@@ -171,15 +170,16 @@ public class PerformanceActivity extends AppCompatActivity {
 
         TeacherService service = retrofit.createService(TeacherService.class);
         Call<List<Teacher>> call = service.getTeacherForDiscipline(discipline.getId());
-        call.enqueue(new Callback<List<Teacher>>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<List<Teacher>> call, Response<List<Teacher>> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     discipline.setTeachers(response.body());
+                    initPracticalMaterials(discipline);
                 } else {
                     Toast.makeText(PerformanceActivity.this, "Не назначен преподаватель на дисциплину", Toast.LENGTH_LONG).show();
                 }
-                initScores(discipline);
+
             }
 
             @Override
@@ -189,42 +189,40 @@ public class PerformanceActivity extends AppCompatActivity {
         });
     }
 
-    private void initScores(Discipline discipline){
-        Map<Discipline, Map<String, Integer>> scores = new HashMap<>();
-
-        StudentRecordsBookService service = retrofit.createService(StudentRecordsBookService.class);
-        Call<Map<String, Integer>> call = service.getScoreByDiscipline(student.getId(), discipline.getId(), actualTypeSemester);
-        call.enqueue(new Callback<Map<String, Integer>>() {
+    private void initPracticalMaterials(Discipline discipline){
+        PracticalMaterialService service = retrofit.createService(PracticalMaterialService.class);
+        Call<List<PracticalMaterial>> call = service.getPracticalMaterialByDiscipline(student.getId(), discipline.getId(), actualTypeSemester);
+        call.enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<Map<String, Integer>> call, Response<Map<String, Integer>> response) {
-                if(response.isSuccessful()) {
-                    scores.put(discipline, response.body());
+            public void onResponse(Call<List<PracticalMaterial>> call, Response<List<PracticalMaterial>> response) {
+                if (response.isSuccessful()) {
+                    addFragment(response.body(), discipline);
+                    if (response.body().size() == 0){
+                        clear();
+                    }
                 }
-               addFragment(scores);
             }
-
             @Override
-            public void onFailure(Call<Map<String, Integer>> call, Throwable t) {
+            public void onFailure(Call<List<PracticalMaterial>> call, Throwable t) {
                 Toast.makeText(PerformanceActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
             }
         });
-        
-        addFragment(scores);
+
     }
     private List<PerformanceFragment> fragments = new ArrayList<>();
 
-    private void addFragment(Map<Discipline, Map<String, Integer>> scores){
+    private void addFragment(List<PracticalMaterial> scores, Discipline discipline){
         Log.d("RECYCLE", "init");
 
-        scores.forEach((key, value) -> {
-            int studentsScoreSum = getSumPerformance(value);
-            PerformanceFragment fragment = new PerformanceFragment(key.getName(),
-                    Math.round((studentsScoreSum/(float)key.getMaxScoreForSemester())*100),
-                    key.getTypeAttestation());
-            fragment.setActualScore(studentsScoreSum, key.getMaxScoreForSemester());
-            fragment.setTeachers(key.getTeachers());
-            fragments.add(fragment);
-        });
+        int studentsAllScores = getSumPerformance(scores);
+
+        scores.forEach(material -> material.setDiscipline(discipline));
+        PerformanceFragment fragment = new PerformanceFragment(discipline.getName(),
+                (int) ((float)studentsAllScores/100f*100),discipline.getTypeAttestation());
+        fragment.setTeachers(discipline.getTeachers());
+        fragment.setActualScore(studentsAllScores, discipline.getMaxScoreForSemester());
+
+        fragments.add(fragment);
 
         initRecycle();
         loading.setVisibility(View.INVISIBLE);
@@ -237,9 +235,11 @@ public class PerformanceActivity extends AppCompatActivity {
 
     }
 
-    private int getSumPerformance(Map<String, Integer> scores){
+    private int getSumPerformance(List<PracticalMaterial> scores){
         if (scores.isEmpty()) return 0;
-        return scores.values().stream().mapToInt(Integer::intValue).sum();
+        final int[] sum = {0};
+        scores.forEach(m -> sum[0] += m.getStudentScore());
+        return sum[0];
     }
 
 }

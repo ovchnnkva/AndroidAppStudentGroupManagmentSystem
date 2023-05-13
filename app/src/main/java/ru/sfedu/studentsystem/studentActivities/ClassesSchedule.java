@@ -1,14 +1,15 @@
-package ru.sfedu.studentsystem.model;
+package ru.sfedu.studentsystem.studentActivities;
 
 
 import android.util.Log;
 
+import ru.sfedu.studentsystem.model.Constants;
+import ru.sfedu.studentsystem.model.Schedule;
+
 public class ClassesSchedule extends Schedule {
 
     private long id;
-    //
-    // Constructors
-    //
+
     public ClassesSchedule(){
         super(Constants.TypeSchedule.CLASSES);
         Log.i("CLASS SCHEDULE","create classes schedule");

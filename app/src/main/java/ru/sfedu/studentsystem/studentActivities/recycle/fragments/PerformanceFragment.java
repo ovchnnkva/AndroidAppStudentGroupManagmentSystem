@@ -1,12 +1,16 @@
 package ru.sfedu.studentsystem.studentActivities.recycle.fragments;
 
+import android.content.Intent;
+import android.view.View;
+
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
 
 import ru.sfedu.studentsystem.model.Teacher;
+import ru.sfedu.studentsystem.studentActivities.DetailPerformanceActivity;
 
-public class PerformanceFragment extends Fragment {
+public class PerformanceFragment extends Fragment implements View.OnClickListener{
     private String nameDiscipline;
     private String teachers;
     private int percentPerformance;
@@ -63,5 +67,12 @@ public class PerformanceFragment extends Fragment {
 
     public void setPercentPerformance(int percentPerformance) {
         this.percentPerformance = percentPerformance;
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(v.getContext(), DetailPerformanceActivity.class);
+        v.getContext().startActivity(intent);
     }
 }

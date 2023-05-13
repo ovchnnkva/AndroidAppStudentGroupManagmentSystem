@@ -1,24 +1,28 @@
 package ru.sfedu.studentsystem.model;
 
-import android.os.Build;
+import android.util.Log;
 
-import androidx.annotation.RequiresApi;
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
-@RequiresApi(api = Build.VERSION_CODES.N)
+
+
 public class Student {
 	private long id;
 	private String uid;
     private String name;
 	private Date birthday;
-    private long recordBookId;
+	private List<PracticalMaterial> scores;
 	private StudyGroup group;
 	private long studyGroupId;
 
 
 	public Student(){
+		scores = new ArrayList<>();
+		Log.d("STUDENT", "create");
 	}
+
 
 	public String getUid() {
 		return uid;
@@ -60,12 +64,12 @@ public class Student {
 		this.group = group;
 	}
 
-	public long getRecordBookId() {
-		return recordBookId;
+	public List<PracticalMaterial> getScores() {
+		return scores;
 	}
 
-	public void setRecordBookId(long recordBookId) {
-		this.recordBookId = recordBookId;
+	public void setScores(List<PracticalMaterial> scores) {
+		this.scores = scores;
 	}
 
 	public long getStudyGroupId() {

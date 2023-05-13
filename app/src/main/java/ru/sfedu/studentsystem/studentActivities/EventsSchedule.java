@@ -1,11 +1,10 @@
-package ru.sfedu.studentsystem.model;
+package ru.sfedu.studentsystem.studentActivities;
 
-import android.os.Build;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
+import ru.sfedu.studentsystem.model.Constants;
+import ru.sfedu.studentsystem.model.Schedule;
 
-@RequiresApi(api = Build.VERSION_CODES.N)
 public class EventsSchedule extends Schedule {
     private long id;
 

@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "ru.sfedu.studentsystem"
-        minSdk 26
+        minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -41,6 +41,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
+    implementation 'androidx.core:core:1.5.0-alpha04'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     implementation 'com.google.firebase:firebase-auth:21.3.0'
     implementation 'com.google.android.gms:play-services-auth:20.5.0'

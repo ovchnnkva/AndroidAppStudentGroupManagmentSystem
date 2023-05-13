@@ -1,13 +1,10 @@
 package ru.sfedu.studentsystem.model;
-import android.os.Build;
-import android.util.Log;
 
-import androidx.annotation.RequiresApi;
+import android.util.Log;
 
 import java.util.Objects;
 
 
-@RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
 public class LectionMaterial extends EducationMaterials{
 
 	public LectionMaterial(long id, Teacher teacher, String name, Discipline discipline) {

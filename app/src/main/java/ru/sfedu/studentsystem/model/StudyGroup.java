@@ -1,16 +1,16 @@
 package ru.sfedu.studentsystem.model;
 
-import android.os.Build;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import ru.sfedu.studentsystem.studentActivities.ClassesSchedule;
+import ru.sfedu.studentsystem.studentActivities.EventsSchedule;
+import ru.sfedu.studentsystem.studentActivities.SessionSchedule;
 
-@RequiresApi(api = Build.VERSION_CODES.N)
+
 public class StudyGroup {
   	private String groupCode;
   	private long id;

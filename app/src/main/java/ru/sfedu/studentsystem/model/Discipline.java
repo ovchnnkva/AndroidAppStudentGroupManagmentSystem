@@ -1,13 +1,9 @@
 package ru.sfedu.studentsystem.model;
 
-import android.os.Build;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import java.util.List;
 import java.util.Objects;
-@RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
 public class Discipline{
 	private String name;
 	private long id;

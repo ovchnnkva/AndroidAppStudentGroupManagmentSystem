@@ -1,14 +1,9 @@
 package ru.sfedu.studentsystem.model;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@RequiresApi(api = Build.VERSION_CODES.N)
 public class Teacher {
 	private long id;
 	private String name;

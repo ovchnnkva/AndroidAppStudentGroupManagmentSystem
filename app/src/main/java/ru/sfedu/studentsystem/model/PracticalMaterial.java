@@ -1,24 +1,21 @@
 package ru.sfedu.studentsystem.model;
 
-import android.os.Build;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-@RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
 public class PracticalMaterial extends EducationMaterials {
+
 	private String studentFile ="";
-  	private int maximumScore = 0;
-  	private int studentScore = 0;
-  	private String studentComment = "";
-  	private Date deadline;
+	private String studentComment = "";
+	private int maximumScore = 0;
+	private int studentScore = 0;
+	private Date deadline;
 	private boolean isMade = false;
-	private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+	private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
 
 	public PracticalMaterial (long id,Teacher teacher, String name, Discipline discipline, String deadline, int maximumScore) throws Exception {
 		super(id,teacher,name,discipline);
@@ -57,8 +54,8 @@ public class PracticalMaterial extends EducationMaterials {
   		return studentComment;
   	}
 
-	public void setDeadline(Date deadline){
-	  this.deadline = deadline;
+	public void setDeadline(Date deadline) throws Exception {
+	  this.deadline = dateFormatting(String.valueOf(deadline));
   }
 
 	public Date getDeadline(){
@@ -83,6 +80,8 @@ public class PracticalMaterial extends EducationMaterials {
 	public void setMade(boolean made) {
 		isMade = made;
 	}
+
+
 
 	private Date dateFormatting(String dateString) throws Exception {
 		try {

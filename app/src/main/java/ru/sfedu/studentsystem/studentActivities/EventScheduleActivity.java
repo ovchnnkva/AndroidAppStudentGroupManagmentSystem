@@ -4,14 +4,12 @@ import static ru.sfedu.studentsystem.model.Constants.AUTH_FILE_NAME;
 import static ru.sfedu.studentsystem.model.Constants.UID_USER_AUTH_FILE;
 
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +20,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ru.sfedu.studentsystem.R;
-import ru.sfedu.studentsystem.model.Constants;
 import ru.sfedu.studentsystem.model.Event;
 import ru.sfedu.studentsystem.model.Schedule;
 import ru.sfedu.studentsystem.model.Student;
@@ -33,7 +30,6 @@ import ru.sfedu.studentsystem.services.StudentService;
 import ru.sfedu.studentsystem.studentActivities.recycle.adapters.EventAdapter;
 import ru.sfedu.studentsystem.studentActivities.recycle.fragments.EventFragment;
 
-@RequiresApi(api = Build.VERSION_CODES.N)
 public class EventScheduleActivity extends FragmentActivity {
     private RetrofitService retrofit;
     private ProgressBar loading;
@@ -74,7 +70,7 @@ public class EventScheduleActivity extends FragmentActivity {
         Log.d("SCHEDULE","get with group id " + groupId);
 
         ScheduleService service = retrofit.createService(ScheduleService.class);
-        Call<Schedule> call = service.getScheduleByGroupIdAndType(groupId, Constants.TypeSchedule.EVENTS.toString());
+        Call<Schedule> call = service.getScheduleByGroupIdAndType(groupId, "EVENTS");
         call.enqueue(new Callback<Schedule>() {
             @Override
             public void onResponse(Call<Schedule> call, Response<Schedule> response) {
@@ -120,10 +116,10 @@ public class EventScheduleActivity extends FragmentActivity {
         loading.setVisibility(View.INVISIBLE);
 
         List<EventFragment> fragments = new ArrayList<>();
-        events.forEach(e -> {
+        for(Event e: events){
             Log.d("EVENT",e.toString());
             fragments.add(new EventFragment(e));
-        });
+        }
 
         RecyclerView recyclerView = findViewById(R.id.container_event);
         EventAdapter adapter = new EventAdapter(this, fragments);
