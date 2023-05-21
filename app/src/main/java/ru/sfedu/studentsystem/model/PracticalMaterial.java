@@ -11,11 +11,15 @@ public class PracticalMaterial extends EducationMaterials {
 
 	private String studentFile ="";
 	private String studentComment = "";
+
 	private int maximumScore = 0;
 	private int studentScore = 0;
+
 	private Date deadline;
+	private Date dateAppendScore;
 	private boolean isMade = false;
 	private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+
 
 	public PracticalMaterial (long id,Teacher teacher, String name, Discipline discipline, String deadline, int maximumScore) throws Exception {
 		super(id,teacher,name,discipline);
@@ -81,7 +85,13 @@ public class PracticalMaterial extends EducationMaterials {
 		isMade = made;
 	}
 
+	public Date getDateAppendScore() {
+		return dateAppendScore;
+	}
 
+	public void setDateAppendScore(Date dateAppendScore) {
+		this.dateAppendScore = dateAppendScore;
+	}
 
 	private Date dateFormatting(String dateString) throws Exception {
 		try {

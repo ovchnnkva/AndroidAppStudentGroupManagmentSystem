@@ -13,6 +13,7 @@
         android:layout_width="388dp"
         android:layout_height="42dp"
         android:layout_marginTop="12dp"
+        android:textAlignment="textStart"
         android:textColor="@color/blue_3"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -25,9 +26,100 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/container_detail_performance"
-        android:layout_width="407dp"
-        android:layout_height="663dp"
+        android:layout_width="391dp"
+        android:layout_height="476dp"
+        android:layout_marginBottom="184dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Промежуточный итог:"
+        android:textColor="@color/blue_3"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_detail_performance" />
+
+    <TextView
+        android:id="@+id/result_score_semester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/container_detail_performance" />
+
+    <TextView
+        android:id="@+id/exam"
+        android:layout_width="114dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:text="Экзамен"
+        android:textColor="@color/blue_3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/exam_score_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="20dp"
+        android:text="35/40"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintStart_toEndOf="@+id/exam"
+        app:layout_constraintTop_toBottomOf="@+id/result_score_semester" />
+
+    <TextView
+        android:id="@+id/date_exam_score_append"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="20.12.2022"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/result_score_semester"
+        tools:layout_editor_absoluteX="327dp" />
+
+    <TextView
+        android:id="@+id/result_score"
+        android:layout_width="253dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Итоговый рейтинг:"
+        android:textColor="@color/blue_6"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exam" />
+
+    <TextView
+        android:id="@+id/result_score_discipline"
+        android:layout_width="116dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toEndOf="@+id/result_score"
+        app:layout_constraintTop_toBottomOf="@+id/date_exam_score_append"
+        app:layout_constraintVertical_bias="0.23" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -166,7 +166,7 @@ public class PerformanceActivity extends AppCompatActivity {
     }
 
     private void initTeachers(Discipline discipline){
-        Log.d("TEACHER", "disciplineId "+discipline.getId());
+        Log.d("TEACHER", "disciplineId " + discipline.getId());
 
         TeacherService service = retrofit.createService(TeacherService.class);
         Call<List<Teacher>> call = service.getTeacherForDiscipline(discipline.getId());
@@ -221,11 +221,14 @@ public class PerformanceActivity extends AppCompatActivity {
                 (int) ((float)studentsAllScores/100f*100),discipline.getTypeAttestation());
         fragment.setTeachers(discipline.getTeachers());
         fragment.setActualScore(studentsAllScores, discipline.getMaxScoreForSemester());
-
+        fragment.setStudentId(student.getId());
+        fragment.setDisciplineId(discipline.getId());
+        fragment.setTypeSemester(actualTypeSemester);
         fragments.add(fragment);
 
         initRecycle();
         loading.setVisibility(View.INVISIBLE);
+
     }
 
     private void initRecycle(){
@@ -241,5 +244,6 @@ public class PerformanceActivity extends AppCompatActivity {
         scores.forEach(m -> sum[0] += m.getStudentScore());
         return sum[0];
     }
+
 
 }

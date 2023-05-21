@@ -8,7 +8,7 @@ import androidx.annotation.RequiresApi;
 import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
-public class EducationMaterials {
+public class EducationMaterials{
 
 	protected String teachersFile="";
 	protected String teacherComment = "";
@@ -130,4 +130,5 @@ public class EducationMaterials {
 	public String toString(){
 	  return discipline+" "+ name+" \n"+teachersFile+"\ncomment: "+teacherComment;
   }
+
 }

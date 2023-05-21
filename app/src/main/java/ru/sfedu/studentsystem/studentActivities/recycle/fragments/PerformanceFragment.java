@@ -1,17 +1,16 @@
 package ru.sfedu.studentsystem.studentActivities.recycle.fragments;
 
-import android.content.Intent;
-import android.view.View;
-
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
 
 import ru.sfedu.studentsystem.model.Teacher;
-import ru.sfedu.studentsystem.studentActivities.DetailPerformanceActivity;
 
-public class PerformanceFragment extends Fragment implements View.OnClickListener{
+public class PerformanceFragment extends Fragment{
     private String nameDiscipline;
+    private long disciplineId;
+    private long studentId;
+    private String typeSemester;
     private String teachers;
     private int percentPerformance;
     private String actualScores;
@@ -23,9 +22,11 @@ public class PerformanceFragment extends Fragment implements View.OnClickListene
         this.typeAttestation = typeAttestation;
     }
 
+
     public String getTypeAttestation() {
         return typeAttestation;
     }
+
 
     public void setTypeAttestation(String typeAttestation) {
         this.typeAttestation = typeAttestation;
@@ -69,10 +70,36 @@ public class PerformanceFragment extends Fragment implements View.OnClickListene
         this.percentPerformance = percentPerformance;
     }
 
-
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(v.getContext(), DetailPerformanceActivity.class);
-        v.getContext().startActivity(intent);
+    public long getDisciplineId() {
+        return disciplineId;
     }
+
+    public void setDisciplineId(long disciplineId) {
+        this.disciplineId = disciplineId;
+    }
+
+    public long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(long studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getTypeSemester() {
+        return typeSemester;
+    }
+
+    public void setTypeSemester(String typeSemester) {
+        this.typeSemester = typeSemester;
+    }
+
+    public void setTeachers(String teachers) {
+        this.teachers = teachers;
+    }
+
+    public void setActualScores(String actualScores) {
+        this.actualScores = actualScores;
+    }
+
 }

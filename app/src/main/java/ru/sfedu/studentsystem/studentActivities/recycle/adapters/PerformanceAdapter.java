@@ -1,9 +1,11 @@
 package ru.sfedu.studentsystem.studentActivities.recycle.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ru.sfedu.studentsystem.R;
+import ru.sfedu.studentsystem.studentActivities.DetailPerformanceActivity;
 import ru.sfedu.studentsystem.studentActivities.recycle.fragments.PerformanceFragment;
 
 public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.ViewHolder>{
@@ -38,6 +41,18 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
         holder.actualScore.setText(fragment.getActualScores());
         holder.teachersName.setText(fragment.getTeachers());
         holder.nameDiscipline.setText(fragment.getNameDiscipline());
+
+        Intent intent = new Intent(holder.itemView.getContext(), DetailPerformanceActivity.class);
+        intent.putExtra("studentId", fragment.getStudentId());
+        intent.putExtra("disciplineId", fragment.getDisciplineId());
+        intent.putExtra("typeSemester", fragment.getTypeSemester());
+
+        holder.goToDetailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -51,7 +66,7 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
         final TextView percentPerformance;
         final TextView actualScore;
         final TextView typeAttestation;
-
+        final Button goToDetailButton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nameDiscipline = itemView.findViewById(R.id.name_discipline_fragment);
@@ -59,6 +74,8 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
             percentPerformance = itemView.findViewById(R.id.performance_percent);
             actualScore = itemView.findViewById(R.id.actual_performance);
             typeAttestation = itemView.findViewById(R.id.type_attestation);
+            goToDetailButton = itemView.findViewById(R.id.button);
+
         }
     }
 

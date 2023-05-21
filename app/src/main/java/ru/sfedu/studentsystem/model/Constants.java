@@ -2,7 +2,6 @@ package ru.sfedu.studentsystem.model;
 
 public class Constants {
 
-
     public static final String AUTH_FILE_NAME = "STUDENT_SYSTEM_AUTH";
     public static final String LOGIN_FROM_AUTH_FILE = "EMAIL_USER";
     public static final String PASS_FROM_AUTH_FILE = "PASS_USER";
