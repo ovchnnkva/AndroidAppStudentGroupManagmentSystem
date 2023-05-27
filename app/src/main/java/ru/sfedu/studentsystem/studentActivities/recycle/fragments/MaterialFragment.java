@@ -2,9 +2,10 @@ package ru.sfedu.studentsystem.studentActivities.recycle.fragments;
 
 import androidx.fragment.app.Fragment;
 
+import ru.sfedu.studentsystem.model.LectionMaterial;
 import ru.sfedu.studentsystem.model.PracticalMaterial;
 
-public class PracticalMaterialFragment extends Fragment {
+public class MaterialFragment extends Fragment {
     private Long id;
     private String file="";
     private String name="";
@@ -14,24 +15,38 @@ public class PracticalMaterialFragment extends Fragment {
     private int maxScore=0;
     private int studentScore=0;
     private boolean isMade = false;
+    private String appendScore = "";
+    private String teacherComment = "";
+    private boolean isPractical = false;
 
-    PracticalMaterialFragment(String file, String name, String teacher, String discipline, int maxScore, String deadline){
-        this.file = file;
-        this.name = name;
-        this.teacher = teacher;
-        this.discipline = discipline;
-        this.maxScore = maxScore;
-        this.deadline = deadline;
-    }
-    public PracticalMaterialFragment(PracticalMaterial material){
+    public MaterialFragment(PracticalMaterial material){
         id = material.getId();
         name = material.getName();
         teacher =material.getTeacher().getName();
         discipline = material.getDiscipline().getName();
-        deadline = material.getDeadline().toString();
+        deadline = material.getDeadline();
         maxScore = material.getMaximumScore();
         studentScore = material.getStudentScore();
         isMade = material.isMade();
+        appendScore = material.getDateScoreAppend();
+        teacherComment = material.getTeacherComment();
+        isPractical = true;
+    }
+    public MaterialFragment(LectionMaterial material){
+        id = material.getId();
+        name = material.getName();
+        teacher = material.getTeacher().getName();
+        discipline = material.getDiscipline().getName();
+        teacherComment = material.getTeacherComment();
+        file = material.getTeachersFile();
+    }
+
+    public boolean isPractical() {
+        return isPractical;
+    }
+
+    public void setPractical(boolean practical) {
+        isPractical = practical;
     }
 
     public void setId(Long id) {
@@ -90,6 +105,14 @@ public class PracticalMaterialFragment extends Fragment {
         return studentScore;
     }
 
+    public String getAppendScore() {
+        return appendScore;
+    }
+
+    public void setAppendScore(String appendScore) {
+        this.appendScore = appendScore;
+    }
+
     public void setStudentScore(int studentScore) {
         isMade = true;
         this.studentScore = studentScore;
@@ -101,5 +124,13 @@ public class PracticalMaterialFragment extends Fragment {
 
     public void setMade(boolean made) {
         isMade = made;
+    }
+
+    public String getTeacherComment() {
+        return teacherComment;
+    }
+
+    public void setTeacherComment(String teacherComment) {
+        this.teacherComment = teacherComment;
     }
 }

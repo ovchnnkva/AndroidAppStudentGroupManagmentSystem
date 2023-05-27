@@ -29,7 +29,7 @@ public class HomeActivityStudent extends AppCompatActivity {
         classesScheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivityStudent.this, ClassesScheduleActivity.class);
+                Intent intent = new Intent(HomeActivityStudent.this, CalendarActivity.class);
                 HomeActivityStudent.this.startActivity(intent);
             }
         });

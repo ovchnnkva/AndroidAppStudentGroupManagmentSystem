@@ -113,6 +113,22 @@ public class EducationMaterials{
 		this.studentId = studyGroupId;
 	}
 
+	public Long getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(Long teacherId) {
+		this.teacherId = teacherId;
+	}
+
+	public Long getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

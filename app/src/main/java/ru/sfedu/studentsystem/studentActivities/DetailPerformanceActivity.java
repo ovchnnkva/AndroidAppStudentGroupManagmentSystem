@@ -3,10 +3,13 @@ package ru.sfedu.studentsystem.studentActivities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -26,56 +29,67 @@ import ru.sfedu.studentsystem.studentActivities.recycle.adapters.DetailPerforman
 import ru.sfedu.studentsystem.studentActivities.recycle.fragments.DetailPerformanceFragment;
 
 public class DetailPerformanceActivity extends AppCompatActivity {
-
+    private long studentId;
+    private  long disciplineId;
+    private String typeSem;
     private RetrofitService retrofit;
     private TextView nameDiscipline;
+    private Discipline discipline;
     private TextView resultScoreSemester;
     private TextView examScore;
     private TextView dateExamScoreAppend;
     private TextView resultScoreStudent;
     private RecyclerView container;
-    private int maxScoreSemester;
+
+    private ProgressBar loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_performance);
+
+        retrofit = new RetrofitService();
+
+        loading = findViewById(R.id.loading_detail_performance);
+
         Intent intent = getIntent();
 
-        long studentId = intent.getLongExtra("studentId", 0);
-        long disciplineId = intent.getLongExtra("disciplineId", 0);
-        String typeSem = intent.getStringExtra("typeSemester");
-
         initView();
+
+        studentId = intent.getLongExtra("studentId", 0);
+        disciplineId = intent.getLongExtra("disciplineId", 0);
+        typeSem = intent.getStringExtra("typeSemester");
+
+        loading.setVisibility(View.VISIBLE);
 
         Log.d("DISCIPLINE", disciplineId+"");
         Log.d("STUDENT", studentId+"");
         Log.d("TYPESEM", typeSem);
 
-        initDiscipline(disciplineId);
-        initPracticalMaterials(disciplineId, studentId, typeSem);
+        initDiscipline();
     }
 
     private void initView() {
-        nameDiscipline = findViewById(R.id.name_discipline_fragment);
+        nameDiscipline = findViewById(R.id.discipline_name_fragment);
         resultScoreSemester = findViewById(R.id.result_score_semester);
         examScore = findViewById(R.id.exam_score_fragment);
         dateExamScoreAppend = findViewById(R.id.date_exam_score_append);
-        resultScoreStudent = findViewById(R.id.result_score);
+        resultScoreStudent = findViewById(R.id.result_score_discipline);
         container = findViewById(R.id.container_detail_performance);
     }
 
-    private void initDiscipline(Long disciplineid){
-        Log.d("DISCIPLINEID", disciplineid+"");
+    private void initDiscipline(){
+        Log.d("DISCIPLINEID", disciplineId+"");
 
         DisciplineService service = retrofit.createService(DisciplineService.class);
-        Call<Discipline> call = service.getDisciplineById(disciplineid);
+        Call<Discipline> call = service.getDisciplineById(disciplineId);
         call.enqueue(new Callback<Discipline>() {
             @Override
             public void onResponse(Call<Discipline> call, Response<Discipline> response) {
                 if(response.isSuccessful()){
-                    nameDiscipline.setText(response.body().getName());
-                    maxScoreSemester = response.body().getMaxScoreForSemester();
+                    discipline = response.body();
+                    nameDiscipline.setText(discipline.getName());
+                    initPracticalMaterials();
                 }
             }
 
@@ -86,14 +100,15 @@ public class DetailPerformanceActivity extends AppCompatActivity {
         });
     }
 
-    private void initPracticalMaterials(long disciplineId, long studentId, String typeSem){
+    private void initPracticalMaterials(){
         PracticalMaterialService service = retrofit.createService(PracticalMaterialService.class);
         Call<List<PracticalMaterial>> call = service.getPracticalMaterialByDiscipline(studentId, disciplineId, typeSem);
-        call.enqueue(new Callback<>() {
+        call.enqueue(new Callback<List<PracticalMaterial>>() {
             @Override
             public void onResponse(Call<List<PracticalMaterial>> call, Response<List<PracticalMaterial>> response) {
                 if (response.isSuccessful()) {
                     addFragment(response.body());
+
                 }
             }
             @Override
@@ -116,32 +131,40 @@ public class DetailPerformanceActivity extends AppCompatActivity {
 
                 fragment.setNameTask(m.getName());
                 fragment.setScores(m.getStudentScore(), m.getMaximumScore());
-                fragment.setDateAppendScore(m.getDateAppendScore());
+                fragment.setDateAppendScore(m.getDateScoreAppend());
 
                 fragments.add(fragment);
 
                 resultScore.addAndGet(m.getStudentScore());
             }
         });
-        String resultScoreSemesterStr = resultScore + "/" + maxScoreSemester;
+        String resultScoreSemesterStr = resultScore + "/" + discipline.getMaxScoreForSemester();
         resultScoreSemester.setText(resultScoreSemesterStr);
 
         String resultScoreStudentStr = (examScore.get() + resultScore.get()) + "/100";
         resultScoreStudent.setText(resultScoreStudentStr);
 
+        Log.d("FRAGSIZE", fragments.size()+"");
         initRecycle(fragments);
     }
 
     private void initRecycle(List<DetailPerformanceFragment> fragments){
+        loading.setVisibility(View.INVISIBLE);
         DetailPerformanceAdapter adapter = new DetailPerformanceAdapter(this, fragments);
-
+        container.setLayoutManager(new LinearLayoutManager(this));
         container.setAdapter(adapter);
     }
 
     private void initExam(PracticalMaterial material){
         String examScoreStr = material.getStudentScore()+"/40";
 
+        TextView examStr = findViewById(R.id.exam);
+        examStr.setVisibility(View.VISIBLE);
+
         examScore.setText(examScoreStr);
-        dateExamScoreAppend.setText(material.getDateAppendScore().toString());
+        dateExamScoreAppend.setText(material.getDateScoreAppend());
+
     }
+
+
 }

@@ -5,6 +5,7 @@ import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public class PracticalMaterial extends EducationMaterials {
@@ -15,10 +16,10 @@ public class PracticalMaterial extends EducationMaterials {
 	private int maximumScore = 0;
 	private int studentScore = 0;
 
-	private Date deadline;
-	private Date dateAppendScore;
-	private boolean isMade = false;
-	private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+	private String deadline;
+	private String dateScoreAppend;
+	private boolean made = false;
+
 
 
 	public PracticalMaterial (long id,Teacher teacher, String name, Discipline discipline, String deadline, int maximumScore) throws Exception {
@@ -62,7 +63,7 @@ public class PracticalMaterial extends EducationMaterials {
 	  this.deadline = dateFormatting(String.valueOf(deadline));
   }
 
-	public Date getDeadline(){
+	public String getDeadline(){
 		return deadline;
   	}
 	public String getStudentFile(){
@@ -78,24 +79,27 @@ public class PracticalMaterial extends EducationMaterials {
 	}
 
 	public boolean isMade() {
-		return isMade;
+		return made;
 	}
 
 	public void setMade(boolean made) {
-		isMade = made;
+		made = made;
 	}
 
-	public Date getDateAppendScore() {
-		return dateAppendScore;
+	public String getDateScoreAppend() {
+		return dateScoreAppend;
 	}
 
-	public void setDateAppendScore(Date dateAppendScore) {
-		this.dateAppendScore = dateAppendScore;
+	public void setDateScoreAppend(String dateScoreAppend) {
+		this.dateScoreAppend = dateScoreAppend;
 	}
 
-	private Date dateFormatting(String dateString) throws Exception {
+	private String dateFormatting(String dateString) throws Exception {
+		SimpleDateFormat oldDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
+		SimpleDateFormat newDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
 		try {
-			return simpleDateFormat.parse(dateString);
+			Date date = oldDateFormat.parse(dateString);
+			return newDateFormat.format(date);
 		}catch(ParseException e){
 			throw new Exception("invalid date format");
 		}
@@ -122,12 +126,15 @@ public class PracticalMaterial extends EducationMaterials {
 	}
 
 	@Override
-	public String toString(){
-		return discipline+"\ntask: "+ name+"\ndeadline: "+simpleDateFormat.format(deadline)+
-				"\nmaximum score: " + maximumScore +"\n student score: "
-				+ studentScore +" \nteachers file:" + teachersFile +"\nstudents file:"
-				+ studentFile + "\nTeacher comment: "
-				+ teacherComment + "\nStudent comment: " + studentComment;
+	public String toString() {
+		return "PracticalMaterial{" +
+				"studentFile='" + studentFile + '\'' +
+				", studentComment='" + studentComment + '\'' +
+				", maximumScore=" + maximumScore +
+				", studentScore=" + studentScore +
+				", deadline='" + deadline + '\'' +
+				", dateScoreAppend=" + dateScoreAppend +
+				", made=" + made +
+				'}';
 	}
-
 }

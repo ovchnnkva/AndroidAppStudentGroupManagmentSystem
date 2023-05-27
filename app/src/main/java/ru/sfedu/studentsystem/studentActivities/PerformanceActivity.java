@@ -39,7 +39,6 @@ import ru.sfedu.studentsystem.studentActivities.recycle.fragments.PerformanceFra
 public class PerformanceActivity extends AppCompatActivity {
 
     private RetrofitService retrofit;
-    private List<Discipline> disciplines;
     private Student student;
     private String actualTypeSemester;
     private RecyclerView recyclerView;
@@ -54,8 +53,6 @@ public class PerformanceActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.container_performance);
 
         retrofit = new RetrofitService();
-
-        disciplines = new ArrayList<>();
 
         initStudentUid();
     }
@@ -170,7 +167,7 @@ public class PerformanceActivity extends AppCompatActivity {
 
         TeacherService service = retrofit.createService(TeacherService.class);
         Call<List<Teacher>> call = service.getTeacherForDiscipline(discipline.getId());
-        call.enqueue(new Callback<>() {
+        call.enqueue(new Callback<List<Teacher>>() {
             @Override
             public void onResponse(Call<List<Teacher>> call, Response<List<Teacher>> response) {
                 if (response.isSuccessful()) {
@@ -192,7 +189,7 @@ public class PerformanceActivity extends AppCompatActivity {
     private void initPracticalMaterials(Discipline discipline){
         PracticalMaterialService service = retrofit.createService(PracticalMaterialService.class);
         Call<List<PracticalMaterial>> call = service.getPracticalMaterialByDiscipline(student.getId(), discipline.getId(), actualTypeSemester);
-        call.enqueue(new Callback<>() {
+        call.enqueue(new Callback<List<PracticalMaterial>>() {
             @Override
             public void onResponse(Call<List<PracticalMaterial>> call, Response<List<PracticalMaterial>> response) {
                 if (response.isSuccessful()) {

@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -18,70 +17,73 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name="ru.sfedu.studentsystem.studentActivities.DetailPerformanceActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:name=".teacherActivity.HomeActivityTeacher"
+            android:exported="false" />
         <activity
-            android:name="ru.sfedu.studentsystem.studentActivities.PerformanceActivity"
+            android:name=".studentActivities.DetailPerformanceActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="ru.sfedu.studentsystem.studentActivities.EducationMaterialActivity"
+            android:name=".studentActivities.PerformanceActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="ru.sfedu.studentsystem.studentActivities.MaterialsSelectionActivity"
+            android:name=".studentActivities.EducationMaterialActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="ru.sfedu.studentsystem.studentActivities.SessionScheduleActivity"
+            android:name=".studentActivities.MaterialsSelectionActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="ru.sfedu.studentsystem.studentActivities.EventScheduleActivity"
+            android:name=".studentActivities.SessionScheduleActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="ru.sfedu.studentsystem.studentActivities.ClassesScheduleActivity"
+            android:name=".studentActivities.EventScheduleActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="ru.sfedu.studentsystem.studentActivities.CalendarActivity"
+            android:name=".studentActivities.ClassesScheduleActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="ru.sfedu.studentsystem.studentActivities.HomeActivityStudent"
-            android:exported="false">
+            android:name=".studentActivities.CalendarActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="ru.sfedu.studentsystem.MainActivity"
+            android:name=".studentActivities.HomeActivityStudent"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -29,6 +29,7 @@ import ru.sfedu.studentsystem.model.Constants;
 import ru.sfedu.studentsystem.services.RetrofitService;
 import ru.sfedu.studentsystem.services.RoleService;
 import ru.sfedu.studentsystem.studentActivities.HomeActivityStudent;
+import ru.sfedu.studentsystem.teacherActivity.HomeActivityTeacher;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (roleUser){
             case STUDENT: intent = new Intent(MainActivity.this, HomeActivityStudent.class); this.startActivity(intent);break;
-            case TEACHER:break;
+            case TEACHER:intent = new Intent(MainActivity.this, HomeActivityTeacher.class); this.startActivity(intent);break;
             case ADMIN:break;
         }
     }
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         RetrofitService retrofit = new RetrofitService();
         RoleService roleService = retrofit.createService(RoleService.class);
         Call<ResponseBody> call = roleService.getRoleByUid(uid);
-        call.enqueue(new Callback<>() {
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.body() != null) {

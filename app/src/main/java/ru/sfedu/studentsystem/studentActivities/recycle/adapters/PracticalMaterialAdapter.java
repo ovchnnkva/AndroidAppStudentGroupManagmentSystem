@@ -15,13 +15,13 @@ import java.util.List;
 
 import ru.sfedu.studentsystem.R;
 import ru.sfedu.studentsystem.studentActivities.EducationMaterialActivity;
-import ru.sfedu.studentsystem.studentActivities.recycle.fragments.PracticalMaterialFragment;
+import ru.sfedu.studentsystem.studentActivities.recycle.fragments.MaterialFragment;
 
 public class PracticalMaterialAdapter extends RecyclerView.Adapter<PracticalMaterialAdapter.ViewHolder>{
    private final LayoutInflater inflater;
-   private final List<PracticalMaterialFragment> fragments;
+   private final List<MaterialFragment> fragments;
 
-   public PracticalMaterialAdapter(Context context, List<PracticalMaterialFragment> fragments){
+   public PracticalMaterialAdapter(Context context, List<MaterialFragment> fragments){
       this.fragments = fragments;
       inflater = LayoutInflater.from(context);
    }
@@ -29,31 +29,35 @@ public class PracticalMaterialAdapter extends RecyclerView.Adapter<PracticalMate
    @NonNull
    @Override
    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-      View view = inflater.inflate(R.layout.fragment_education_material,parent,false);
+      View view = inflater.inflate(R.layout.fragment_education_material, parent,false);
       return new ViewHolder(view);
    }
 
    @Override
    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-      PracticalMaterialFragment practicalMaterial = fragments.get(position);
+      MaterialFragment practicalMaterial = fragments.get(position);
       holder.nameView.setText(practicalMaterial.getName());
       holder.teacherView.setText(practicalMaterial.getTeacher());
       holder.disciplineView.setText(practicalMaterial.getDiscipline());
-      holder.maxScoreView.setText(practicalMaterial.getStudentScore()+"/"+practicalMaterial.getMaxScore());
-      holder.deadlineView.setText(practicalMaterial.getDeadline());
-      holder.goToMaterialButton.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              Intent intent = new Intent(v.getContext(), EducationMaterialActivity.class);
-              intent.putExtra("name",practicalMaterial.getName());
-              intent.putExtra("discipline",practicalMaterial.getDiscipline());
-              intent.putExtra("deadline", practicalMaterial.getDeadline());
-              intent.putExtra("score",practicalMaterial.getStudentScore()+"/"+practicalMaterial.getMaxScore());
-              intent.putExtra("studentScore", practicalMaterial.getStudentScore());
-              intent.putExtra("description",practicalMaterial.getFile());
+      if(practicalMaterial.isPractical()) {
+          String maxScoreStr = practicalMaterial.getStudentScore() + "/" + practicalMaterial.getMaxScore();
+          holder.maxScoreView.setText(maxScoreStr);
+      }
 
-              v.getContext().startActivity(intent);
-          }
+      holder.appendScoreView.setText(practicalMaterial.getAppendScore());
+
+      holder.goToMaterialButton.setOnClickListener(v -> {
+          Intent intent = new Intent(v.getContext(), EducationMaterialActivity.class);
+          intent.putExtra("name",practicalMaterial.getName());
+          intent.putExtra("discipline",practicalMaterial.getDiscipline());
+          intent.putExtra("deadline", practicalMaterial.getDeadline());
+          intent.putExtra("description", practicalMaterial.getTeacherComment());
+          intent.putExtra("score",practicalMaterial.getStudentScore()+"/"+practicalMaterial.getMaxScore());
+          intent.putExtra("studentScore", practicalMaterial.getStudentScore());
+          intent.putExtra("file",practicalMaterial.getFile());
+          intent.putExtra("isPract", practicalMaterial.isPractical());
+
+          v.getContext().startActivity(intent);
       });
    }
 
@@ -65,19 +69,20 @@ public class PracticalMaterialAdapter extends RecyclerView.Adapter<PracticalMate
    public static class ViewHolder extends RecyclerView.ViewHolder{
        final TextView nameView;
        final TextView teacherView;
-       final TextView deadlineView;
        final TextView disciplineView;
        final TextView maxScoreView;
        final Button goToMaterialButton;
+       final TextView appendScoreView;
+
 
        public ViewHolder(@NonNull View itemView) {
           super(itemView);
           nameView = itemView.findViewById(R.id.pract_material_name);
           teacherView = itemView.findViewById(R.id.pract_material_teacher);
-          deadlineView = itemView.findViewById(R.id.pract_material_deadline);
           disciplineView = itemView.findViewById(R.id.pract_material_discipline);
           maxScoreView = itemView.findViewById(R.id.pract_material_max_score);
           goToMaterialButton=itemView.findViewById(R.id.go_to_material_activity);
+          appendScoreView = itemView.findViewById(R.id.append_score_material_fragment);
        }
     }
 }

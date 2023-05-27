@@ -12,6 +12,7 @@ public class EducationMaterialActivity extends AppCompatActivity {
     private TextView deadlineView;
     private TextView score;
     private TextView description;
+    private TextView file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +22,23 @@ public class EducationMaterialActivity extends AppCompatActivity {
         Intent intent = getIntent();
         nameView.setText(intent.getStringExtra("name"));
         disciplineView.setText(intent.getStringExtra("discipline"));
-        deadlineView.setText(intent.getStringExtra("deadline"));
-        score.setText(intent.getStringExtra("score"));
         description.setText(intent.getStringExtra("description"));
+        file.setText(intent.getStringExtra("file"));
+        if(intent.getBooleanExtra("isPract", false)) {
+            String deadlineStr = "До: " + intent.getStringExtra("deadline");
+            deadlineView.setText(deadlineStr);
+            score.setText(intent.getStringExtra("score"));
+        }
+
+
     }
 
     public void init(){
         nameView = findViewById(R.id.name_education_material);
-        disciplineView=findViewById(R.id.discipline_education_material);
-        deadlineView=findViewById(R.id.deadline_education_material);
-        score=findViewById(R.id.score_education_material);
-        description=findViewById(R.id.description_education_material);
+        disciplineView = findViewById(R.id.discipline_education_material);
+        deadlineView = findViewById(R.id.deadline_education_material);
+        score = findViewById(R.id.score_education_material);
+        description = findViewById(R.id.description_education_material);
+        file = findViewById(R.id.file_education_material);
     }
 }

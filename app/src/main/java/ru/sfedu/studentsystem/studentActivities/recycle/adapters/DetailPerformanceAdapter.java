@@ -36,7 +36,7 @@ public class DetailPerformanceAdapter extends  RecyclerView.Adapter<DetailPerfor
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DetailPerformanceFragment fragment = fragments.get(position);
         holder.nameTaskView.setText(fragment.getNameTask());
-        holder.dateView.setText(fragment.getDateAppendScore().toString());
+        holder.dateView.setText(fragment.getDateAppendScore());
         holder.scoresView.setText(fragment.getScores());
     }
 
@@ -52,7 +52,7 @@ public class DetailPerformanceAdapter extends  RecyclerView.Adapter<DetailPerfor
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTaskView = itemView.findViewById(R.id.name_discipline_fragment);
+            nameTaskView = itemView.findViewById(R.id.task_name_fragment);
             scoresView = itemView.findViewById(R.id.task_score_fragment);
             dateView = itemView.findViewById(R.id.task_date_fragment);
 

@@ -14,7 +14,7 @@ import ru.sfedu.studentsystem.model.PracticalMaterial;
 public interface PracticalMaterialService {
     @POST("/practicalmaterial/create/{name}/{disciplineid}/{maxscore}/{deadline}/{studentid}/{teacherid}/{typesem}")
     Call<Integer> registryPracticalMaterial(@Path("name") String name, @Path("disciplineid") Long disciplineid,
-                                             @Path("maxscore") int maxscore, @Path("deadline") Date deadline,
+                                             @Path("maxscore") int maxscore, @Path("deadline") String deadline,
                                             @Path("studentid") Long studentId,@Path("teacherid") Long teacherId,
                                             @Path("typesem") String typeSem);
 
@@ -27,8 +27,8 @@ public interface PracticalMaterialService {
     @GET("/practicalmaterial/get/name/{name}")
     Call<List<PracticalMaterial>> getPracticalMaterialByName(@Path("name") String name);
 
-    @GET("/practicalmaterial/get/studentid/{studentid}")
-    Call<List<PracticalMaterial>> getPracticalMaterialByGroupId(@Path("studentid") Long groupid);
+    @GET("/practicalmaterial/get/studentid/{studentid}/{typeSem}")
+    Call<List<PracticalMaterial>> getPracticalMaterialByStudentId(@Path("studentid") Long groupid, @Path("typeSem") String typeSem);
 
     @PUT("/practicalmaterial/update/{id}/{name}/{deadline}/{disciplineid}/{maxscore}/{studentcomm}/{studentfile}/{studentscore}/{studentid}/{teachercomm}/{teacherfile}/{ismade}")
     Call<Integer> updatePracticalMaterial(@Path("id")Long id, @Path("name") String name,

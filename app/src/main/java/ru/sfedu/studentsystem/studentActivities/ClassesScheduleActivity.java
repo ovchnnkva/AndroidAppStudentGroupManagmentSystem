@@ -42,7 +42,8 @@ public class ClassesScheduleActivity extends AppCompatActivity {
 
         retrofit = new RetrofitService();
 
-       actualWeekDay = this.getIntent().getStringExtra("weekDay");
+       actualWeekDay = weekDay[this.getIntent().getIntExtra("weekDay", 0)];
+       Log.d("WEEKDAY", actualWeekDay);
        initStudentUid();
     }
     private void initStudentUid(){
@@ -89,12 +90,14 @@ public class ClassesScheduleActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(ClassesScheduleActivity.this, "Расписание ещё не опубликовано", Toast.LENGTH_SHORT).show();
+                    loading.setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onFailure(Call<Schedule> call, Throwable t) {
                 Toast.makeText(ClassesScheduleActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+                loading.setVisibility(View.INVISIBLE);
             }
         });
     }
