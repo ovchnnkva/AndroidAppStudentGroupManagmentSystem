@@ -1,7 +1,7 @@
 package ru.sfedu.studentsystem.studentActivities;
 
-import static ru.sfedu.studentsystem.model.Constants.AUTH_FILE_NAME;
-import static ru.sfedu.studentsystem.model.Constants.UID_USER_AUTH_FILE;
+import static ru.sfedu.studentsystem.Constants.AUTH_FILE_NAME;
+import static ru.sfedu.studentsystem.Constants.UID_USER_AUTH_FILE;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ru.sfedu.studentsystem.R;
-import ru.sfedu.studentsystem.model.Constants;
+import ru.sfedu.studentsystem.Constants;
 import ru.sfedu.studentsystem.model.Event;
 import ru.sfedu.studentsystem.model.Schedule;
 import ru.sfedu.studentsystem.model.Student;
@@ -80,6 +80,7 @@ public class SessionScheduleActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(SessionScheduleActivity.this, "Расписание ещё не опубликовано", Toast.LENGTH_SHORT).show();
+                    loading.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -103,6 +104,7 @@ public class SessionScheduleActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(SessionScheduleActivity.this, "Расписание ещё не опубликовано", Toast.LENGTH_SHORT).show();
+                    loading.setVisibility(View.INVISIBLE);
                 }
             }
 

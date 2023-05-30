@@ -1,12 +1,18 @@
 package ru.sfedu.studentsystem.studentActivities;
 
+import static ru.sfedu.studentsystem.Constants.AUTH_FILE_NAME;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ru.sfedu.studentsystem.MainActivity;
 import ru.sfedu.studentsystem.R;
 
 public class HomeActivityStudent extends AppCompatActivity {
@@ -23,7 +29,28 @@ public class HomeActivityStudent extends AppCompatActivity {
 
         init();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        getMenuInflater().inflate(R.menu.action_bar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_stop) {
+            SharedPreferences pref = getSharedPreferences(AUTH_FILE_NAME, MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.clear();
+            editor.apply();
+            Intent intent = new Intent(HomeActivityStudent.this, MainActivity.class);
+            this.startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     private void init(){
         classesScheduleButton = findViewById(R.id.to_class_schedule_button);
         classesScheduleButton.setOnClickListener(new View.OnClickListener() {

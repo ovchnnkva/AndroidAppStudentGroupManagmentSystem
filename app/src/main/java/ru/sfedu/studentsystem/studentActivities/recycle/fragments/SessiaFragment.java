@@ -2,7 +2,11 @@ package ru.sfedu.studentsystem.studentActivities.recycle.fragments;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import ru.sfedu.studentsystem.model.Event;
+import ru.sfedu.studentsystem.model.Teacher;
 
 public class SessiaFragment extends Fragment {
     private String name;
@@ -21,7 +25,9 @@ public class SessiaFragment extends Fragment {
         this.name = event.getName();
         this.date = formmatingDate(event.getDate(), event.getTime());
         this.location = event.getLocation();
-        this.teacher = event.getTeacher();
+
+        String teachersStr = event.getTeachers().stream().map(e -> e.getName()).reduce(",", String::concat);
+        this.teacher = teachersStr;
     }
 
     public String getName() {
@@ -52,8 +58,9 @@ public class SessiaFragment extends Fragment {
         return teacher;
     }
 
-    public void setTeacher(String teacher) {
-        this.teacher = teacher;
+    public void setTeacher(List<Teacher> teachers) {
+        String teachersStr = teachers.stream().map(Object::toString).collect(Collectors.joining(","));
+        this.teacher = teachersStr;
     }
 
     private String formmatingDate(String date, String time){

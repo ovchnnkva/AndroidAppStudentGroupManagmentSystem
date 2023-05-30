@@ -1,7 +1,7 @@
 package ru.sfedu.studentsystem.studentActivities;
 
-import static ru.sfedu.studentsystem.model.Constants.AUTH_FILE_NAME;
-import static ru.sfedu.studentsystem.model.Constants.UID_USER_AUTH_FILE;
+import static ru.sfedu.studentsystem.Constants.AUTH_FILE_NAME;
+import static ru.sfedu.studentsystem.Constants.UID_USER_AUTH_FILE;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

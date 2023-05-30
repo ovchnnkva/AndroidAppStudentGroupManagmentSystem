@@ -1,7 +1,5 @@
 package ru.sfedu.studentsystem.services;
 
-import ru.sfedu.studentsystem.model.StudyGroup;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -10,12 +8,15 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import ru.sfedu.studentsystem.model.StudyGroup;
 
 public interface StudyGroupService {
     @GET("studygroup/get/id/{id}")
     Call<StudyGroup> getStudyGroupById(@Path("id") Long id);
     @GET("studygroup/get/code/{code}")
     Call<StudyGroup> getStudyGroupByCode(@Path("code") String code);
+    @GET("studygroup/get/disciplineid/{discid}")
+    Call<List<Long>> getStudyGroupsIdByDiscipline(@Path("discid") Long disciplineId);
     @GET("studygroup/get/all")
     Call<List<StudyGroup>> getAll();
     @POST("studygroup/create/{course}/{specialization}/{groupscode}")

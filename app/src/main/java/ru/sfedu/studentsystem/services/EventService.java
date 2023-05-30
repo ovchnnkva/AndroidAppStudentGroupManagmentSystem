@@ -13,6 +13,10 @@ import ru.sfedu.studentsystem.model.Event;
 public interface EventService {
     @GET("event/get/scheduleid/{id}")
     Call<List<Event>> getEventByScheduleId(@Path("id")Long id);
+    @GET("event/get/teacherid/{teacherid}")
+    Call<List<Long>> getEventsIdByTeacherId(@Path("teacherid")Long id);
+    @GET("event/get/id/{id}")
+    Call<Event> getEventById(@Path("id")Long id);
     @GET("event/get/weekday/{id}/{week}")
     Call<List<Event>> getEventByScheduleIdAndWeekDay(@Path("id") Long id, @Path("week")String week);
     @POST("event/create/{name}/{date}/{time}/{location}/{teacher}")

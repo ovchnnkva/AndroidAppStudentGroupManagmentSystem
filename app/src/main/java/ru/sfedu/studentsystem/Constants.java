@@ -1,4 +1,4 @@
-package ru.sfedu.studentsystem.model;
+package ru.sfedu.studentsystem;
 
 public class Constants {
 

@@ -3,7 +3,7 @@ package ru.sfedu.studentsystem.studentActivities;
 
 import android.util.Log;
 
-import ru.sfedu.studentsystem.model.Constants;
+import ru.sfedu.studentsystem.Constants;
 import ru.sfedu.studentsystem.model.Schedule;
 
 public class ClassesSchedule extends Schedule {

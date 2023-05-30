@@ -1,7 +1,8 @@
-package ru.sfedu.studentsystem.studentActivities;
+package ru.sfedu.studentsystem;
 
-import static ru.sfedu.studentsystem.model.Constants.AUTH_FILE_NAME;
-import static ru.sfedu.studentsystem.model.Constants.UID_USER_AUTH_FILE;
+import static ru.sfedu.studentsystem.Constants.AUTH_FILE_NAME;
+import static ru.sfedu.studentsystem.Constants.ROLE_USER_AUTH_FILE;
+import static ru.sfedu.studentsystem.Constants.UID_USER_AUTH_FILE;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,25 +15,27 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import ru.sfedu.studentsystem.R;
-import ru.sfedu.studentsystem.model.Constants;
 import ru.sfedu.studentsystem.model.Event;
 import ru.sfedu.studentsystem.model.Schedule;
 import ru.sfedu.studentsystem.model.Student;
+import ru.sfedu.studentsystem.model.Teacher;
 import ru.sfedu.studentsystem.services.EventService;
 import ru.sfedu.studentsystem.services.RetrofitService;
 import ru.sfedu.studentsystem.services.ScheduleService;
 import ru.sfedu.studentsystem.services.StudentService;
+import ru.sfedu.studentsystem.services.TeacherService;
 
 public class ClassesScheduleActivity extends AppCompatActivity {
     private static final String[] weekDay = {"Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"};
     private RetrofitService retrofit;
     private String actualWeekDay;
     private ProgressBar loading;
+    private Constants.ROLES role = Constants.ROLES.STUDENT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,16 +47,85 @@ public class ClassesScheduleActivity extends AppCompatActivity {
 
        actualWeekDay = weekDay[this.getIntent().getIntExtra("weekDay", 0)];
        Log.d("WEEKDAY", actualWeekDay);
-       initStudentUid();
+       initUid();
     }
-    private void initStudentUid(){
+    private void initUid(){
 
         SharedPreferences pref = getSharedPreferences(AUTH_FILE_NAME, MODE_PRIVATE);
         String uid = pref.getString(UID_USER_AUTH_FILE,"");
         Log.d("STUDENT", uid);
+        role = Constants.ROLES.valueOf(pref.getString(ROLE_USER_AUTH_FILE, ""));
+        switch (role) {
+            case STUDENT: initStudent(uid); break;
+            case TEACHER:initTeacher(uid);break;
+        }
+    }
+    private void initTeacher(String uid){
+        Log.d("TEACHER", "get teacher with uid: " + uid);
 
+        TeacherService service = retrofit.createService(TeacherService.class);
+        Call<Teacher> call = service.getTeacherByUid(uid);
+        call.enqueue(new Callback<Teacher>() {
+            @Override
+            public void onResponse(Call<Teacher> call, Response<Teacher> response) {
+                if(response.isSuccessful()){
+                    initEventsIds(response.body().getId());
+                }
+            }
 
-        initStudent(uid);
+            @Override
+            public void onFailure(Call<Teacher> call, Throwable t) {
+                Toast.makeText(ClassesScheduleActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+                loading.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
+    private void initEventsIds(Long teacherId){
+        Log.d("EVENTS", "get events ids by teachers id: " + teacherId);
+
+        EventService service = retrofit.createService(EventService.class);
+        Call<List<Long>> call = service.getEventsIdByTeacherId(teacherId);
+        call.enqueue(new Callback<List<Long>>() {
+            @Override
+            public void onResponse(Call<List<Long>> call, Response<List<Long>> response) {
+                if(response.isSuccessful()){
+                    response.body().forEach(id -> initEventById(id));
+                } else loading.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<List<Long>> call, Throwable t) {
+
+            }
+        });
+    }
+    private void initEventById(Long id){
+        Log.d("EVENTS", "get by id " + id);
+
+        EventService service = retrofit.createService(EventService.class);
+        Call<Event> call = service.getEventById(id);
+        call.enqueue(new Callback<Event>() {
+            @Override
+            public void onResponse(Call<Event> call, Response<Event> response) {
+                if(response.isSuccessful()){
+                    if(response.body() != null) {
+                        Event event = response.body();
+                        if (event.getDate().equals(actualWeekDay))
+                            buildViewByTimeEvent(event);
+                        else loading.setVisibility(View.INVISIBLE);
+                    }
+
+                } else {
+                    emptyClasses();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Event> call, Throwable t) {
+                Toast.makeText(ClassesScheduleActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void initStudent(String uid){
@@ -73,6 +145,7 @@ public class ClassesScheduleActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
                 Toast.makeText(ClassesScheduleActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+                loading.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -86,7 +159,7 @@ public class ClassesScheduleActivity extends AppCompatActivity {
             public void onResponse(Call<Schedule> call, Response<Schedule> response) {
                 if(response.isSuccessful()){
                     if((response.body() != null) && (response.body().getTypeSchedule().equals(Constants.TypeSchedule.CLASSES))) {
-                        initEvents(response.body().getId());
+                        initEventsByScheduleId(response.body().getId());
                     }
                 } else {
                     Toast.makeText(ClassesScheduleActivity.this, "Расписание ещё не опубликовано", Toast.LENGTH_SHORT).show();
@@ -101,7 +174,7 @@ public class ClassesScheduleActivity extends AppCompatActivity {
             }
         });
     }
-    private void initEvents(Long scheduleId){
+    private void initEventsByScheduleId(Long scheduleId){
         Log.d("EVENTS", "get by schedule id " + scheduleId);
 
         EventService service = retrofit.createService(EventService.class);
@@ -111,7 +184,7 @@ public class ClassesScheduleActivity extends AppCompatActivity {
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                 if(response.isSuccessful()){
                     if(response.body() != null) {
-                        response.body().forEach(e -> buildViewByTimeEvent(e));
+                        response.body().forEach(e -> initTeacherIdForEvent(e));
                     }
 
                 } else {
@@ -125,6 +198,46 @@ public class ClassesScheduleActivity extends AppCompatActivity {
             }
         });
     }
+    private void initTeacherIdForEvent(Event event){
+        Log.d("EVENT", "get teacher for event with id: " +event.getIdEvent());
+
+        TeacherService service = retrofit.createService(TeacherService.class);
+        Call<List<Long>> call = service.getTeachersIdsByEventId(event.getIdEvent());
+        call.enqueue(new Callback<List<Long>>() {
+            @Override
+            public void onResponse(Call<List<Long>> call, Response<List<Long>> response) {
+                if(response.isSuccessful()){
+                    response.body().forEach(id -> initTeacher(id, event));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Long>> call, Throwable t) {
+
+            }
+        });
+    }
+    private void initTeacher(Long teacherId, Event event){
+        Log.d("TEACHER", "get teacher with id: " + teacherId);
+
+        TeacherService service = retrofit.createService(TeacherService.class);
+        Call<Teacher> call = service.getTeacherById(teacherId);
+        call.enqueue(new Callback<Teacher>() {
+            @Override
+            public void onResponse(Call<Teacher> call, Response<Teacher> response) {
+                if(response.isSuccessful()){
+                    event.appendTeacher(response.body());
+                    buildViewByTimeEvent(event);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Teacher> call, Throwable t) {
+
+            }
+        });
+    }
+
 
 
     private void buildViewByTimeEvent(Event event){
@@ -178,7 +291,10 @@ public class ClassesScheduleActivity extends AppCompatActivity {
 
         }
         nameClass.setText(event.getName());
-        teacherClass.setText(event.getTeacher());
+        if(role.equals(Constants.ROLES.STUDENT)) {
+            String teachers = event.getTeachers().stream().map(Object::toString).collect(Collectors.joining(","));
+            teacherClass.setText(teachers);
+        }
         locationClass.setText(locationStr);
     }
 

@@ -20,6 +20,8 @@ public interface DisciplineService {
     Call<List<Discipline>> getDisciplineByName(@Path("name") String name);
     @GET("discipline/get/groupid/{groupid}")
     Call<List<Long>> getDisciplineByGroupId(@Path("groupid") Long id);
+    @GET("discipline/get/teacherid/{teacherid}")
+    Call<List<Long>> getDisciplinesByTeacherId(@Path("teacherid")Long id);
     @GET("discipline/get/all")
     Call<List<Discipline>> getAll();
     @PUT("discipline/update/{id}/{name}/{teacherid}/{typeattestation}/{maxscore}")

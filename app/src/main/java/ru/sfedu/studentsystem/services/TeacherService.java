@@ -15,6 +15,10 @@ public interface TeacherService {
     Call<Integer> registerTeacher(@Path("name") String name);
     @GET("teacher/get/id/{id}")
     Call<Teacher> getTeacherById(@Path("id")Long id);
+    @GET("teacher/get/uid/{uid}")
+    Call<Teacher> getTeacherByUid(@Path("uid") String uid);
+    @GET("teacher/get/eventid/{eventid}")
+    Call<List<Long>> getTeachersIdsByEventId(@Path("eventid") Long eventId);
     @GET("teacher/get/name/{name}")
     Call<List<Teacher>> getTeacherByName(@Path("name") String name);
     @GET("teacher/get/disciplineid/{disciplineid}")

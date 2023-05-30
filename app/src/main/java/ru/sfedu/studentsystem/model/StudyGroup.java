@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import ru.sfedu.studentsystem.Constants;
 import ru.sfedu.studentsystem.studentActivities.ClassesSchedule;
 import ru.sfedu.studentsystem.studentActivities.EventsSchedule;
 import ru.sfedu.studentsystem.studentActivities.SessionSchedule;

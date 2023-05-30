@@ -1,10 +1,10 @@
 package ru.sfedu.studentsystem;
 
-import static ru.sfedu.studentsystem.model.Constants.AUTH_FILE_NAME;
-import static ru.sfedu.studentsystem.model.Constants.LOGIN_FROM_AUTH_FILE;
-import static ru.sfedu.studentsystem.model.Constants.PASS_FROM_AUTH_FILE;
-import static ru.sfedu.studentsystem.model.Constants.ROLE_USER_AUTH_FILE;
-import static ru.sfedu.studentsystem.model.Constants.UID_USER_AUTH_FILE;
+import static ru.sfedu.studentsystem.Constants.AUTH_FILE_NAME;
+import static ru.sfedu.studentsystem.Constants.LOGIN_FROM_AUTH_FILE;
+import static ru.sfedu.studentsystem.Constants.PASS_FROM_AUTH_FILE;
+import static ru.sfedu.studentsystem.Constants.ROLE_USER_AUTH_FILE;
+import static ru.sfedu.studentsystem.Constants.UID_USER_AUTH_FILE;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,7 +25,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import ru.sfedu.studentsystem.model.Constants;
 import ru.sfedu.studentsystem.services.RetrofitService;
 import ru.sfedu.studentsystem.services.RoleService;
 import ru.sfedu.studentsystem.studentActivities.HomeActivityStudent;
@@ -61,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             authSucccesfull();
         }
     }
-
     private void auth(){
         email = signinEmail.getText().toString();
         pass = signinPassword.getText().toString();
@@ -95,8 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(checkAllDataInPref()){
             Toast.makeText(MainActivity.this, "Авторизация сохранена",Toast.LENGTH_LONG).show();
-        }
-        Toast.makeText(MainActivity.this, "Авторизация не сохранена",Toast.LENGTH_LONG).show();
+        } else Toast.makeText(MainActivity.this, "Авторизация не сохранена",Toast.LENGTH_LONG).show();
     }
     private boolean isAuth(){
         SharedPreferences preferences = getSharedPreferences(AUTH_FILE_NAME,MODE_PRIVATE);

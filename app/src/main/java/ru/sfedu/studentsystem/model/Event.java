@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Event extends Fragment {
@@ -13,7 +15,7 @@ public class Event extends Fragment {
 	private String time;
 	private String date;
 	private String location;
-	private String teacher;
+	private List<Teacher> teachers = new ArrayList<>();
 	private static final Pattern pattern = Pattern.compile("([0-1]?[0-9]|2[0-3]):[0-5][0-9]");
 
 	public Event(long id, long scheduleId, String name, String date, String time,String location) throws IllegalArgumentException{
@@ -81,14 +83,16 @@ public class Event extends Fragment {
 		this.scheduleId = scheduleId;
 	}
 
-	public String getTeacher() {
-		return teacher;
+	public List<Teacher> getTeachers() {
+		return teachers;
 	}
 
-	public void setTeacher(String teacher) {
-		this.teacher = teacher;
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
 	}
-
+	public void appendTeacher(Teacher teacher){
+		teachers.add(teacher);
+	}
 	@Override
 	public String toString() {
 		return "Event{" +
@@ -98,7 +102,7 @@ public class Event extends Fragment {
 				", time='" + time + '\'' +
 				", date='" + date + '\'' +
 				", location='" + location + '\'' +
-				", teacher='" + teacher + '\'' +
+				", teachers='" + teachers + '\'' +
 				'}';
 	}
 }

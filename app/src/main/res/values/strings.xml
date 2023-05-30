@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">StudentSystemApp</string>
+    <string name="app_label">ЮФУ</string>
+    <string name="action_out">Выйти из системы</string>
+
 
 </resources>
