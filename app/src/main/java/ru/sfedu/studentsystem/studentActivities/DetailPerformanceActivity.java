@@ -1,9 +1,14 @@
 package ru.sfedu.studentsystem.studentActivities;
 
+import static ru.sfedu.studentsystem.Constants.AUTH_FILE_NAME;
+import static ru.sfedu.studentsystem.Constants.ROLE_USER_AUTH_FILE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,13 +17,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import ru.sfedu.studentsystem.Constants;
 import ru.sfedu.studentsystem.R;
 import ru.sfedu.studentsystem.model.Discipline;
 import ru.sfedu.studentsystem.model.PracticalMaterial;
@@ -39,9 +49,11 @@ public class DetailPerformanceActivity extends AppCompatActivity {
     private TextView examScore;
     private TextView dateExamScoreAppend;
     private TextView resultScoreStudent;
+    private Button addScoreButton;
     private RecyclerView container;
 
     private ProgressBar loading;
+    private Constants.ROLES role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,22 +63,25 @@ public class DetailPerformanceActivity extends AppCompatActivity {
         retrofit = new RetrofitService();
 
         loading = findViewById(R.id.loading_detail_performance);
+        loading.setVisibility(View.VISIBLE);
 
         Intent intent = getIntent();
-
-        initView();
-
         studentId = intent.getLongExtra("studentId", 0);
         disciplineId = intent.getLongExtra("disciplineId", 0);
         typeSem = intent.getStringExtra("typeSemester");
-
-        loading.setVisibility(View.VISIBLE);
 
         Log.d("DISCIPLINE", disciplineId+"");
         Log.d("STUDENT", studentId+"");
         Log.d("TYPESEM", typeSem);
 
+        initRole();
+
+        initView();
         initDiscipline();
+    }
+    private void initRole() {
+        SharedPreferences pref = getSharedPreferences(AUTH_FILE_NAME, MODE_PRIVATE);
+        role = Constants.ROLES.valueOf( pref.getString(ROLE_USER_AUTH_FILE, ""));
     }
 
     private void initView() {
@@ -76,6 +91,11 @@ public class DetailPerformanceActivity extends AppCompatActivity {
         dateExamScoreAppend = findViewById(R.id.date_exam_score_append);
         resultScoreStudent = findViewById(R.id.result_score_discipline);
         container = findViewById(R.id.container_detail_performance);
+        addScoreButton = findViewById(R.id.append_score_button);
+        if(role.equals(Constants.ROLES.STUDENT)){
+            addScoreButton.setVisibility(View.INVISIBLE);
+            addScoreButton.setEnabled(false);
+        }
     }
 
     private void initDiscipline(){
@@ -127,11 +147,7 @@ public class DetailPerformanceActivity extends AppCompatActivity {
                 initExam(m);
                 examScore.addAndGet(m.getStudentScore());
             } else {
-                DetailPerformanceFragment fragment = new DetailPerformanceFragment();
-
-                fragment.setNameTask(m.getName());
-                fragment.setScores(m.getStudentScore(), m.getMaximumScore());
-                fragment.setDateAppendScore(m.getDateScoreAppend());
+                DetailPerformanceFragment fragment = new DetailPerformanceFragment(m, role);
 
                 fragments.add(fragment);
 
@@ -162,9 +178,22 @@ public class DetailPerformanceActivity extends AppCompatActivity {
         examStr.setVisibility(View.VISIBLE);
 
         examScore.setText(examScoreStr);
-        dateExamScoreAppend.setText(material.getDateScoreAppend());
-
+        try {
+            dateExamScoreAppend.setText(parseExamDate(material.getDateScoreAppend()));
+        } catch (Exception e){
+            Log.d("PARSE", e.getMessage());
+        }
     }
 
+    private String parseExamDate(String dateStr) throws Exception {
+        SimpleDateFormat oldDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.getDefault());
+        SimpleDateFormat newDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        try {
+            Date date = oldDateFormat.parse(dateStr);
+            return newDateFormat.format(date);
+        }catch(ParseException e){
+            throw new Exception("invalid date format");
+        }
+    }
 
 }

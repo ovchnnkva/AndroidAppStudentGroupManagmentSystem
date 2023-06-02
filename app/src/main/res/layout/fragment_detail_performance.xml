@@ -4,17 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
     android:layout_width="match_parent"
-    android:layout_height="75dp">
+    android:layout_height="90dp"
+    android:background="@drawable/change">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/edit_button"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:background="@drawable/change"
+        android:textColor="@color/blue_2"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toStartOf="@+id/task_date_fragment"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/task_name_fragment"
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/view5"
-        android:layout_width="382dp"
-        android:layout_height="57dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="380dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_style_blue_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -31,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/view5"
-        app:layout_constraintVertical_bias="0.468" />
+        app:layout_constraintVertical_bias="0.225" />
 
     <TextView
         android:id="@+id/task_score_fragment"
@@ -46,7 +59,7 @@
         app:layout_constraintBottom_toTopOf="@+id/task_date_fragment"
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/view5"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.375" />
 
     <TextView
         android:id="@+id/task_date_fragment"
@@ -60,7 +73,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/task_name_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

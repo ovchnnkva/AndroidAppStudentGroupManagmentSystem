@@ -99,7 +99,7 @@ public class PerformanceActivity extends AppCompatActivity {
         TextView studentsName = findViewById(R.id.name_student);
 
         StudentService service = retrofit.createService(StudentService.class);
-        Call<Student> call = service.getSTudentByUid(uid);
+        Call<Student> call = service.getStudentByUid(uid);
         call.enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
@@ -131,12 +131,14 @@ public class PerformanceActivity extends AppCompatActivity {
                     });
                 } else {
                     Toast.makeText(PerformanceActivity.this, "Дисциплины еще не добавлены", Toast.LENGTH_LONG).show();
+                    loading.setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onFailure(Call<List<Long>> call, Throwable t) {
                 Toast.makeText(PerformanceActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+                loading.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -151,13 +153,14 @@ public class PerformanceActivity extends AppCompatActivity {
             public void onResponse(Call<Discipline> call, Response<Discipline> response) {
                 if(response.isSuccessful()){
                     initTeachers(response.body());
-
                 }
             }
 
             @Override
             public void onFailure(Call<Discipline> call, Throwable t) {
                 Toast.makeText(PerformanceActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+                loading.setVisibility(View.INVISIBLE);
+
             }
         });
     }
@@ -181,7 +184,8 @@ public class PerformanceActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Teacher>> call, Throwable t) {
-
+                Toast.makeText(PerformanceActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+                loading.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -194,14 +198,14 @@ public class PerformanceActivity extends AppCompatActivity {
             public void onResponse(Call<List<PracticalMaterial>> call, Response<List<PracticalMaterial>> response) {
                 if (response.isSuccessful()) {
                     addFragment(response.body(), discipline);
-                    if (response.body().size() == 0){
-                        clear();
-                    }
+                } else {
+                    clear();
                 }
             }
             @Override
             public void onFailure(Call<List<PracticalMaterial>> call, Throwable t) {
                 Toast.makeText(PerformanceActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+                loading.setVisibility(View.INVISIBLE);
             }
         });
 

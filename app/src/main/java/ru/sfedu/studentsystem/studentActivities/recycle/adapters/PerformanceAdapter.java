@@ -73,7 +73,7 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
             teachersName = itemView.findViewById(R.id.teachers_fragment);
             percentPerformance = itemView.findViewById(R.id.performance_percent);
             actualScore = itemView.findViewById(R.id.actual_performance);
-            typeAttestation = itemView.findViewById(R.id.type_attestation);
+            typeAttestation = itemView.findViewById(R.id.type_attestation_short_performance);
             goToDetailButton = itemView.findViewById(R.id.button);
 
         }

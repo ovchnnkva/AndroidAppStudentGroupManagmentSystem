@@ -78,6 +78,7 @@
         android:background="@drawable/button_style_blue_3"
         android:gravity="bottom|left"
         android:text="Мероприятия"
+        android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"

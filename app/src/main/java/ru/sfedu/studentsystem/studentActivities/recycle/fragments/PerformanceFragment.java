@@ -20,6 +20,7 @@ public class PerformanceFragment extends Fragment{
         this.nameDiscipline = nameDiscipline;
         this.percentPerformance = percentPerformance;
         this.typeAttestation = typeAttestation;
+        teachers = "";
     }
 
 

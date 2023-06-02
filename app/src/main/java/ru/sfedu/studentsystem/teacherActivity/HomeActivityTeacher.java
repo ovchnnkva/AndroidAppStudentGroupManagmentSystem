@@ -65,5 +65,13 @@ public class HomeActivityTeacher extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        studentsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchStudentActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

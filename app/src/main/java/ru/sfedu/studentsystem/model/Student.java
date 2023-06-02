@@ -3,7 +3,6 @@ package ru.sfedu.studentsystem.model;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +11,7 @@ public class Student {
 	private long id;
 	private String uid;
     private String name;
-	private Date birthday;
+	private String birthday;
 	private List<PracticalMaterial> scores;
 	private StudyGroup group;
 	private long studyGroupId;
@@ -48,12 +47,13 @@ public class Student {
   		return name;
   }
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
+
 	}
 
 	public StudyGroup getGroup() {
@@ -78,6 +78,16 @@ public class Student {
 
 	public void setStudyGroupId(long studyGroupId) {
 		this.studyGroupId = studyGroupId;
+	}
+
+	public void appendScore(PracticalMaterial material) throws Exception {
+		final int[] sum = {0};
+		scores.forEach(m -> sum[0] += m.getStudentScore());
+		if ((sum[0] + material.getStudentScore() <= 100)){
+			scores.add(material);
+		} else {
+			throw new Exception("Общее количество баллов привысит максимальное допустимое количество баллов (100)");
+		}
 	}
 
 	@Override

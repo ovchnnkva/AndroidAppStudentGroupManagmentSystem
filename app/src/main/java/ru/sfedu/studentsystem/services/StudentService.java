@@ -17,9 +17,9 @@ public interface StudentService {
     @GET("student/get/id/{id}")
     Call<Student> getStudentById(@Path("id")Long id);
     @GET("student/get/uid/{uid}")
-    Call<Student> getSTudentByUid(@Path("uid") String uid);
-    @GET("student/get/name/{name}")
-    Call<List<Student>> getStudentByGroupId(@Path("name") String name);
+    Call<Student> getStudentByUid(@Path("uid") String uid);
+    @GET("student/get/name/{regex}")
+    Call<List<Student>> getStudentByName(@Path("regex") String regex);
     @GET("student/get/groupid/{groupid}")
     Call<List<Student>> getStudentByGroupId(@Path("groupid") Long id);
     @PUT("student/update/{id}/{birthday}/{groupid}")

@@ -1,6 +1,5 @@
 package ru.sfedu.studentsystem.services;
 
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -14,7 +13,7 @@ import ru.sfedu.studentsystem.model.PracticalMaterial;
 public interface PracticalMaterialService {
     @POST("/practicalmaterial/create/{name}/{disciplineid}/{maxscore}/{deadline}/{studentid}/{teacherid}/{typesem}")
     Call<Integer> registryPracticalMaterial(@Path("name") String name, @Path("disciplineid") Long disciplineid,
-                                             @Path("maxscore") int maxscore, @Path("deadline") String deadline,
+                                            @Path("maxscore") int maxscore, @Path("deadline") String deadline,
                                             @Path("studentid") Long studentId,@Path("teacherid") Long teacherId,
                                             @Path("typesem") String typeSem);
 
@@ -30,13 +29,10 @@ public interface PracticalMaterialService {
     @GET("/practicalmaterial/get/studentid/{studentid}/{typeSem}")
     Call<List<PracticalMaterial>> getPracticalMaterialByStudentId(@Path("studentid") Long groupid, @Path("typeSem") String typeSem);
 
-    @PUT("/practicalmaterial/update/{id}/{name}/{deadline}/{disciplineid}/{maxscore}/{studentcomm}/{studentfile}/{studentscore}/{studentid}/{teachercomm}/{teacherfile}/{ismade}")
-    Call<Integer> updatePracticalMaterial(@Path("id")Long id, @Path("name") String name,
-                                          @Path("deadline") Date deadline, @Path("disciplineid") Long disciplineid,
-                                          @Path("maxscore") int maxscore, @Path("studentcomm") String studentcomm,
-                                          @Path("studentfile") String studentfile, @Path("studentscore")int studentscore,
-                                          @Path("studentid") Long groupid, @Path("teachercomm") String teachercomm,
-                                          @Path("teacherfile") String teacherfile, @Path("ismade") Boolean isMade);
+    @PUT("/practicalmaterial/update/{id}/{name}/{studentscore}/{datescore}")
+    Call<Integer> updatePracticalMaterialSCoresAndName(@Path("id")Long id, @Path("name") String name,
+                                                       @Path("studentscore")int studentscore,
+                                                       @Path("datescore") String appendScore);
 
     @DELETE("/practicalmaterial/delete/{id}")
     Call<Integer> deletePracticalMaterial(@Path("id") Long id);

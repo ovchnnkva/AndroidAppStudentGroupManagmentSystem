@@ -50,7 +50,7 @@ public class SessionScheduleActivity extends AppCompatActivity {
     private void initStudent(String uid){
         Log.d("STUDENT", "get with student uid "+uid);
         StudentService service = retrofit.createService(StudentService.class);
-        Call<Student> call = service.getSTudentByUid(uid);
+        Call<Student> call = service.getStudentByUid(uid);
         call.enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {

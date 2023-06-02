@@ -24,7 +24,7 @@ public class PracticalMaterial extends EducationMaterials {
 
 	public PracticalMaterial (long id,Teacher teacher, String name, Discipline discipline, String deadline, int maximumScore) throws Exception {
 		super(id,teacher,name,discipline);
-		this.deadline = dateFormatting(deadline);
+		this.deadline = dateFormattingDeadlineToString(deadline);
 		checkExceedingMaximumScore(maximumScore);
 		this.maximumScore = maximumScore;
 		Log.i("PRACTICAL","create practical material");
@@ -60,7 +60,7 @@ public class PracticalMaterial extends EducationMaterials {
   	}
 
 	public void setDeadline(Date deadline) throws Exception {
-	  this.deadline = dateFormatting(String.valueOf(deadline));
+	  this.deadline = dateFormattingDeadlineToString(String.valueOf(deadline));
   }
 
 	public String getDeadline(){
@@ -90,12 +90,13 @@ public class PracticalMaterial extends EducationMaterials {
 		return dateScoreAppend;
 	}
 
-	public void setDateScoreAppend(String dateScoreAppend) {
-		this.dateScoreAppend = dateScoreAppend;
+	public void setDateScoreAppend(String dateScoreAppend) throws Exception {
+		this.dateScoreAppend = dateFormattingAppendScore(dateScoreAppend);
 	}
 
-	private String dateFormatting(String dateString) throws Exception {
-		SimpleDateFormat oldDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
+	private String dateFormattingDeadlineToString(String dateString) throws Exception {
+		Log.d("PARSE DEADLINE", dateString);
+		SimpleDateFormat oldDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.getDefault());
 		SimpleDateFormat newDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
 		try {
 			Date date = oldDateFormat.parse(dateString);
@@ -103,7 +104,17 @@ public class PracticalMaterial extends EducationMaterials {
 		}catch(ParseException e){
 			throw new Exception("invalid date format");
 		}
-
+	}
+	private String dateFormattingAppendScore(String dateString) throws Exception {
+		Log.d("PARSE APPEND DATE", dateString);
+		SimpleDateFormat oldDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.getDefault());
+		SimpleDateFormat newDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+		try {
+			Date date = oldDateFormat.parse(dateString);
+			return newDateFormat.format(date);
+		}catch(ParseException e){
+			throw new Exception("invalid date format");
+		}
 	}
 	private void checkExceedingMaximumScore(int maximumScore) throws Exception {
 		if(maximumScore>100){
