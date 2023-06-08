@@ -7,22 +7,6 @@
     tools:context=".teacherActivity.HomeActivityTeacher">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_to_create_material"
-        android:layout_width="370dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="144dp"
-        android:background="@drawable/button_style_blue_5"
-        android:gravity="bottom|left"
-        android:text="Создать задание"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/go_to_materials_is_made_teacher" />
-
-    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/go_to_student"
         android:layout_width="370dp"
         android:layout_height="110dp"
@@ -30,22 +14,6 @@
         android:background="@drawable/button_style_blue_4"
         android:gravity="bottom|left"
         android:text="Студенты"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/go_to_materials_is_made_teacher" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_to_materials_is_made_teacher"
-        android:layout_width="370dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_style_blue_3"
-        android:gravity="bottom|left"
-        android:text="сданные работы"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"

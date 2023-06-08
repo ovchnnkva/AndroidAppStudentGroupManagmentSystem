@@ -55,8 +55,6 @@ public class HomeActivityTeacher extends AppCompatActivity {
     private void initButtons(){
         studentsButton = findViewById(R.id.go_to_student);
         classesScheduleButton = findViewById(R.id.go_to_classes_schedule_teacher);
-        studentsMaterialsButton = findViewById(R.id.go_to_materials);
-        createMaterialButton = findViewById(R.id.go_to_create_material);
 
         classesScheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override

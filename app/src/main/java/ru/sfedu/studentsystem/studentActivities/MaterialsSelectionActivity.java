@@ -1,8 +1,10 @@
 package ru.sfedu.studentsystem.studentActivities;
 
 import static ru.sfedu.studentsystem.Constants.AUTH_FILE_NAME;
+import static ru.sfedu.studentsystem.Constants.ROLE_USER_AUTH_FILE;
 import static ru.sfedu.studentsystem.Constants.UID_USER_AUTH_FILE;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +25,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import ru.sfedu.studentsystem.Constants;
 import ru.sfedu.studentsystem.R;
 import ru.sfedu.studentsystem.model.Discipline;
 import ru.sfedu.studentsystem.model.EducationMaterials;
@@ -38,6 +41,7 @@ import ru.sfedu.studentsystem.services.StudentService;
 import ru.sfedu.studentsystem.services.TeacherService;
 import ru.sfedu.studentsystem.studentActivities.recycle.adapters.PracticalMaterialAdapter;
 import ru.sfedu.studentsystem.studentActivities.recycle.fragments.MaterialFragment;
+import ru.sfedu.studentsystem.teacherActivity.CreateMaterialActivity;
 
 public class MaterialsSelectionActivity extends AppCompatActivity {
     private  List<MaterialFragment> fragments = new ArrayList<>();
@@ -52,6 +56,8 @@ public class MaterialsSelectionActivity extends AppCompatActivity {
     private  Student student;
     private RecyclerView container;
     private Button prevButton;
+    private Constants.ROLES role;
+    private Button appendMaterial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +72,71 @@ public class MaterialsSelectionActivity extends AppCompatActivity {
         notMadeButton = findViewById(R.id.button_not_made);
         lectionButton = findViewById(R.id.button_lection_material);
 
-        prevButton = madeButton;
+        appendMaterial = findViewById(R.id.append_material_teacher);
 
-        initStudentUid();
+        prevButton = madeButton;
+        initRole();
+        switch (role) {
+            case STUDENT:{
+                initStudentUid();
+                break;
+            }
+            case TEACHER: {
+                initStudentById();
+                appendMaterial.setEnabled(true);
+                appendMaterial.setVisibility(View.VISIBLE);
+                initAppendMaterialButton();
+                break;
+            }
+        }
         initSpinner();
         initButtons();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        clear();
+        prevButton.callOnClick();
+    }
+    private void initAppendMaterialButton(){
+        appendMaterial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CreateMaterialActivity.class);
+                intent.putExtra("studentId", student.getId());
+                intent.putExtra("studyGroupId", student.getStudyGroupId());
+                intent.putExtra("typeSem", actualTypeSemester);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void initStudentById() {
+        Intent intent = getIntent();
+        long studentId = intent.getLongExtra("studentId", 0);
+
+        StudentService service = retrofit.createService(StudentService.class);
+        Call<Student> call = service.getStudentById(studentId);
+        call.enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                if(response.isSuccessful()) {
+                    student = response.body();
+                    prevButton.callOnClick();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Toast.makeText(MaterialsSelectionActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+                loading.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
+    private void initRole(){
+        SharedPreferences pref = getSharedPreferences(AUTH_FILE_NAME, MODE_PRIVATE);
+        role = Constants.ROLES.valueOf(pref.getString(ROLE_USER_AUTH_FILE, ""));
     }
     private void initButtons(){
         madeButton.setOnClickListener(v -> {
@@ -101,7 +167,7 @@ public class MaterialsSelectionActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
-
+        actualTypeSemester = typesSemester[0];
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -149,6 +215,7 @@ public class MaterialsSelectionActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
                 Toast.makeText(MaterialsSelectionActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+                loading.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -227,7 +294,9 @@ public class MaterialsSelectionActivity extends AppCompatActivity {
             public void onResponse(Call<Teacher> call, Response<Teacher> response) {
                 if(response.isSuccessful()){
                     materials.setTeacher(response.body());
-                    addPracticalMaterialFragment(materials);
+                    if((role.equals(Constants.ROLES.STUDENT)) || ((role.equals(Constants.ROLES.TEACHER)) && (response.body().getUid().equals(getTeacherUid())))){
+                        addPracticalMaterialFragment(materials);
+                    }
                 }
             }
 
@@ -236,6 +305,10 @@ public class MaterialsSelectionActivity extends AppCompatActivity {
                 Toast.makeText(MaterialsSelectionActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private String getTeacherUid(){
+        return getSharedPreferences(AUTH_FILE_NAME, MODE_PRIVATE).getString(UID_USER_AUTH_FILE, "");
     }
 
     private void addPracticalMaterialFragment(EducationMaterials materials){

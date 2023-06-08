@@ -21,6 +21,7 @@ import ru.sfedu.studentsystem.R;
 import ru.sfedu.studentsystem.model.PracticalMaterial;
 import ru.sfedu.studentsystem.services.PracticalMaterialService;
 import ru.sfedu.studentsystem.services.RetrofitService;
+import ru.sfedu.studentsystem.studentActivities.recycle.fragments.DetailPerformanceFragment;
 
 public class EditPerformanceDialogActivity  {
     private Dialog dialog;
@@ -30,7 +31,7 @@ public class EditPerformanceDialogActivity  {
     private EditText editScore;
     private RetrofitService retrofit;
 
-    public void showDialog(Context activity, PracticalMaterial material){
+    public DetailPerformanceFragment showDialog(Context activity, DetailPerformanceFragment material){
         dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -45,20 +46,22 @@ public class EditPerformanceDialogActivity  {
         editName = dialog.findViewById(R.id.edit_name);
         editScore = dialog.findViewById(R.id.edit_score);
 
-        editName.setText(material.getName());
+        editName.setText(material.getNameTask());
         editScore.setText(Objects.toString(material.getStudentScore()));
 
         if ((!editScore.getText().toString().equals("")) && (!editName.getText().toString().equals(""))) {
-
             save.setOnClickListener(event -> {
                 int score = Integer.parseInt(editScore.getText().toString());
                 String name = editName.getText().toString();
                 LocalDate dateNow = LocalDateTime.now().toLocalDate();
-
-                material.setStudentScore(score);
-                material.setName(name);
+                if(score <= material.getMaxScore()) {
+                    material.setStudentScore(score);
+                    material.setNameTask(name);
+                } else {
+                    Toast.makeText(activity, "Балл превышает максимальнодопустимый за задание балл", Toast.LENGTH_SHORT).show();
+                }
                 try {
-                    material.setDateScoreAppend(dateNow.toString());
+                    material.setDateAppendScore(dateNow.toString());
                 } catch (Exception e) {
                     Log.e("DATE", "invalid parse");
                 }
@@ -70,11 +73,13 @@ public class EditPerformanceDialogActivity  {
         }
         close.setOnClickListener(event -> dialog.dismiss());
         dialog.show();
+        return material;
     }
 
-    private void updateMaterial(PracticalMaterial material) {
+    private void updateMaterial(DetailPerformanceFragment fragment) {
+        PracticalMaterial material = fragment.getMaterial();
         PracticalMaterialService service = retrofit.createService(PracticalMaterialService.class);
-        Log.d("DATE", material.getDateScoreAppend());
+
         Call<Integer> call = service.updatePracticalMaterialSCoresAndName(material.getId(), material.getName(),
                 material.getStudentScore(), material.getDateScoreAppend());
         call.enqueue(new Callback<Integer>() {
@@ -91,6 +96,7 @@ public class EditPerformanceDialogActivity  {
                 Toast.makeText(dialog.getContext(), "Ошибка сервера. Не удалось обновить запись.", Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
 }

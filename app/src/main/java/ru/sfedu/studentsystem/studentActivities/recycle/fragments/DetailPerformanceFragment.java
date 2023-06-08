@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import ru.sfedu.studentsystem.Constants;
 import ru.sfedu.studentsystem.model.PracticalMaterial;
@@ -17,12 +18,16 @@ public class DetailPerformanceFragment extends Fragment {
 
     private String nameTask;
     private String scores;
+    private int studentScore;
+    private int maxScore;
     private String dateAppendScore;
     private Constants.ROLES role;
 
     public DetailPerformanceFragment(PracticalMaterial material, Constants.ROLES role) {
         this.material = material;
         this.nameTask = material.getName();
+        this.studentScore = material.getStudentScore();
+        this.maxScore = material.getMaximumScore();
         this.scores = material.getStudentScore()+" / "+material.getMaximumScore();
         try {
             this.dateAppendScore = dateFormattingAppendScore(material.getDateScoreAppend());
@@ -30,6 +35,24 @@ public class DetailPerformanceFragment extends Fragment {
             Log.e("PARSE", e.getMessage());
         }
         this.role = role;
+    }
+
+    public int getMaxScore() {
+        return maxScore;
+    }
+
+    public void setMaxScore(int maxScore) {
+        this.maxScore = maxScore;
+        setScores(studentScore, maxScore);
+    }
+
+    public int getStudentScore() {
+        return studentScore;
+    }
+
+    public void setStudentScore(int studentScore) {
+        this.studentScore = studentScore;
+        setScores(studentScore, maxScore);
     }
 
     public Constants.ROLES getRole() {
@@ -46,6 +69,9 @@ public class DetailPerformanceFragment extends Fragment {
 
     public void setMaterial(PracticalMaterial material) {
         this.material = material;
+        nameTask = material.getName();
+        scores = material.getStudentScore() + " / " + material.getMaximumScore();
+        dateAppendScore = material.getDateScoreAppend();
     }
 
     public String getNameTask() {
@@ -63,7 +89,9 @@ public class DetailPerformanceFragment extends Fragment {
     public void setScores(int studentScore, int maxScore) {
         scores = studentScore+" / "+maxScore;
     }
-
+    public void setScores(int scores){
+        this.scores = Objects.toString(scores);
+    }
     public String getDateAppendScore() {
         return dateAppendScore;
     }

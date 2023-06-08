@@ -11,11 +11,11 @@ import retrofit2.http.Path;
 import ru.sfedu.studentsystem.model.PracticalMaterial;
 
 public interface PracticalMaterialService {
-    @POST("/practicalmaterial/create/{name}/{disciplineid}/{maxscore}/{deadline}/{studentid}/{teacherid}/{typesem}")
-    Call<Integer> registryPracticalMaterial(@Path("name") String name, @Path("disciplineid") Long disciplineid,
-                                            @Path("maxscore") int maxscore, @Path("deadline") String deadline,
-                                            @Path("studentid") Long studentId,@Path("teacherid") Long teacherId,
-                                            @Path("typesem") String typeSem);
+    @POST("/practicalmaterial/create/{name}/{teachercom}/{disciplineid}/{maxscore}/{deadline}/{studentid}/{teacherid}/{typesem}")
+    Call<Integer> registryPracticalMaterial(@Path("name") String name, @Path("teachercom") String teacherCom,
+                                            @Path("disciplineid") Long disciplineid, @Path("maxscore") int maxscore,
+                                            @Path("deadline") String deadline, @Path("studentid") Long studentId,
+                                            @Path("teacherid") Long teacherId, @Path("typesem") String typeSem);
 
     @GET("/practicalmaterial/get/discipline/{studentid}/{disciplineid}/{typesem}")
     Call<List<PracticalMaterial>> getPracticalMaterialByDiscipline(@Path("studentid")Long studentId, @Path("disciplineid") Long disciplineId,

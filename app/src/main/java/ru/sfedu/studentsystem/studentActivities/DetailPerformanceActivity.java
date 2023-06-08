@@ -49,7 +49,7 @@ public class DetailPerformanceActivity extends AppCompatActivity {
     private TextView examScore;
     private TextView dateExamScoreAppend;
     private TextView resultScoreStudent;
-    private Button addScoreButton;
+    private Button addMaterial;
     private RecyclerView container;
 
     private ProgressBar loading;
@@ -91,11 +91,6 @@ public class DetailPerformanceActivity extends AppCompatActivity {
         dateExamScoreAppend = findViewById(R.id.date_exam_score_append);
         resultScoreStudent = findViewById(R.id.result_score_discipline);
         container = findViewById(R.id.container_detail_performance);
-        addScoreButton = findViewById(R.id.append_score_button);
-        if(role.equals(Constants.ROLES.STUDENT)){
-            addScoreButton.setVisibility(View.INVISIBLE);
-            addScoreButton.setEnabled(false);
-        }
     }
 
     private void initDiscipline(){

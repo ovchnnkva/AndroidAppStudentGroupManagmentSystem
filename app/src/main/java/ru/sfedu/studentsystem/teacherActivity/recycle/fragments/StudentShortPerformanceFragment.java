@@ -7,7 +7,9 @@ public class StudentShortPerformanceFragment extends Fragment {
     private int percentPerformance;
     private String actualScores;
     private String typeAttestation;
-
+    private String typeSemester;
+    private long studentId;
+    private long disciplineId;
     public StudentShortPerformanceFragment(String nameDiscipline, int percentPerformance, String typeAttestation){
         this.nameDiscipline = nameDiscipline;
         this.percentPerformance = percentPerformance;
@@ -49,6 +51,30 @@ public class StudentShortPerformanceFragment extends Fragment {
 
     public void setPercentPerformance(int percentPerformance) {
         this.percentPerformance = percentPerformance;
+    }
+
+    public String getTypeSemester() {
+        return typeSemester;
+    }
+
+    public void setTypeSemester(String typeSemester) {
+        this.typeSemester = typeSemester;
+    }
+
+    public long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(long studentId) {
+        this.studentId = studentId;
+    }
+
+    public long getDisciplineId() {
+        return disciplineId;
+    }
+
+    public void setDisciplineId(long disciplineId) {
+        this.disciplineId = disciplineId;
     }
 
     public void setActualScores(String actualScores) {

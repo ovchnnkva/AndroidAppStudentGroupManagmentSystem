@@ -11,8 +11,9 @@ import retrofit2.http.Path;
 import ru.sfedu.studentsystem.model.LectionMaterial;
 
 public interface LectionMaterialService {
-    @POST("lectionmaterial/create/{name}/{disciplineid}")
-    Call<Integer> registryLectionMaterial(@Path("name") String name, @Path("disciplineid") Long disciplineid);
+    @POST("lectionmaterial/create/{name}/{disciplineid}/{teachercom}")
+    Call<Integer> registryLectionMaterial(@Path("name") String name, @Path("disciplineid") Long disciplineid,
+                                          @Path("teachercom") String teacherCom);
     @GET("lectionmaterial/get/id/{id}")
     Call<LectionMaterial> getLectionMaterialById(@Path("id") Long id);
     @GET("lectionmaterial/get/groupid/{groupid}/{typesem}")

@@ -47,13 +47,17 @@ public class DetailPerformanceAdapter extends  RecyclerView.Adapter<DetailPerfor
                 @Override
                 public void onClick(View v) {
                     EditPerformanceDialogActivity dialog = new EditPerformanceDialogActivity();
-                    dialog.showDialog(v.getContext(), fragment.getMaterial());
+                    fragments.add(dialog.showDialog(v.getContext(), fragment));
+                    fragments.remove(fragment);
+                    notifyDataSetChanged();
                 }
             });  break;
-            case STUDENT: holder.editButton.setVisibility(View.INVISIBLE); break;
+            case STUDENT:
+                holder.editButton.setVisibility(View.INVISIBLE);
+                holder.editButton.setEnabled(false);
+                break;
         }
     }
-
 
 
     @Override

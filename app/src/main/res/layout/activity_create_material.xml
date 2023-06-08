@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/max_score_create_material"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layoutMode="opticalBounds"
+    tools:context=".teacherActivity.CreateMaterialActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/type_material_spinner"
+                android:layout_width="356dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/mediarouter_chooser_list_item_padding_top"
+                android:gravity="center|center_horizontal" />
+
+            <EditText
+                android:id="@+id/name_create_material"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/mediarouter_chooser_list_item_padding_top"
+                android:layout_weight="4"
+                android:background="@drawable/border_authorization"
+                android:ems="10"
+                android:hint="Название"
+                android:inputType="text"
+                android:textColorHint="@color/blue_2" />
+
+            <EditText
+                android:id="@+id/teacher_comment_create_material"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/mediarouter_chooser_list_item_padding_top"
+                android:background="@drawable/border_authorization"
+                android:ems="10"
+                android:hint="Описание"
+                android:inputType="text"
+                android:textColorHint="@color/blue_2" />
+
+            <Spinner
+                android:id="@+id/discipline_spinner"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/mediarouter_chooser_list_item_padding_top"
+                android:background="@drawable/border_authorization" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="22dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/deadline_material_create"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginEnd="25dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_authorization"
+                    android:ems="10"
+                    android:hint="Дедлайн"
+                    android:inputType="date"
+                    android:textColorHint="@color/blue_2" />
+
+                <EditText
+                    android:id="@+id/max_score_material_create"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_authorization"
+                    android:ems="10"
+                    android:hint="Макс. балл"
+                    android:inputType="text"
+                    android:textColorHint="@color/blue_2" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/save_new_material_button"
+                android:layout_width="181dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/button_style_blue_2"
+                android:text="Сохранить" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

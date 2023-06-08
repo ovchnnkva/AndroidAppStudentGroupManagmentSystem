@@ -30,24 +30,19 @@ import ru.sfedu.studentsystem.services.DisciplineService;
 import ru.sfedu.studentsystem.services.PracticalMaterialService;
 import ru.sfedu.studentsystem.services.RetrofitService;
 import ru.sfedu.studentsystem.services.TeacherService;
-import ru.sfedu.studentsystem.studentActivities.DetailPerformanceActivity;
+import ru.sfedu.studentsystem.studentActivities.MaterialsSelectionActivity;
 import ru.sfedu.studentsystem.teacherActivity.recycle.adapters.StudentDetailPerformanceShortAdapter;
 import ru.sfedu.studentsystem.teacherActivity.recycle.fragments.StudentShortPerformanceFragment;
 
 public class DetailStudentActivity extends AppCompatActivity {
-    private TextView nameStudent;
-    private TextView specializationStudent;
-    private TextView groupsCodeStudent;
-    private TextView birthdayStudent;
-    private Button appendScoreButton;
-    private Button studentsMaterialButton;
     private RecyclerView containerPerformance;
     private List<StudentShortPerformanceFragment> fragments = new ArrayList<>();
     private Teacher teacher;
     private long studentId;
     private RetrofitService retrofit;
-    private String actualTypeSemester = "Осень 2022";
+    private final String actualTypeSemester = "Осень 2022";
     private ProgressBar loading;
+    private Button goToMaterialsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,14 +82,13 @@ public class DetailStudentActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        nameStudent = findViewById(R.id.name_student_detail);
-        specializationStudent = findViewById(R.id.specializaion_detail);
-        groupsCodeStudent = findViewById(R.id.code_detail);
-        birthdayStudent = findViewById(R.id.birthday_student_detail);
-        appendScoreButton = findViewById(R.id.button_append_score);
-        studentsMaterialButton = findViewById(R.id.button_student_materials_detail);
+        TextView nameStudent = findViewById(R.id.name_student_detail);
+        TextView specializationStudent = findViewById(R.id.specializaion_detail);
+        TextView groupsCodeStudent = findViewById(R.id.code_detail);
+        TextView birthdayStudent = findViewById(R.id.birthday_student_detail);
         containerPerformance = findViewById(R.id.performance_detail);
         loading = findViewById(R.id.loading_student_detail);
+        goToMaterialsButton = findViewById(R.id.go_to_stuents_material_buttons);
 
         studentId = getIntent().getLongExtra("id", 0);
 
@@ -108,6 +102,16 @@ public class DetailStudentActivity extends AppCompatActivity {
         birthdayStudent.setText(birthday);
 
         long id = getIntent().getLongExtra("groupid", 0);
+
+        goToMaterialsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MaterialsSelectionActivity.class);
+                intent.putExtra("studentId", studentId);
+                startActivity(intent);
+            }
+        });
+
         initGroupsDisciplinesId(id);
     }
     private void initGroupsDisciplinesId(long groupId) {
@@ -206,41 +210,20 @@ public class DetailStudentActivity extends AppCompatActivity {
 
         StudentShortPerformanceFragment fragment = new StudentShortPerformanceFragment(discipline.getName(), (int) ((float) studentScore /100f*100),discipline.getTypeAttestation());
         fragment.setActualScore(studentScore, discipline.getMaxScoreForSemester());
+        fragment.setStudentId(studentId);
+        fragment.setDisciplineId(discipline.getId());
+        fragment.setTypeSemester(actualTypeSemester);
         Log.d("FRAGMENT", fragment.getTypeAttestation());
         fragments.add(fragment);
 
         initRecycle();
-        initButtons(discipline.getId());
     }
     private void initRecycle(){
         StudentDetailPerformanceShortAdapter adapter = new StudentDetailPerformanceShortAdapter(getApplicationContext(), fragments);
         containerPerformance.setAdapter(adapter);
         loading.setVisibility(View.INVISIBLE);
     }
-    private void initButtons(long disciplineId){
-        appendScoreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), DetailPerformanceActivity.class);
-                intent.putExtra("studentId", studentId);
-                intent.putExtra("disciplineId", disciplineId);
-                intent.putExtra("typeSemester", actualTypeSemester);
-                v.getContext().startActivity(intent);
-            }
-        });
 
-        studentsMaterialButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), DetailPerformanceActivity.class);
-                intent.putExtra("studentId", studentId);
-                intent.putExtra("disciplineId", disciplineId);
-                intent.putExtra("typeSemester", actualTypeSemester);
-                v.getContext().startActivity(intent);
-            }
-        });
-
-    }
     private int getSumPerformance(List<PracticalMaterial> scores){
         if (scores.isEmpty()) return 0;
         final int[] sum = {0};

@@ -37,8 +37,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/container_detail_performance"
-        android:layout_width="391dp"
-        android:layout_height="wrap_content"
+        android:layout_width="374dp"
+        android:layout_height="444dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:text="0/40"
         android:textSize="16sp"
         android:visibility="visible"
@@ -66,7 +66,7 @@
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/date_exam_score_append"
-        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toEndOf="@+id/exam"
         app:layout_constraintTop_toBottomOf="@+id/result_score_semester" />
 
@@ -79,9 +79,9 @@
         android:text="0/60"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toEndOf="@+id/intermediate_result"
-        app:layout_constraintTop_toBottomOf="@+id/append_score_button" />
+        app:layout_constraintTop_toBottomOf="@+id/container_detail_performance" />
 
     <TextView
         android:id="@+id/intermediate_result"
@@ -94,9 +94,9 @@
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/append_score_button" />
+        app:layout_constraintTop_toBottomOf="@+id/container_detail_performance" />
 
     <TextView
         android:id="@+id/exam"
@@ -125,35 +125,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exam"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="0.307" />
 
     <TextView
         android:id="@+id/result_score_discipline"
-        android:layout_width="116dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:text="0/100"
         android:textAlignment="textEnd"
         android:textSize="20sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintHorizontal_bias="0.784"
         app:layout_constraintStart_toEndOf="@+id/result_score"
         app:layout_constraintTop_toBottomOf="@+id/date_exam_score_append"
-        app:layout_constraintVertical_bias="0.012" />
+        app:layout_constraintVertical_bias="0.307" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/append_score_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/serqle_blue_3"
-        android:text="+"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_detail_performance" />
 </androidx.constraintlayout.widget.ConstraintLayout>

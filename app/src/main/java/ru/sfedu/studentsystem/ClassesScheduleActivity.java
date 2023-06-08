@@ -56,8 +56,14 @@ public class ClassesScheduleActivity extends AppCompatActivity {
         Log.d("STUDENT", uid);
         role = Constants.ROLES.valueOf(pref.getString(ROLE_USER_AUTH_FILE, ""));
         switch (role) {
-            case STUDENT: initStudent(uid); break;
-            case TEACHER:initTeacher(uid);break;
+            case STUDENT:{
+                initStudent(uid);
+                break;
+            }
+            case TEACHER:{
+                initTeacher(uid);
+                break;
+            }
         }
     }
     private void initTeacher(String uid){

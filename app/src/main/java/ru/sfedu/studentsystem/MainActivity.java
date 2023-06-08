@@ -121,8 +121,16 @@ public class MainActivity extends AppCompatActivity {
     private void redirect(){
         Intent intent;
         switch (roleUser){
-            case STUDENT: intent = new Intent(MainActivity.this, HomeActivityStudent.class); this.startActivity(intent);break;
-            case TEACHER:intent = new Intent(MainActivity.this, HomeActivityTeacher.class); this.startActivity(intent);break;
+            case STUDENT: {
+                intent = new Intent(MainActivity.this, HomeActivityStudent.class);
+                this.startActivity(intent);
+                break;
+            }
+            case TEACHER: {
+                intent = new Intent(MainActivity.this, HomeActivityTeacher.class);
+                this.startActivity(intent);
+                break;
+            }
             case ADMIN:break;
         }
     }

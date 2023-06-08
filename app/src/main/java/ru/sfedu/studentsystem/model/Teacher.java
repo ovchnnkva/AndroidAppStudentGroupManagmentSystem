@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Teacher {
 	private long id;
 	private String name;
+	private String uid;
   	private List<Discipline> disciplines=new ArrayList<>();
 
 	public Teacher (long id,String name) {
@@ -15,6 +16,14 @@ public class Teacher {
 	};
 
 	public Teacher(){}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 
 	public long getId() {
 		return id;
