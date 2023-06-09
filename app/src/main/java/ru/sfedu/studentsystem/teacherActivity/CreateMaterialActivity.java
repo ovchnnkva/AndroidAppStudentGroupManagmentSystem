@@ -61,7 +61,7 @@ public class CreateMaterialActivity extends AppCompatActivity {
     private long disciplineId;
     private List<Discipline> disciplineList = new ArrayList<>();
 
-    Calendar dateAndTime=Calendar.getInstance();
+    private Calendar dateAndTime=Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +100,7 @@ public class CreateMaterialActivity extends AppCompatActivity {
                 if(hasFocus){
                     setDate(v);
                     setTime(v);
+                    maxScoreMaterial.setFocusable(true);
                 }
             }
         });

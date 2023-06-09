@@ -6,4 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".adminActivity.AdminHomeActivity">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_to_student_group_admin"
+        android:layout_width="367dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_style_blue_4"
+        android:gravity="bottom|left"
+        android:text="студенческие группы"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/go_to_students_admin" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_to_schedule_admin"
+        android:layout_width="367dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_style_blue_5"
+        android:gravity="bottom|left"
+        android:text="расписание"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/go_to_student_group_admin" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_to_students_admin"
+        android:layout_width="367dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/button_style_blue_3"
+        android:gravity="bottom|left"
+        android:text="студенты"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/go_to_teachers_admin" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_to_teachers_admin"
+        android:layout_width="367dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_style_blue_2"
+        android:gravity="bottom|left"
+        android:text="преподаватели"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

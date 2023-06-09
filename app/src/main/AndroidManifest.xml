@@ -18,20 +18,23 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="tiramisu">
         <activity
+            android:name=".adminActivity.RegistrationStudentActivity"
+            android:exported="true" />
+        <activity
             android:name=".adminActivity.AdminHomeActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".teacherActivity.CreateMaterialActivity"
             android:exported="true" />
         <activity
             android:name=".teacherActivity.dialogs.EditPerformanceDialogActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".teacherActivity.DetailStudentActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".teacherActivity.SearchStudentActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".teacherActivity.HomeActivityTeacher"
             android:exported="true" />

@@ -1,10 +1,16 @@
 package ru.sfedu.studentsystem.teacherActivity;
 
+import static ru.sfedu.studentsystem.Constants.AUTH_FILE_NAME;
+import static ru.sfedu.studentsystem.Constants.ROLE_USER_AUTH_FILE;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -18,7 +24,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import ru.sfedu.studentsystem.Constants;
 import ru.sfedu.studentsystem.R;
+import ru.sfedu.studentsystem.adminActivity.RegistrationStudentActivity;
 import ru.sfedu.studentsystem.model.Student;
 import ru.sfedu.studentsystem.model.StudyGroup;
 import ru.sfedu.studentsystem.services.RetrofitService;
@@ -33,6 +41,8 @@ public class SearchStudentActivity extends AppCompatActivity {
     private RetrofitService retrofit;
     private ProgressBar loading;
     private List<StudentFragment> fragments = new ArrayList<>();
+    private Constants.ROLES role;
+    private Button createStudentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +51,27 @@ public class SearchStudentActivity extends AppCompatActivity {
 
         retrofit = new RetrofitService();
 
+        initRole();
         initView();
+    }
+
+    private void initRole(){
+        SharedPreferences pref = getSharedPreferences(AUTH_FILE_NAME, MODE_PRIVATE);
+        role = Constants.ROLES.valueOf(pref.getString(ROLE_USER_AUTH_FILE,""));
     }
     private void initView(){
         search = findViewById(R.id.search_student);
         container = findViewById(R.id.students_container);
         loading = findViewById(R.id.loading_students_search);
+        createStudentButton = findViewById(R.id.create_student_button);
+
+        if(role.equals(Constants.ROLES.ADMIN)){
+            createStudentButton.setVisibility(View.VISIBLE);
+            createStudentButton.setOnClickListener(event -> {
+                Intent intent = new Intent(SearchStudentActivity.this, RegistrationStudentActivity.class);
+                startActivity(intent);
+            });
+        }
 
         search.addTextChangedListener(new TextWatcher() {
             @Override

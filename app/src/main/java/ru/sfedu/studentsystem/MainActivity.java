@@ -25,6 +25,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import ru.sfedu.studentsystem.adminActivity.AdminHomeActivity;
 import ru.sfedu.studentsystem.services.RetrofitService;
 import ru.sfedu.studentsystem.services.RoleService;
 import ru.sfedu.studentsystem.studentActivities.HomeActivityStudent;
@@ -131,7 +132,11 @@ public class MainActivity extends AppCompatActivity {
                 this.startActivity(intent);
                 break;
             }
-            case ADMIN:break;
+            case ADMIN:{
+                intent = new Intent(MainActivity.this, AdminHomeActivity.class);
+                this.startActivity(intent);
+                break;
+            }
         }
     }
     private boolean checkAllDataInPref(){

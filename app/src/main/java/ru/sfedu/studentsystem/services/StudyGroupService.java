@@ -14,7 +14,7 @@ public interface StudyGroupService {
     @GET("studygroup/get/id/{id}")
     Call<StudyGroup> getStudyGroupById(@Path("id") Long id);
     @GET("studygroup/get/code/{code}")
-    Call<StudyGroup> getStudyGroupByCode(@Path("code") String code);
+    Call<List<StudyGroup>> getStudyGroupByCode(@Path("code") String code);
     @GET("studygroup/get/disciplineid/{discid}")
     Call<List<Long>> getStudyGroupsIdByDiscipline(@Path("discid") Long disciplineId);
     @GET("studygroup/get/all")

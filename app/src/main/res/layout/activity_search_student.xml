@@ -22,8 +22,8 @@
 
     <EditText
         android:id="@+id/search_student"
-        android:layout_width="366dp"
-        android:layout_height="51dp"
+        android:layout_width="293dp"
+        android:layout_height="50dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/border_authorization"
         android:ems="10"
@@ -31,7 +31,7 @@
         android:inputType="text"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,4 +47,21 @@
         app:layout_constraintTop_toBottomOf="@+id/search_student">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/create_student_button"
+        android:layout_width="85dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_blue_3_center_text"
+        android:gravity="center"
+        android:text="создать"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/students_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toEndOf="@+id/search_student"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913" />
 </androidx.constraintlayout.widget.ConstraintLayout>

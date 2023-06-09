@@ -11,9 +11,9 @@ import retrofit2.http.Path;
 import ru.sfedu.studentsystem.model.Student;
 
 public interface StudentService {
-    @POST("student/create/{name}/{birthday}/{studygroupid}")
-    Call<Student> registerStudent(@Path("name") String name, @Path("birthday") String birthday,
-                                  @Path("studygroupid") Long studygroupid);
+    @POST("student/create/{name}/{birthday}/{studygroupid}/{uid}")
+    Call<Integer> registerStudent(@Path("name") String name, @Path("birthday") String birthday,
+                                  @Path("studygroupid") Long studygroupid, @Path("uid") String uid);
     @GET("student/get/id/{id}")
     Call<Student> getStudentById(@Path("id")Long id);
     @GET("student/get/uid/{uid}")
@@ -27,4 +27,5 @@ public interface StudentService {
                                 @Path("studygroupid")Long groupid);
     @DELETE("student/delete/{id}")
     Call<Integer> deleteStudent(@Path("id") Long id);
+
 }
