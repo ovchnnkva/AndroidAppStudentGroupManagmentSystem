@@ -1,4 +1,4 @@
-package ru.sfedu.studentsystem.teacherActivity.adapters;
+package ru.sfedu.studentsystem.adminActivity.recycle.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,25 +9,27 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import ru.sfedu.studentsystem.model.Discipline;
+import ru.sfedu.studentsystem.model.StudyGroup;
 
-public class DisciplinesAdapter extends ArrayAdapter<Discipline> {
+public class StudyGroupSearchAdapter extends ArrayAdapter<StudyGroup> {
+
     private Context context;
-    private Discipline[] disciplines;
+    private StudyGroup[] groups;
 
-    public DisciplinesAdapter(@NonNull Context context, int resource, Discipline[] disciplines) {
-        super(context, resource, disciplines);
-        this.disciplines = disciplines;
+    public StudyGroupSearchAdapter(@NonNull Context context, int resource, StudyGroup[] groups) {
+        super(context, resource, groups);
+        this.groups = groups;
         this.context = context;
     }
+
     @Override
     public int getCount(){
-        return disciplines.length;
+        return groups.length;
     }
 
     @Override
-    public Discipline getItem(int position){
-        return disciplines[position];
+    public StudyGroup getItem(int position){
+        return groups[position];
     }
 
     @Override
@@ -39,7 +41,7 @@ public class DisciplinesAdapter extends ArrayAdapter<Discipline> {
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView label = (TextView) super.getView(position, convertView, parent);
         label.setTextColor(Color.BLACK);
-        label.setText(disciplines[position].getName());
+        label.setText(groups[position].getGroupsCode());
 
         return label;
     }
@@ -49,7 +51,7 @@ public class DisciplinesAdapter extends ArrayAdapter<Discipline> {
                                 ViewGroup parent) {
         TextView label = (TextView) super.getDropDownView(position, convertView, parent);
         label.setTextColor(Color.BLACK);
-        label.setText(disciplines[position].getName());
+        label.setText(groups[position].getGroupsCode());
 
         return label;
     }

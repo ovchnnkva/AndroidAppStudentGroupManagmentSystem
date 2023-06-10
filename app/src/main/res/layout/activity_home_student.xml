@@ -58,7 +58,7 @@
         android:id="@+id/to_class_schedule_button"
         android:layout_width="370dp"
         android:layout_height="110dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/button_style"
         android:gravity="bottom|left"
         android:text="Расписание занятий"

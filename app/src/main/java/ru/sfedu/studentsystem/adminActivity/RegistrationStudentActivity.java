@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import ru.sfedu.studentsystem.Constants;
 import ru.sfedu.studentsystem.R;
-import ru.sfedu.studentsystem.adminActivity.adapters.StudyGroupSearchAdapter;
+import ru.sfedu.studentsystem.adminActivity.recycle.adapters.StudyGroupSearchAdapter;
 import ru.sfedu.studentsystem.model.StudyGroup;
 import ru.sfedu.studentsystem.services.RetrofitService;
 import ru.sfedu.studentsystem.services.RoleService;
@@ -95,6 +95,11 @@ public class RegistrationStudentActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus) {
+                    studyGroupStudentText.setFocusableInTouchMode(false);
+                    studyGroupStudentText.setFocusable(false);
+                    studyGroupStudentText.setFocusableInTouchMode(true);
+                    studyGroupStudentText.setFocusable(true);
+
                     Dialog dialog = new Dialog(v.getContext());
                     dialog.setContentView(R.layout.search_spinner);
 

@@ -14,6 +14,11 @@ public interface DisciplineService {
     @POST("discipline/create/{name}/{typeattestation}/{maxscore}")
     Call<Integer> registerDiscipline(@Path("name") String name, @Path("typeattestation") String typeAttestation,
                                      @Path("maxscore") int maxScore);
+    @POST("discipline/append/discipline/to/teacher/{disciplineid}/{teacherid}")
+    Call<Integer> appendDisciplineToTeacher(@Path("disciplineid") long disciplineId, @Path("teacherid") long teacherId);
+    @GET("discipline/getid/allparam/{name}/{typeatt}/{maxscore}")
+    Call<Long> getDIsciplineIdByAllParam(@Path("name") String name, @Path("typeatt") String typeAttestation,
+                                         @Path("maxscore") int maxScore);
     @GET("discipline/get/id/{id}")
     Call<Discipline> getDisciplineById(@Path("id") Long id);
     @GET("discipline/get/name/{name}")

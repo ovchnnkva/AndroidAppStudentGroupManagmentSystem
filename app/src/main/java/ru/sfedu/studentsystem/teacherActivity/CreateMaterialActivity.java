@@ -40,7 +40,7 @@ import ru.sfedu.studentsystem.services.PracticalMaterialService;
 import ru.sfedu.studentsystem.services.RetrofitService;
 import ru.sfedu.studentsystem.services.TeacherService;
 import ru.sfedu.studentsystem.studentActivities.MaterialsSelectionActivity;
-import ru.sfedu.studentsystem.teacherActivity.adapters.DisciplinesAdapter;
+import ru.sfedu.studentsystem.teacherActivity.recycle.adapters.DisciplinesAdapter;
 
 public class CreateMaterialActivity extends AppCompatActivity {
     private EditText nameMaterial;
@@ -100,6 +100,10 @@ public class CreateMaterialActivity extends AppCompatActivity {
                 if(hasFocus){
                     setDate(v);
                     setTime(v);
+
+                    maxScoreMaterial.setFocusableInTouchMode(false);
+                    maxScoreMaterial.setFocusable(false);
+                    maxScoreMaterial.setFocusableInTouchMode(true);
                     maxScoreMaterial.setFocusable(true);
                 }
             }
@@ -253,9 +257,7 @@ public class CreateMaterialActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     if(response.body() > 0){
                         Toast.makeText(CreateMaterialActivity.this, "Запись сохранена", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), MaterialsSelectionActivity.class);
-                        intent.putExtra("studentId", studentId);
-                        startActivity(intent);
+                        finishActivity();
                     }
                 }
             }
@@ -265,6 +267,9 @@ public class CreateMaterialActivity extends AppCompatActivity {
                 Toast.makeText(CreateMaterialActivity.this, "Ошибка сервера. Запись не сохранена", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void finishActivity(){
+        finish();
     }
     private String dateTimeFormating(String date) {
         SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());

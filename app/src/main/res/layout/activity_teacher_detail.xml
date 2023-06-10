@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/performance_student_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".teacherActivity.DetailStudentActivity">
+    tools:context=".adminActivity.TeacherDetailActivity">
 
     <View
         android:id="@+id/view8"
@@ -14,10 +13,10 @@
         android:background="@drawable/rectangle_blue_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549" />
+        app:layout_constraintVertical_bias="0.496" />
 
     <View
         android:id="@+id/view9"
@@ -36,10 +35,10 @@
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
         android:layout_width="88dp"
         android:layout_height="88dp"
-        android:layout_marginTop="368dp"
+        android:layout_marginTop="304dp"
         android:indeterminate="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +46,6 @@
         android:id="@+id/name_teacher_detail"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -57,64 +55,23 @@
         app:layout_constraintTop_toTopOf="@+id/view8" />
 
     <TextView
-        android:id="@+id/birthday_student_detail"
-        android:layout_width="204dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/view8"
-        app:layout_constraintHorizontal_bias="0.085"
-        app:layout_constraintStart_toStartOf="@+id/view8"
-        app:layout_constraintTop_toBottomOf="@+id/view9" />
-
-    <TextView
-        android:id="@+id/specializaion_detail"
-        android:layout_width="228dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/view8"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/view8"
-        app:layout_constraintTop_toBottomOf="@+id/birthday_student_detail" />
-
-    <TextView
-        android:id="@+id/code_detail"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="66dp"
-        android:text="TextView"
-        android:textAlignment="textEnd"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/view8"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/specializaion_detail"
-        app:layout_constraintTop_toBottomOf="@+id/birthday_student_detail" />
-
-    <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Успеваемость"
+        android:layout_marginTop="8dp"
+        android:text="Дисциплины"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/view8"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/view8"
-        app:layout_constraintTop_toBottomOf="@+id/go_to_stuents_material_buttons" />
+        app:layout_constraintTop_toBottomOf="@+id/create_discipline_detail_teacher" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/disciplines_teacher_detail"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_width="341dp"
+        android:layout_height="191dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@+id/view8"
         app:layout_constraintEnd_toEndOf="@+id/view8"
@@ -126,19 +83,16 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_to_stuents_material_buttons"
-        android:layout_width="277dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="27dp"
+        android:id="@+id/create_discipline_detail_teacher"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_blue_3_center_text"
-        android:text="работы студента"
+        android:text="добавить дисциплину"
         android:textColor="@color/white"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/view8"
-        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/view8"
-        app:layout_constraintTop_toBottomOf="@+id/specializaion_detail" />
+        app:layout_constraintTop_toBottomOf="@+id/view9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

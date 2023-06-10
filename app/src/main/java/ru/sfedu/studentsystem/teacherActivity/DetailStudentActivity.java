@@ -82,12 +82,12 @@ public class DetailStudentActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        TextView nameStudent = findViewById(R.id.name_student_detail);
+        TextView nameStudent = findViewById(R.id.name_teacher_detail);
         TextView specializationStudent = findViewById(R.id.specializaion_detail);
         TextView groupsCodeStudent = findViewById(R.id.code_detail);
         TextView birthdayStudent = findViewById(R.id.birthday_student_detail);
-        containerPerformance = findViewById(R.id.performance_detail);
-        loading = findViewById(R.id.loading_student_detail);
+        containerPerformance = findViewById(R.id.disciplines_teacher_detail);
+        loading = findViewById(R.id.loading_teacher_detail);
         goToMaterialsButton = findViewById(R.id.go_to_stuents_material_buttons);
 
         studentId = getIntent().getLongExtra("id", 0);

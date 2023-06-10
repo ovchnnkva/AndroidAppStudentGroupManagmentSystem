@@ -45,7 +45,7 @@ public class ClassesScheduleActivity extends AppCompatActivity {
 
         retrofit = new RetrofitService();
 
-       actualWeekDay = weekDay[this.getIntent().getIntExtra("weekDay", 0)];
+       actualWeekDay = weekDay[(this.getIntent().getIntExtra("weekDay", 0)) - 1];
        Log.d("WEEKDAY", actualWeekDay);
        initUid();
     }
@@ -311,7 +311,6 @@ public class ClassesScheduleActivity extends AppCompatActivity {
     }
 
     private void visibleClasses(){
-        findViewById(R.id.week_type).setVisibility(View.VISIBLE);
         findViewById(R.id.time_first_class_1).setVisibility(View.VISIBLE);
         findViewById(R.id.time_first_class_2).setVisibility(View.VISIBLE);
         findViewById(R.id.time_second_class_1).setVisibility(View.VISIBLE);

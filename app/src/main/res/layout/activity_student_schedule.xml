@@ -7,16 +7,16 @@
     tools:context=".ClassesScheduleActivity">
 
 
-    <ProgressBar
-        android:id="@+id/loading_events_schedule"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:indeterminate="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/sixth_class_cabinet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:textAlignment="textEnd"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/name_discipline_sixth_class" />
 
     <TextView
         android:id="@+id/sixth_class_teacher"
@@ -34,45 +34,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="7dp"
         android:fontFamily="@font/roboto"
         android:textAlignment="textStart"
         android:textColor="@color/blue_4"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_discipline_fifth_class"
-        app:layout_constraintVertical_bias="0.08" />
-
-    <TextView
-        android:id="@+id/time_sixth_class_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginBottom="6dp"
-        android:text="17:40-18:25"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_sixth_class"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/time_sixth_class_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="6dp"
-        android:text="18:30-19:15"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_sixth_class"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.218"
-        app:layout_constraintStart_toEndOf="@+id/time_sixth_class_1" />
+        app:layout_constraintTop_toBottomOf="@+id/time_sixth_class_1" />
 
     <TextView
         android:id="@+id/fifth_class_teacher"
@@ -90,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="7dp"
         android:fontFamily="@font/roboto"
         android:textAlignment="textStart"
@@ -100,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_discipline_fouth_class" />
+        app:layout_constraintTop_toBottomOf="@+id/time_fifth_class_1" />
 
     <TextView
         android:id="@+id/fifth_class_cabinet"
@@ -114,32 +86,6 @@
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toEndOf="@+id/fifth_class_teacher"
         app:layout_constraintTop_toBottomOf="@+id/name_discipline_fifth_class" />
-
-    <TextView
-        android:id="@+id/time_fifth_class_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginBottom="6dp"
-        android:text="15:50-16:35"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_fifth_class"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/time_fifth_class_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="6dp"
-        android:text="16:40-17:25"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_fifth_class"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.218"
-        app:layout_constraintStart_toEndOf="@+id/time_fifth_class_1" />
 
     <TextView
         android:id="@+id/fouth_class_teacher"
@@ -166,37 +112,11 @@
         app:layout_constraintTop_toBottomOf="@+id/name_discipline_fouth_class" />
 
     <TextView
-        android:id="@+id/time_fouth_class_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginBottom="6dp"
-        android:text="13:45-14:30"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_fouth_class"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/time_fouth_class_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="6dp"
-        android:text="14:35-15:20"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_fouth_class"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toEndOf="@+id/time_fouth_class_1" />
-
-    <TextView
         android:id="@+id/name_discipline_fouth_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/roboto"
         android:textAlignment="textStart"
@@ -206,14 +126,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.04"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_discipline_third_class" />
+        app:layout_constraintTop_toBottomOf="@+id/time_fouth_class_1" />
 
     <TextView
         android:id="@+id/name_discipline_third_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="7dp"
         android:fontFamily="@font/roboto"
         android:textAlignment="textStart"
@@ -223,7 +143,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_discipline_second_class" />
+        app:layout_constraintTop_toBottomOf="@+id/time_third_class_1" />
 
     <TextView
         android:id="@+id/third_class_cabinet"
@@ -237,31 +157,6 @@
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toEndOf="@+id/third_class_teacher"
         app:layout_constraintTop_toBottomOf="@+id/name_discipline_third_class" />
-
-    <TextView
-        android:id="@+id/time_third_class_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginBottom="6dp"
-        android:text="11:55-12:40"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_third_class"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/time_third_class_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:text="12:45-13:30"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_third_class"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
-        app:layout_constraintStart_toEndOf="@+id/time_third_class_1" />
 
     <TextView
         android:id="@+id/third_class_teacher"
@@ -299,60 +194,19 @@
         app:layout_constraintTop_toBottomOf="@+id/name_discipline_second_class" />
 
     <TextView
-        android:id="@+id/time_second_class_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="95dp"
-        android:layout_marginBottom="6dp"
-        android:text="10:40-11:25"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_second_class"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toEndOf="@+id/time_second_class_1" />
-
-    <TextView
         android:id="@+id/name_discipline_second_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="7dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/roboto"
         android:textAlignment="textStart"
         android:textColor="@color/blue_4"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_discipline_first_class" />
-
-    <TextView
-        android:id="@+id/time_second_class_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginBottom="6dp"
-        android:text="09:50-10:35"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_second_class"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/week_type"
-        android:layout_width="171dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="24dp"
-        android:text="Верхняя неделя"
-        android:textColor="@color/blue_4"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/time_second_class_1" />
 
     <TextView
         android:id="@+id/first_class_cabinet"
@@ -368,58 +222,58 @@
         app:layout_constraintTop_toBottomOf="@+id/name_discipline_first_class" />
 
     <TextView
-        android:id="@+id/time_first_class_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginBottom="6dp"
-        android:text="08:00-08:45"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_first_class"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/time_first_class_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="6dp"
         android:text="08:50-09:35"
         android:textAlignment="center"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/name_discipline_first_class"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.323"
-        app:layout_constraintStart_toEndOf="@+id/time_first_class_1" />
+        app:layout_constraintHorizontal_bias="0.322"
+        app:layout_constraintStart_toEndOf="@+id/time_first_class_1"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/name_discipline_first_class"
+        android:id="@+id/time_fouth_class_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="7dp"
-        android:fontFamily="@font/roboto"
-        android:textAlignment="textStart"
-        android:textColor="@color/blue_4"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="92dp"
+        android:text="14:35-15:20"
+        android:textAlignment="center"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/week_type" />
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toEndOf="@+id/time_fouth_class_1"
+        app:layout_constraintTop_toBottomOf="@+id/third_class_cabinet" />
 
     <TextView
-        android:id="@+id/first_class_teacher"
+        android:id="@+id/time_fouth_class_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="8dp"
+        android:text="13:45-14:30"
+        android:textAlignment="center"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_discipline_first_class" />
+        app:layout_constraintTop_toBottomOf="@+id/third_class_cabinet" />
+
+    <TextView
+        android:id="@+id/time_fifth_class_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="16:40-17:25"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintStart_toEndOf="@+id/time_fifth_class_1"
+        app:layout_constraintTop_toBottomOf="@+id/fouth_class_cabinet" />
 
     <TextView
         android:id="@+id/empty_classes"
@@ -433,8 +287,149 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintVertical_bias="0.384" />
+
+    <TextView
+        android:id="@+id/time_second_class_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="8dp"
+        android:text="09:50-10:35"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_class_cabinet" />
+
+    <TextView
+        android:id="@+id/time_sixth_class_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="8dp"
+        android:text="17:40-18:25"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fifth_class_cabinet" />
+
+    <TextView
+        android:id="@+id/time_third_class_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="12:45-13:30"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toEndOf="@+id/time_third_class_1"
+        app:layout_constraintTop_toBottomOf="@+id/second_class_cabinet" />
+
+    <TextView
+        android:id="@+id/time_sixth_class_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="18:30-19:15"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintStart_toEndOf="@+id/time_sixth_class_1"
+        app:layout_constraintTop_toBottomOf="@+id/fifth_class_cabinet" />
+
+    <TextView
+        android:id="@+id/time_fifth_class_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:text="15:50-16:35"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fouth_class_cabinet" />
+
+    <ProgressBar
+        android:id="@+id/loading_events_schedule"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.441" />
+
+    <TextView
+        android:id="@+id/time_first_class_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="48dp"
+        android:text="08:00-08:45"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/time_second_class_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="95dp"
+        android:text="10:40-11:25"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toEndOf="@+id/time_second_class_1"
+        app:layout_constraintTop_toBottomOf="@+id/first_class_teacher" />
+
+    <TextView
+        android:id="@+id/time_third_class_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="8dp"
+        android:text="11:55-12:40"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_class_cabinet" />
+
+    <TextView
+        android:id="@+id/name_discipline_first_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="7dp"
+        android:fontFamily="@font/roboto"
+        android:textAlignment="textStart"
+        android:textColor="@color/blue_4"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_first_class_1" />
+
+    <TextView
+        android:id="@+id/first_class_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_discipline_first_class" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

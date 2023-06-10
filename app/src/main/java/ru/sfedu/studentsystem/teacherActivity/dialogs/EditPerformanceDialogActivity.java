@@ -38,12 +38,12 @@ public class EditPerformanceDialogActivity  {
         dialog.setContentView(R.layout.activity_edit_performance_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        save = dialog.findViewById(R.id.save_button_edit_dialog);
-        close = dialog.findViewById(R.id.close_button_edit_dialog);
+        save = dialog.findViewById(R.id.save_discipline_dialog_append);
+        close = dialog.findViewById(R.id.close_button_append_dialog_discipline);
 
         retrofit = new RetrofitService();
 
-        editName = dialog.findViewById(R.id.edit_name);
+        editName = dialog.findViewById(R.id.create_discipline_dialog);
         editScore = dialog.findViewById(R.id.edit_score);
 
         editName.setText(material.getNameTask());
@@ -58,7 +58,7 @@ public class EditPerformanceDialogActivity  {
                     material.setStudentScore(score);
                     material.setNameTask(name);
                 } else {
-                    Toast.makeText(activity, "Балл превышает максимальнодопустимый за задание балл", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Балл превышает максимальный за задание балл", Toast.LENGTH_SHORT).show();
                 }
                 try {
                     material.setDateAppendScore(dateNow.toString());
