@@ -6,12 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".adminActivity.RegistrationStudentActivity">
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="309dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="96dp"
+        android:text="Регистрация студента"
+        android:textAlignment="center"
+        android:textColor="@color/blue_3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/name_student_registration"
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="365dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/border_authorization"
         android:ems="10"
         android:hint="ФИО"
@@ -20,7 +34,7 @@
         android:textColorHint="@color/blue_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/birthday_student_registration"

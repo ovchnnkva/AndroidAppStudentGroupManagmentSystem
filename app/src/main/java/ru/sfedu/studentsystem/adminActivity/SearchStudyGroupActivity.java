@@ -1,5 +1,6 @@
 package ru.sfedu.studentsystem.adminActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -44,9 +45,14 @@ public class SearchStudyGroupActivity extends AppCompatActivity {
         search = findViewById(R.id.search_study_group);
         container = findViewById(R.id.study_group_container);
         loading = findViewById(R.id.loading_study_group_search);
-        createStudyGroupButton = findViewById(R.id.create_teacher_button);
+        createStudyGroupButton = findViewById(R.id.create_study_group_button);
 
         retrofit = new RetrofitService();
+
+        createStudyGroupButton.setOnClickListener(event -> {
+            Intent intent = new Intent(getApplicationContext(), CreateStudyGroupActivity.class);
+            startActivity(intent);
+        });
 
         search.addTextChangedListener(new TextWatcher() {
             @Override

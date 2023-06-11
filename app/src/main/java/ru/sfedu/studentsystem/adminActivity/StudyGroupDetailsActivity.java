@@ -1,7 +1,9 @@
 package ru.sfedu.studentsystem.adminActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,8 @@ public class StudyGroupDetailsActivity extends AppCompatActivity {
     private RetrofitService retrofit;
     private ProgressBar loading;
 
+    private Button createStudyGroup;
+
     private List<StudentFragment> fragments = new ArrayList<>();
 
     private long groupId;
@@ -52,7 +56,12 @@ public class StudyGroupDetailsActivity extends AppCompatActivity {
         courseView = findViewById(R.id.cours_group_detail);
         studentsContainer = findViewById(R.id.student_in_group_detail);
         loading = findViewById(R.id.loading_study_group_detail);
+        createStudyGroup = findViewById(R.id.create_study_group_button);
 
+        createStudyGroup.setOnClickListener(event -> {
+            Intent intent = new Intent(event.getContext(), CreateStudyGroupActivity.class);
+            startActivity(intent);
+        });
         groupCodeStr = getIntent().getStringExtra("code");
         codeView.setText(groupCodeStr);
 

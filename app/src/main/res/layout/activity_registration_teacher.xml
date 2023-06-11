@@ -7,12 +7,26 @@
     tools:context=".adminActivity.RegistrationTeacherActivity">
 
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="309dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="132dp"
+        android:text="Регистрация преподавателя"
+        android:textAlignment="center"
+        android:textColor="@color/blue_3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/name_teacher_registration"
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="365dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/border_authorization"
         android:ems="10"
         android:hint="ФИО"
@@ -22,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.652"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
         android:id="@+id/mail_registartion_teacher"

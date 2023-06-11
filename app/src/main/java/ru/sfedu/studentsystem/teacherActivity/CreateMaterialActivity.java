@@ -48,7 +48,6 @@ public class CreateMaterialActivity extends AppCompatActivity {
     private EditText deadlineMaterial;
     private EditText maxScoreMaterial;
     private Button save;
-    private Spinner typeMaterial;
     private Spinner disciplineSpinner;
     private String dateDeadline = "01.01.1999";
     private String tomeDeadline = "23:59";
@@ -86,7 +85,6 @@ public class CreateMaterialActivity extends AppCompatActivity {
         deadlineMaterial = findViewById(R.id.deadline_material_create);
         maxScoreMaterial = findViewById(R.id.max_score_material_create);
         save = findViewById(R.id.save_new_material_button);
-        typeMaterial = findViewById(R.id.type_material_spinner);
         disciplineSpinner = findViewById(R.id.discipline_spinner);
 
         initTypeMaterialSpinner();
@@ -330,6 +328,12 @@ public class CreateMaterialActivity extends AppCompatActivity {
                 dateIsValid = true;
             } catch (ParseException e) {
                 Toast.makeText(this, "Введен неверный формат даты", Toast.LENGTH_LONG).show();
+            }
+            try {
+                Integer.parseInt(maxScoreMaterial.getText().toString());
+            } catch (NumberFormatException ex){
+                Toast.makeText(this, "Поле 'Макс. балл' должно быть заполнено числовым значением", Toast.LENGTH_SHORT).show();
+                return false;
             }
             return dateIsValid && (!nameMaterial.getText().toString().equals("")) && (disciplineSpinner.getSelectedItem() != null) && (!maxScoreMaterial.getText().toString().equals(""));
         }

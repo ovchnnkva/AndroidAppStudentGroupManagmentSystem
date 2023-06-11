@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adminActivity.CreateStudyGroupActivity">
+
+    <EditText
+        android:id="@+id/specialization_group_create"
+        android:layout_width="318dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/border_authorization"
+        android:hint="Направление"
+        android:textAlignment="viewStart"
+        android:textColor="@color/blue_3"
+        android:textColorHint="@color/blue_2"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <EditText
+        android:id="@+id/code_group_create"
+        android:layout_width="194dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/border_authorization"
+        android:hint="Код группы"
+        android:textColor="@color/blue_3"
+        android:textColorHint="@color/blue_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specialization_group_create" />
+
+    <EditText
+        android:id="@+id/course_group_create"
+        android:layout_width="94dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/border_authorization"
+        android:hint="Курс"
+        android:textColor="@color/blue_3"
+        android:textColorHint="@color/blue_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.318"
+        app:layout_constraintStart_toEndOf="@+id/code_group_create"
+        app:layout_constraintTop_toBottomOf="@+id/specialization_group_create" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save_study_group"
+        android:layout_width="155dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/button_blue_3_center_text"
+        android:text="сохранить"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/code_group_create" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="309dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="196dp"
+        android:text="Создать студенческую группу"
+        android:textAlignment="center"
+        android:textColor="@color/blue_3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
