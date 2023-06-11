@@ -76,19 +76,15 @@ public class MaterialsSelectionActivity extends AppCompatActivity {
 
         prevButton = madeButton;
         initRole();
-        switch (role) {
-            case STUDENT:{
-                initStudentUid();
-                break;
-            }
-            case TEACHER: {
-                initStudentById();
-                appendMaterial.setEnabled(true);
-                appendMaterial.setVisibility(View.VISIBLE);
-                initAppendMaterialButton();
-                break;
-            }
+        if(role.equals(Constants.ROLES.STUDENT)){
+            initStudentUid();
+        } else {
+            initStudentById();
+            appendMaterial.setEnabled(true);
+            appendMaterial.setVisibility(View.VISIBLE);
+            initAppendMaterialButton();
         }
+
         initSpinner();
         initButtons();
     }
@@ -294,7 +290,7 @@ public class MaterialsSelectionActivity extends AppCompatActivity {
             public void onResponse(Call<Teacher> call, Response<Teacher> response) {
                 if(response.isSuccessful()){
                     materials.setTeacher(response.body());
-                    if((role.equals(Constants.ROLES.STUDENT)) || ((role.equals(Constants.ROLES.TEACHER)) && (response.body().getUid().equals(getTeacherUid())))){
+                    if((role.equals(Constants.ROLES.STUDENT)) || (role.equals(Constants.ROLES.ADMIN)) || ((role.equals(Constants.ROLES.TEACHER)) && (response.body().getUid().equals(getTeacherUid())))){
                         addPracticalMaterialFragment(materials);
                     }
                 }

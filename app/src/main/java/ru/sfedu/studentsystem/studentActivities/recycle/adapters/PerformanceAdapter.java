@@ -36,8 +36,8 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PerformanceFragment fragment = fragments.get(position);
-        holder.typeAttestation.setText(fragment.getTypeAttestation());
-        holder.percentPerformance.setText(fragment.getPercentPerformance() + "%");
+        String percentStr = fragment.getPercentPerformance() + "%";
+        holder.percentPerformance.setText(percentStr);
         holder.actualScore.setText(fragment.getActualScores());
         holder.teachersName.setText(fragment.getTeachers());
         holder.nameDiscipline.setText(fragment.getNameDiscipline());
@@ -65,7 +65,6 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
         final TextView teachersName;
         final TextView percentPerformance;
         final TextView actualScore;
-        final TextView typeAttestation;
         final Button goToDetailButton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,7 +72,6 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
             teachersName = itemView.findViewById(R.id.teachers_fragment);
             percentPerformance = itemView.findViewById(R.id.performance_percent);
             actualScore = itemView.findViewById(R.id.actual_performance);
-            typeAttestation = itemView.findViewById(R.id.type_attestation_short_performance);
             goToDetailButton = itemView.findViewById(R.id.button);
 
         }

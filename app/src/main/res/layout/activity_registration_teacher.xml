@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adminActivity.RegistrationTeacherActivity">
+
+
+    <EditText
+        android:id="@+id/name_teacher_registration"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/border_authorization"
+        android:ems="10"
+        android:hint="ФИО"
+        android:inputType="text"
+        android:textColor="@color/blue_3"
+        android:textColorHint="@color/blue_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.652"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/mail_registartion_teacher"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_authorization"
+        android:ems="10"
+        android:hint="Почта"
+        android:inputType="text"
+        android:textColor="@color/blue_3"
+        android:textColorHint="@color/blue_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.652"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_teacher_registration" />
+
+    <EditText
+        android:id="@+id/password_registration_teacher"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_authorization"
+        android:ems="10"
+        android:hint="Пароль"
+        android:inputType="text"
+        android:textColor="@color/blue_3"
+        android:textColorHint="@color/blue_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.652"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mail_registartion_teacher" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save_registration_teacher_button"
+        android:layout_width="135dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/button_blue_3_center_text"
+        android:text="Сохранить"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_registration_teacher" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

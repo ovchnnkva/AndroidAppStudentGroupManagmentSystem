@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/go_to_materials"
         android:layout_width="370dp"
-        android:layout_height="110dp"
+        android:layout_height="100dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/button_style_blue_5"
         android:gravity="bottom|left"
@@ -25,7 +25,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/go_to_perfomance"
         android:layout_width="370dp"
-        android:layout_height="110dp"
+        android:layout_height="100dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/button_style_blue_4"
         android:gravity="bottom|left"
@@ -41,7 +41,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/go_to_sessia_shedule"
         android:layout_width="370dp"
-        android:layout_height="110dp"
+        android:layout_height="100dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/button_style_blue_3"
         android:gravity="bottom|left"
@@ -57,8 +57,8 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/to_class_schedule_button"
         android:layout_width="370dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_style"
         android:gravity="bottom|left"
         android:text="Расписание занятий"
@@ -68,12 +68,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/go_to_event_schedule"
         android:layout_width="370dp"
-        android:layout_height="110dp"
+        android:layout_height="100dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/button_style_blue_3"
         android:gravity="bottom|left"
@@ -86,4 +86,18 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/to_class_schedule_button" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Студент"
+        android:textColor="@color/blue_2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

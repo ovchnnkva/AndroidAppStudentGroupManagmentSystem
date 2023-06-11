@@ -45,7 +45,7 @@ public class TeacherDetailActivity extends AppCompatActivity {
 
     private void initView(){
         nameTeacher = findViewById(R.id.name_teacher_detail);
-        containerDiscipline = findViewById(R.id.disciplines_teacher_detail);
+        containerDiscipline = findViewById(R.id.student_in_group_detail);
         loading = findViewById(R.id.loading_teacher_detail);
         appendDiscipline = findViewById(R.id.create_discipline_detail_teacher);
         retrofit = new RetrofitService();
@@ -57,9 +57,7 @@ public class TeacherDetailActivity extends AppCompatActivity {
         appendDiscipline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                appendDisciplineDialog.showDialog(v.getContext(), teacherId);
-                fragments = new ArrayList<>();
-                initDisciplinesIds(teacherId);
+               addFragment(appendDisciplineDialog.showDialog(v.getContext(), teacherId));
             }
         });
 

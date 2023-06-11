@@ -48,6 +48,8 @@ public class AppendDisciplineDialog {
         save = dialog.findViewById(R.id.save_discipline_dialog_append);
         close = dialog.findViewById(R.id.close_button_append_dialog_discipline);
 
+        close.setOnClickListener(event -> dialog.dismiss());
+
         teacherId = id;
 
         initSpinner();

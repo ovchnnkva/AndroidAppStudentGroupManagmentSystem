@@ -1,6 +1,5 @@
 package ru.sfedu.studentsystem.adminActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,36 +20,33 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ru.sfedu.studentsystem.R;
-import ru.sfedu.studentsystem.adminActivity.recycle.adapters.TeacherAdapter;
-import ru.sfedu.studentsystem.adminActivity.recycle.fragment.TeacherFragment;
-import ru.sfedu.studentsystem.model.Teacher;
+import ru.sfedu.studentsystem.adminActivity.recycle.adapters.StudyGroupAdapter;
+import ru.sfedu.studentsystem.adminActivity.recycle.fragment.StudyGroupFragment;
+import ru.sfedu.studentsystem.model.StudyGroup;
 import ru.sfedu.studentsystem.services.RetrofitService;
-import ru.sfedu.studentsystem.services.TeacherService;
+import ru.sfedu.studentsystem.services.StudyGroupService;
 
-public class SearchTeacherActivity extends AppCompatActivity {
-
+public class SearchStudyGroupActivity extends AppCompatActivity {
     private EditText search;
     private RecyclerView container;
     private RetrofitService retrofit;
     private ProgressBar loading;
-    private List<TeacherFragment> fragments = new ArrayList<>();
-    private Button createTeacherButton;
-
+    private List<StudyGroupFragment> fragments = new ArrayList<>();
+    private Button createStudyGroupButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_teacher);
-
-        retrofit = new RetrofitService();
+        setContentView(R.layout.activity_search_study_group);
 
         initView();
     }
-
     private void initView(){
-        search = findViewById(R.id.search_teacher);
-        container = findViewById(R.id.teachers_container_search);
-        loading = findViewById(R.id.loading_teachers_search);
-        createTeacherButton = findViewById(R.id.create_teacher_button);
+        search = findViewById(R.id.search_study_group);
+        container = findViewById(R.id.study_group_container);
+        loading = findViewById(R.id.loading_study_group_search);
+        createStudyGroupButton = findViewById(R.id.create_teacher_button);
+
+        retrofit = new RetrofitService();
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -72,10 +68,10 @@ public class SearchTeacherActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-        createTeacherButton.setOnClickListener(event -> {
-            Intent intent = new Intent(event.getContext(), RegistrationTeacherActivity.class);
-            startActivity(intent);
-        });
+//        createStudyGroupButton.setOnClickListener(event -> {
+//            Intent intent = new Intent(event.getContext(), RegistrationTeacherActivity.class);
+//            startActivity(intent);
+//        });
     }
 
     private void searchTeacher(){
@@ -84,11 +80,11 @@ public class SearchTeacherActivity extends AppCompatActivity {
         String regex = search.getText().toString();
         Log.d("REGEX", regex);
 
-        TeacherService service = retrofit.createService(TeacherService.class);
-        Call<List<Teacher>> call = service.getTeacherByName(regex);
-        call.enqueue(new Callback<List<Teacher>>() {
+        StudyGroupService service = retrofit.createService(StudyGroupService.class);
+        Call<List<StudyGroup>> call = service.getStudyGroupByCode(regex);
+        call.enqueue(new Callback<List<StudyGroup>>() {
             @Override
-            public void onResponse(Call<List<Teacher>> call, Response<List<Teacher>> response) {
+            public void onResponse(Call<List<StudyGroup>> call, Response<List<StudyGroup>> response) {
                 if(response.isSuccessful()) {
                     if (response.body().size() > 0) {
                         loading.setVisibility(View.INVISIBLE);
@@ -103,27 +99,27 @@ public class SearchTeacherActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Teacher>> call, Throwable t) {
-                Toast.makeText(SearchTeacherActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+            public void onFailure(Call<List<StudyGroup>> call, Throwable t) {
+                Toast.makeText(SearchStudyGroupActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
                 loading.setVisibility(View.INVISIBLE);
             }
         });
     }
     private void clear(){
         fragments = new ArrayList<>();
-        TeacherAdapter adapter = new TeacherAdapter(getApplicationContext(), fragments);
+        StudyGroupAdapter adapter = new StudyGroupAdapter(getApplicationContext(), fragments);
         container.setAdapter(adapter);
     }
 
-    private void addFragment(Teacher teacher){
-        TeacherFragment fragment = new TeacherFragment(teacher);
-        if(fragments.stream().noneMatch(f -> f.getTeacherId() == fragment.getTeacherId()))
+    private void addFragment(StudyGroup group){
+        StudyGroupFragment fragment = new StudyGroupFragment(group);
+        if(fragments.stream().noneMatch(f -> f.getGroupId() == fragment.getGroupId()))
             fragments.add(fragment);
         initRecycle();
     }
     private void initRecycle(){
         loading.setVisibility(View.INVISIBLE);
-        TeacherAdapter adapter = new TeacherAdapter(this, fragments);
+        StudyGroupAdapter adapter = new StudyGroupAdapter(this, fragments);
         container.setAdapter(adapter);
     }
 }

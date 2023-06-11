@@ -63,7 +63,7 @@ public class SearchStudentActivity extends AppCompatActivity {
         search = findViewById(R.id.search_student);
         container = findViewById(R.id.students_container);
         loading = findViewById(R.id.loading_students_search);
-        createStudentButton = findViewById(R.id.create_student_button);
+        createStudentButton = findViewById(R.id.create_study_group_button);
 
         if(role.equals(Constants.ROLES.ADMIN)){
             createStudentButton.setVisibility(View.VISIBLE);

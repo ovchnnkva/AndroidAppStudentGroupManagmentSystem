@@ -12,6 +12,7 @@ public class StudentFragment extends Fragment {
     private long studentId;
     private long groupId;
 
+    private boolean fromStudyGroupDetail = false;
     public StudentFragment(Student student){
         this.name = student.getName();
         this.groupCode = student.getGroup().getGroupsCode();
@@ -20,7 +21,19 @@ public class StudentFragment extends Fragment {
         this.studentId = student.getId();
         this.groupId = student.getStudyGroupId();
     }
+    public StudentFragment(Student student, String groupCode, String specialization){
+        this.name = student.getName();
+        this.groupCode = groupCode;
+        this.birthday = student.getBirthday();
+        this.specialization = specialization;
+        this.studentId = student.getId();
+        this.groupId = student.getStudyGroupId();
+        fromStudyGroupDetail = true;
+    }
 
+    public boolean isFromStudyGroupDetail() {
+        return fromStudyGroupDetail;
+    }
 
     public long getGroupId() {
         return groupId;

@@ -49,6 +49,7 @@ public class DetailPerformanceActivity extends AppCompatActivity {
     private TextView examScore;
     private TextView dateExamScoreAppend;
     private TextView resultScoreStudent;
+    private TextView typeAttestation;
     private Button addMaterial;
     private RecyclerView container;
 
@@ -91,6 +92,7 @@ public class DetailPerformanceActivity extends AppCompatActivity {
         dateExamScoreAppend = findViewById(R.id.date_exam_score_append);
         resultScoreStudent = findViewById(R.id.result_score_discipline);
         container = findViewById(R.id.container_detail_performance);
+        typeAttestation = findViewById(R.id.type_attestation_discipline);
     }
 
     private void initDiscipline(){
@@ -104,6 +106,11 @@ public class DetailPerformanceActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     discipline = response.body();
                     nameDiscipline.setText(discipline.getName());
+                    if(discipline.getTypeAttestation().equals("Экзамен")){
+                        TextView examTextView = findViewById(R.id.exam_text_view);
+                        examTextView.setVisibility(View.VISIBLE);
+                    }
+                    typeAttestation.setText(discipline.getTypeAttestation());
                     initPracticalMaterials();
                 }
             }
@@ -169,7 +176,7 @@ public class DetailPerformanceActivity extends AppCompatActivity {
     private void initExam(PracticalMaterial material){
         String examScoreStr = material.getStudentScore()+"/40";
 
-        TextView examStr = findViewById(R.id.exam);
+        TextView examStr = findViewById(R.id.exam_text_view);
         examStr.setVisibility(View.VISIBLE);
 
         examScore.setText(examScoreStr);

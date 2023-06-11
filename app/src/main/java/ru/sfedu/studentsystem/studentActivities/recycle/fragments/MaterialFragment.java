@@ -1,6 +1,13 @@
 package ru.sfedu.studentsystem.studentActivities.recycle.fragments;
 
+import android.util.Log;
+
 import androidx.fragment.app.Fragment;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import ru.sfedu.studentsystem.model.LectionMaterial;
 import ru.sfedu.studentsystem.model.PracticalMaterial;
@@ -24,11 +31,11 @@ public class MaterialFragment extends Fragment {
         name = material.getName();
         teacher =material.getTeacher().getName();
         discipline = material.getDiscipline().getName();
-        deadline = material.getDeadline();
+        deadline = dateFormatting(material.getDeadline());
         maxScore = material.getMaximumScore();
         studentScore = material.getStudentScore();
         isMade = material.isMade();
-        appendScore = material.getDateScoreAppend();
+        appendScore = dateFormatting(material.getDateScoreAppend());
         teacherComment = material.getTeacherComment();
         isPractical = true;
     }
@@ -132,5 +139,19 @@ public class MaterialFragment extends Fragment {
 
     public void setTeacherComment(String teacherComment) {
         this.teacherComment = teacherComment;
+    }
+    private String dateFormatting(String dateString) {
+        if((dateString != null) && !dateString.isEmpty()) {
+            Log.d("PARSE APPEND DATE", dateString);
+            SimpleDateFormat oldDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.getDefault());
+            SimpleDateFormat newDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+            try {
+                Date date = oldDateFormat.parse(dateString);
+                return newDateFormat.format(date);
+            } catch (ParseException e) {
+                Log.d("DATEFORMAT", e.getMessage());
+            }
+        }
+        return dateString;
     }
 }

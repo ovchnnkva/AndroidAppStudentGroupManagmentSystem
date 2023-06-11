@@ -35,21 +35,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/container_detail_performance"
-        android:layout_width="374dp"
-        android:layout_height="444dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/type_attestation_discipline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/discipline_name_fragment" />
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="417dp"
+        android:layout_height="359dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/discipline_name_fragment"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintTop_toBottomOf="@+id/type_attestation_discipline">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/container_detail_performance"
+                android:layout_width="388dp"
+                android:layout_height="370dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/date_exam_score_append"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/exam_score_fragment"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/exam_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/result_score_semester" />
+
+    <TextView
+        android:id="@+id/exam_score_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="0/40"
         android:textSize="16sp"
@@ -58,57 +94,44 @@
         app:layout_constraintTop_toBottomOf="@+id/result_score_semester" />
 
     <TextView
-        android:id="@+id/exam_score_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="28dp"
-        android:textSize="16sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/date_exam_score_append"
-        app:layout_constraintHorizontal_bias="0.886"
-        app:layout_constraintStart_toEndOf="@+id/exam"
-        app:layout_constraintTop_toBottomOf="@+id/result_score_semester" />
-
-    <TextView
         android:id="@+id/result_score_semester"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="0/60"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toEndOf="@+id/intermediate_result"
-        app:layout_constraintTop_toBottomOf="@+id/container_detail_performance" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
     <TextView
         android:id="@+id/intermediate_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="Промежуточный итог:"
         android:textColor="@color/blue_3"
         android:textSize="14sp"
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_detail_performance" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
     <TextView
-        android:id="@+id/exam"
+        android:id="@+id/exam_text_view"
         android:layout_width="114dp"
         android:layout_height="22dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="Экзамен"
         android:textColor="@color/blue_3"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/intermediate_result" />
 
@@ -117,29 +140,27 @@
         android:layout_width="253dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:text="Итоговый рейтинг:"
         android:textColor="@color/blue_6"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exam"
-        app:layout_constraintVertical_bias="0.307" />
+        app:layout_constraintTop_toBottomOf="@+id/exam_text_view" />
 
     <TextView
         android:id="@+id/result_score_discipline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="0/100"
         android:textAlignment="textEnd"
         android:textSize="20sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.784"
+        app:layout_constraintHorizontal_bias="0.818"
         app:layout_constraintStart_toEndOf="@+id/result_score"
-        app:layout_constraintTop_toBottomOf="@+id/date_exam_score_append"
-        app:layout_constraintVertical_bias="0.307" />
+        app:layout_constraintTop_toBottomOf="@+id/exam_score_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

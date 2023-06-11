@@ -11,8 +11,8 @@ import retrofit2.http.Path;
 import ru.sfedu.studentsystem.model.Teacher;
 
 public interface TeacherService {
-    @POST("teacher/create/{name}")
-    Call<Integer> registerTeacher(@Path("name") String name);
+    @POST("teacher/create/{name}/{uid}")
+    Call<Integer> registerTeacher(@Path("name") String name, @Path("uid") String uid);
     @GET("teacher/get/id/{id}")
     Call<Teacher> getTeacherById(@Path("id")Long id);
     @GET("teacher/get/uid/{uid}")

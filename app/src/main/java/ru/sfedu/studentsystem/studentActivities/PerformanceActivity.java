@@ -225,6 +225,7 @@ public class PerformanceActivity extends AppCompatActivity {
         fragment.setStudentId(student.getId());
         fragment.setDisciplineId(discipline.getId());
         fragment.setTypeSemester(actualTypeSemester);
+        fragment.setTypeAttestation(discipline.getTypeAttestation());
         fragments.add(fragment);
 
         initRecycle();

@@ -2,6 +2,7 @@ package ru.sfedu.studentsystem.teacherActivity.recycle.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
         holder.nameView.setText(student.getName());
         holder.groupCodeView.setText(student.getGroupCode());
         holder.specializationView.setText(student.getSpecialization());
+        if(student.isFromStudyGroupDetail()) {
+            holder.groupCodeView.setTextColor(Color.WHITE);
+            holder.specializationView.setTextColor(Color.WHITE);
+            holder.nameView.setTextColor(Color.WHITE);
+        }
 
         holder.goToDetailButton.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), DetailStudentActivity.class);
@@ -48,6 +54,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
             intent.putExtra("birthday", student.getBirthday());
             intent.putExtra("groupid", student.getGroupId());
             intent.putExtra("id", student.getStudentId());
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             v.getContext().startActivity(intent);
         });

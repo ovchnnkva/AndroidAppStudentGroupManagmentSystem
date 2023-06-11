@@ -51,7 +51,7 @@ public class AdminHomeActivity extends AppCompatActivity {
     private void init(){
         goToStudent = findViewById(R.id.go_to_students_admin);
         goToTeacher = findViewById(R.id.go_to_teachers_admin);
-        goToSchedules = findViewById(R.id.go_to_teachers_admin);
+        goToSchedules = findViewById(R.id.go_to_schedule_admin);
         goToStudentGroup = findViewById(R.id.go_to_student_group_admin);
 
         goToStudent.setOnClickListener(event -> {
@@ -69,7 +69,8 @@ public class AdminHomeActivity extends AppCompatActivity {
         });
 
         goToStudentGroup.setOnClickListener(event -> {
-
+            Intent intent = new Intent(AdminHomeActivity.this, SearchStudyGroupActivity.class);
+            startActivity(intent);
         });
     }
 }

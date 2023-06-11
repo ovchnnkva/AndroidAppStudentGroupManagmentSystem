@@ -1,14 +1,23 @@
 package ru.sfedu.studentsystem.teacherActivity;
 
 import static ru.sfedu.studentsystem.Constants.AUTH_FILE_NAME;
+import static ru.sfedu.studentsystem.Constants.ROLE_USER_AUTH_FILE;
 import static ru.sfedu.studentsystem.Constants.UID_USER_AUTH_FILE;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,13 +31,18 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import ru.sfedu.studentsystem.Constants;
 import ru.sfedu.studentsystem.R;
+import ru.sfedu.studentsystem.adminActivity.recycle.adapters.StudyGroupSearchAdapter;
 import ru.sfedu.studentsystem.model.Discipline;
 import ru.sfedu.studentsystem.model.PracticalMaterial;
+import ru.sfedu.studentsystem.model.StudyGroup;
 import ru.sfedu.studentsystem.model.Teacher;
 import ru.sfedu.studentsystem.services.DisciplineService;
 import ru.sfedu.studentsystem.services.PracticalMaterialService;
 import ru.sfedu.studentsystem.services.RetrofitService;
+import ru.sfedu.studentsystem.services.StudentService;
+import ru.sfedu.studentsystem.services.StudyGroupService;
 import ru.sfedu.studentsystem.services.TeacherService;
 import ru.sfedu.studentsystem.studentActivities.MaterialsSelectionActivity;
 import ru.sfedu.studentsystem.teacherActivity.recycle.adapters.StudentDetailPerformanceShortAdapter;
@@ -43,6 +57,11 @@ public class DetailStudentActivity extends AppCompatActivity {
     private final String actualTypeSemester = "Осень 2022";
     private ProgressBar loading;
     private Button goToMaterialsButton;
+    private Button changeGroup;
+    private TextView groupsCodeStudent;
+    private TextView specializationStudent;
+    private Constants.ROLES role;
+    private StudyGroup[] groups;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +69,14 @@ public class DetailStudentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_student);
 
         retrofit = new RetrofitService();
-
-        initTeacherUid();
+        initRole();
+        if(role.equals(Constants.ROLES.TEACHER)) {
+            initTeacherUid();
+        } else initView();
+    }
+    private void initRole(){
+        SharedPreferences pref = getSharedPreferences(AUTH_FILE_NAME, MODE_PRIVATE);
+        role = Constants.ROLES.valueOf(pref.getString(ROLE_USER_AUTH_FILE, ""));
     }
 
     private void initTeacherUid() {
@@ -80,15 +105,35 @@ public class DetailStudentActivity extends AppCompatActivity {
             }
         });
     }
+//    private void initTeacherById(Long id){
+//
+//        TeacherService service = retrofit.createService(TeacherService.class);
+//        Call<Teacher> call = service.getTeacherById(id);
+//        call.enqueue(new Callback<Teacher>() {
+//            @Override
+//            public void onResponse(Call<Teacher> call, Response<Teacher> response) {
+//                if(response.isSuccessful()){
+//                    teacher = response.body();
+//                    initView();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Teacher> call, Throwable t) {
+//                Toast.makeText(DetailStudentActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 
     private void initView(){
         TextView nameStudent = findViewById(R.id.name_teacher_detail);
-        TextView specializationStudent = findViewById(R.id.specializaion_detail);
-        TextView groupsCodeStudent = findViewById(R.id.code_detail);
+        specializationStudent = findViewById(R.id.specializaion_detail);
+        groupsCodeStudent = findViewById(R.id.code_detail);
         TextView birthdayStudent = findViewById(R.id.birthday_student_detail);
-        containerPerformance = findViewById(R.id.disciplines_teacher_detail);
+        containerPerformance = findViewById(R.id.student_in_group_detail);
         loading = findViewById(R.id.loading_teacher_detail);
         goToMaterialsButton = findViewById(R.id.go_to_stuents_material_buttons);
+        changeGroup = findViewById(R.id.change_study_group);
 
         studentId = getIntent().getLongExtra("id", 0);
 
@@ -112,7 +157,116 @@ public class DetailStudentActivity extends AppCompatActivity {
             }
         });
 
+        if(role.equals(Constants.ROLES.ADMIN)) {
+            changeGroup.setVisibility(View.VISIBLE);
+            changeGroup.setOnClickListener(event -> initDialog());
+        }
         initGroupsDisciplinesId(id);
+    }
+    private void initDialog(){
+        Dialog dialog = new Dialog(DetailStudentActivity.this);
+        dialog.setContentView(R.layout.search_spinner);
+
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        EditText search = dialog.findViewById(R.id.search_group);
+        ListView listView = dialog.findViewById(R.id.listView_of_searchableSpinner);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("POSITION", position + "");
+                Log.d("FRAG", groups[position].getGroupsCode());
+                initAcceptDialog(groups[position]);
+            }
+        });
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String regex = search.getText().toString().replaceAll(" ", "");
+                if (!regex.equals("")) {
+                    searchStudyGroup(listView, regex);
+                }
+                else clear(listView);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+    private void clear(ListView listView){
+        groups = new StudyGroup[1];
+        StudyGroupSearchAdapter adapter = new StudyGroupSearchAdapter(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, groups);
+        listView.setAdapter(adapter);
+    }
+
+    private void searchStudyGroup(ListView listView, String regex){
+        StudyGroupService service = retrofit.createService(StudyGroupService.class);
+        Call<List<StudyGroup>> call = service.getStudyGroupByCode(regex);
+        call.enqueue(new Callback<List<StudyGroup>>() {
+            @Override
+            public void onResponse(Call<List<StudyGroup>> call, Response<List<StudyGroup>> response) {
+                if(response.isSuccessful()){
+                    List<StudyGroup> groupsList = response.body();
+                    groups = groupsList.toArray(new StudyGroup[0]);
+                    StudyGroupSearchAdapter adapter = new StudyGroupSearchAdapter(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, groups);
+                    listView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<StudyGroup>> call, Throwable t) {
+
+            }
+        });
+    }
+    private void initAcceptDialog(StudyGroup group){
+        Dialog dialog = new Dialog(DetailStudentActivity.this);
+        dialog.setContentView(R.layout.change_group_dialog_accept);
+
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog.show();
+        
+        Button accept = dialog.findViewById(R.id.accept_button);
+        Button notAccept = dialog.findViewById(R.id.not_accept_button);
+        
+        notAccept.setOnClickListener(event -> dialog.dismiss());
+        
+        accept.setOnClickListener(event -> {
+            saveChanges(group);
+            dialog.dismiss();
+        });
+    }
+    
+    private void saveChanges(StudyGroup group){
+        StudentService service = retrofit.createService(StudentService.class);
+        Call<Integer> call = service.updateStudent(studentId, group.getId());
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if((response.isSuccessful()) && (response.body() == 1)){
+                    Toast.makeText(DetailStudentActivity.this, "Группа изменена", Toast.LENGTH_SHORT).show();
+                    specializationStudent.setText(group.getSpecialization());
+                    groupsCodeStudent.setText(group.getGroupsCode());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Toast.makeText(DetailStudentActivity.this, "Ошибка сервера. Повторите попытку позже", Toast.LENGTH_LONG).show();
+            }
+        });
     }
     private void initGroupsDisciplinesId(long groupId) {
         Log.d("GROUP", "get disciplinesstudy group with id: " + groupId);
@@ -123,7 +277,9 @@ public class DetailStudentActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Long>> call, Response<List<Long>> response) {
                 if(response.isSuccessful()){
-                    initTeachersDisciplines(response.body());
+                    if(role.equals(Constants.ROLES.TEACHER)) {
+                        initTeachersDisciplines(response.body());
+                    } else response.body().forEach(id -> initPracticalMaterials(id));
                 } else {
                     Toast.makeText(DetailStudentActivity.this, "Группе не добавлены дисциплины", Toast.LENGTH_LONG).show();
                     loading.setVisibility(View.INVISIBLE);
@@ -146,10 +302,13 @@ public class DetailStudentActivity extends AppCompatActivity {
             public void onResponse(Call<List<Long>> call, Response<List<Long>> response) {
                 if(response.isSuccessful()){
                     response.body().forEach(id -> {
-                        if(groupsDisciplinesIds.contains(id)){
-                            initPracticalMaterials(id);
-                        }
+                        if(role.equals(Constants.ROLES.TEACHER)) {
+                            if (groupsDisciplinesIds.contains(id)) {
+                                initPracticalMaterials(id);
+                            }
+                        } else initPracticalMaterials(id);
                     });
+
                 }  else {
                     Toast.makeText(DetailStudentActivity.this, "Преподавателю ещё не добавлены дисциплины", Toast.LENGTH_LONG).show();
                     loading.setVisibility(View.INVISIBLE);

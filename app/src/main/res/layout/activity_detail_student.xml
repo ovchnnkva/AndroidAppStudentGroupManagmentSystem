@@ -112,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/go_to_stuents_material_buttons" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/disciplines_teacher_detail"
+        android:id="@+id/student_in_group_detail"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -140,5 +140,21 @@
         app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="@+id/view8"
         app:layout_constraintTop_toBottomOf="@+id/specializaion_detail" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/change_study_group"
+        android:layout_width="98dp"
+        android:layout_height="35dp"
+        android:background="@drawable/button_blue_3_center_text"
+        android:text="Изменить группу"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/code_detail"
+        app:layout_constraintEnd_toEndOf="@+id/view8"
+        app:layout_constraintHorizontal_bias="0.711"
+        app:layout_constraintStart_toEndOf="@+id/birthday_student_detail"
+        app:layout_constraintTop_toBottomOf="@+id/view9"
+        app:layout_constraintVertical_bias="0.428" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

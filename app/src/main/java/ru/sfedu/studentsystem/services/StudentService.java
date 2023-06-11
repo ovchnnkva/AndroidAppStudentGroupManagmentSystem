@@ -22,9 +22,8 @@ public interface StudentService {
     Call<List<Student>> getStudentByName(@Path("regex") String regex);
     @GET("student/get/groupid/{groupid}")
     Call<List<Student>> getStudentByGroupId(@Path("groupid") Long id);
-    @PUT("student/update/{id}/{birthday}/{groupid}")
-    Call<Integer> updateStudent(@Path("id") Long id, @Path("birthday") String birthday,
-                                @Path("studygroupid")Long groupid);
+    @PUT("student/update/{id}/{groupid}")
+    Call<Integer> updateStudent(@Path("id") Long id, @Path("groupid")Long groupid);
     @DELETE("student/delete/{id}")
     Call<Integer> deleteStudent(@Path("id") Long id);
 

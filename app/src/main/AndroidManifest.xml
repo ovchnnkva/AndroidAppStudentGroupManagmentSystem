@@ -18,6 +18,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="tiramisu">
         <activity
+            android:name=".adminActivity.StudyGroupDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".adminActivity.SearchStudyGroupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".adminActivity.RegistrationTeacherActivity"
+            android:exported="false" />
+        <activity
             android:name=".adminActivity.dialogs.AppendDisciplineDialog"
             android:exported="false" />
         <activity
